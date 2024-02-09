@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Docker(一)：Docker入门教程 | 程序员练功房</title>
+    <meta name="generator" content="VuePress 1.9.9">
+    <link rel="icon" href="/logo.ico">
+    <meta name="description" content="纵然出走时未曾想要流浪半生，归来时早已发现少年不再">
+    
+    <link rel="preload" href="/assets/css/0.styles.e8e4f3a3.css" as="style"><link rel="preload" href="/assets/js/app.466dd957.js" as="script"><link rel="preload" href="/assets/js/2.733019b2.js" as="script"><link rel="preload" href="/assets/js/15.120590aa.js" as="script"><link rel="prefetch" href="/assets/js/10.fc32896f.js"><link rel="prefetch" href="/assets/js/11.3a98615b.js"><link rel="prefetch" href="/assets/js/12.0fd6f044.js"><link rel="prefetch" href="/assets/js/13.736846a1.js"><link rel="prefetch" href="/assets/js/14.9c4dc8e5.js"><link rel="prefetch" href="/assets/js/16.f46ba600.js"><link rel="prefetch" href="/assets/js/17.f96e2b9e.js"><link rel="prefetch" href="/assets/js/18.5dae5acc.js"><link rel="prefetch" href="/assets/js/19.957d727a.js"><link rel="prefetch" href="/assets/js/20.c957c720.js"><link rel="prefetch" href="/assets/js/21.db4d26e7.js"><link rel="prefetch" href="/assets/js/22.9d19bebe.js"><link rel="prefetch" href="/assets/js/23.b5390312.js"><link rel="prefetch" href="/assets/js/24.289c8fcd.js"><link rel="prefetch" href="/assets/js/25.f7baec4a.js"><link rel="prefetch" href="/assets/js/26.2704ae01.js"><link rel="prefetch" href="/assets/js/27.5189ccb9.js"><link rel="prefetch" href="/assets/js/28.ed5cb93d.js"><link rel="prefetch" href="/assets/js/29.96717473.js"><link rel="prefetch" href="/assets/js/3.0c69ac0f.js"><link rel="prefetch" href="/assets/js/30.7331b634.js"><link rel="prefetch" href="/assets/js/31.d26d187f.js"><link rel="prefetch" href="/assets/js/32.7f286b45.js"><link rel="prefetch" href="/assets/js/33.173b2025.js"><link rel="prefetch" href="/assets/js/34.f31f4bb8.js"><link rel="prefetch" href="/assets/js/35.218fc470.js"><link rel="prefetch" href="/assets/js/36.ebcd9c43.js"><link rel="prefetch" href="/assets/js/37.09d876bc.js"><link rel="prefetch" href="/assets/js/38.3f7ba3d2.js"><link rel="prefetch" href="/assets/js/39.2ac20870.js"><link rel="prefetch" href="/assets/js/4.d12742be.js"><link rel="prefetch" href="/assets/js/40.c1d8f1bc.js"><link rel="prefetch" href="/assets/js/41.ebed8fef.js"><link rel="prefetch" href="/assets/js/42.c1d002b4.js"><link rel="prefetch" href="/assets/js/43.ef429b49.js"><link rel="prefetch" href="/assets/js/44.8adc98bb.js"><link rel="prefetch" href="/assets/js/45.cea62ac9.js"><link rel="prefetch" href="/assets/js/46.d4ffd3f4.js"><link rel="prefetch" href="/assets/js/47.07d237c5.js"><link rel="prefetch" href="/assets/js/48.0ae3a334.js"><link rel="prefetch" href="/assets/js/49.f0515684.js"><link rel="prefetch" href="/assets/js/5.216cae74.js"><link rel="prefetch" href="/assets/js/50.b6ada23c.js"><link rel="prefetch" href="/assets/js/51.6e351bfe.js"><link rel="prefetch" href="/assets/js/52.418a145d.js"><link rel="prefetch" href="/assets/js/53.298699f9.js"><link rel="prefetch" href="/assets/js/54.b3598a19.js"><link rel="prefetch" href="/assets/js/55.ce965562.js"><link rel="prefetch" href="/assets/js/56.bd957b43.js"><link rel="prefetch" href="/assets/js/57.d48da2b8.js"><link rel="prefetch" href="/assets/js/58.999b5a89.js"><link rel="prefetch" href="/assets/js/59.02363b1c.js"><link rel="prefetch" href="/assets/js/6.2d0a63f8.js"><link rel="prefetch" href="/assets/js/60.83e84781.js"><link rel="prefetch" href="/assets/js/61.4449c91d.js"><link rel="prefetch" href="/assets/js/62.56df5e89.js"><link rel="prefetch" href="/assets/js/63.f775d12d.js"><link rel="prefetch" href="/assets/js/64.8add4c27.js"><link rel="prefetch" href="/assets/js/65.346067ba.js"><link rel="prefetch" href="/assets/js/66.dee69efa.js"><link rel="prefetch" href="/assets/js/67.22ab30d5.js"><link rel="prefetch" href="/assets/js/68.0877349f.js"><link rel="prefetch" href="/assets/js/69.0ba59988.js"><link rel="prefetch" href="/assets/js/7.d02ea004.js"><link rel="prefetch" href="/assets/js/70.a02699db.js"><link rel="prefetch" href="/assets/js/8.55b047fc.js"><link rel="prefetch" href="/assets/js/9.22802293.js">
+    <link rel="stylesheet" href="/assets/css/0.styles.e8e4f3a3.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container no-sidebar"><header class="navbar"><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/" class="home-link router-link-active"><!----> <span class="site-name">程序员练功房</span></a> <div class="links"><div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <nav class="nav-links can-hide"><div class="nav-item"><a href="/" class="nav-link">
+  主页
+</a></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="Java" class="dropdown-title"><span class="title">Java</span> <span class="arrow down"></span></button> <button type="button" aria-label="Java" class="mobile-dropdown-title"><span class="title">Java</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/Java/java_1.html" class="nav-link">
+  jobHandler调度管理
+</a></li><li class="dropdown-item"><!----> <a href="/Java/java_2.html" class="nav-link">
+  jProtobuf尝鲜
+</a></li><li class="dropdown-item"><!----> <a href="/SpringBoot/springboot_1.html" class="nav-link">
+  使用Docker部署Spring Boot
+</a></li><li class="dropdown-item"><!----> <a href="/SpringCloud/springcloud_1.html" class="nav-link">
+  springcloud(一)：初识Spring Cloud
+</a></li><li class="dropdown-item"><!----> <a href="/SpringCloud/springcloud_2.html" class="nav-link">
+  springcloud(二)：注册中心Eureka
+</a></li><li class="dropdown-item"><!----> <a href="/Java/java_3.html" class="nav-link">
+  java8 toMap问题(key重复如何解决)
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="机器学习" class="dropdown-title"><span class="title">机器学习</span> <span class="arrow down"></span></button> <button type="button" aria-label="机器学习" class="mobile-dropdown-title"><span class="title">机器学习</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/Ai/ai_1.html" class="nav-link">
+  机器学习笔记
+</a></li><li class="dropdown-item"><!----> <a href="/Ai/ai_2.html" class="nav-link">
+  程序员数学笔记
+</a></li><li class="dropdown-item"><!----> <a href="/Ai/ai_3.html" class="nav-link">
+  计算图和求导的链式法则
+</a></li><li class="dropdown-item"><!----> <a href="/Ai/ai_4.html" class="nav-link">
+  卷积神经网络
+</a></li><li class="dropdown-item"><!----> <a href="/Ai/ai_5.html" class="nav-link">
+  PyTorch学习
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="大数据" class="dropdown-title"><span class="title">大数据</span> <span class="arrow down"></span></button> <button type="button" aria-label="大数据" class="mobile-dropdown-title"><span class="title">大数据</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/BigData/bigdata_1.html" class="nav-link">
+  使用Docker搭建Hadoop集群(伪分布式与完全分布式)
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="区块链" class="dropdown-title"><span class="title">区块链</span> <span class="arrow down"></span></button> <button type="button" aria-label="区块链" class="mobile-dropdown-title"><span class="title">区块链</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/BlockChain/block_1.html" class="nav-link">
+  1、Java实现简单区块链
+</a></li><li class="dropdown-item"><!----> <a href="/BlockChain/block_2.html" class="nav-link">
+  2、Java实现可交易钱包
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="Go" class="dropdown-title"><span class="title">Go</span> <span class="arrow down"></span></button> <button type="button" aria-label="Go" class="mobile-dropdown-title"><span class="title">Go</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/Go/go_1.html" class="nav-link">
+  go的基本命令详解
+</a></li><li class="dropdown-item"><!----> <a href="/Go/go_2.html" class="nav-link">
+  gin框架使用案例
+</a></li><li class="dropdown-item"><!----> <a href="/Go/go_3.html" class="nav-link">
+  gorm基本使用
+</a></li><li class="dropdown-item"><!----> <a href="/Go/go_4.html" class="nav-link">
+  Golang操作Redis
+</a></li><li class="dropdown-item"><!----> <a href="/Go/go_5.html" class="nav-link">
+  golang实现tcp通信
+</a></li><li class="dropdown-item"><!----> <a href="/Go/go_6.html" class="nav-link">
+  Golang使用Protobuf 
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="Vue3" class="dropdown-title"><span class="title">Vue3</span> <span class="arrow down"></span></button> <button type="button" aria-label="Vue3" class="mobile-dropdown-title"><span class="title">Vue3</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/Vue3/vue_1.html" class="nav-link">
+  Vue3 安装
+</a></li><li class="dropdown-item"><!----> <a href="/Vue3/vue_2.html" class="nav-link">
+  Vue3 项目打包
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="Linux" class="dropdown-title"><span class="title">Linux</span> <span class="arrow down"></span></button> <button type="button" aria-label="Linux" class="mobile-dropdown-title"><span class="title">Linux</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/Linux/linux_1.html" class="nav-link">
+  虚拟机3种网络模式
+</a></li><li class="dropdown-item"><!----> <a href="/Linux/linux_2.html" class="nav-link">
+  linux常用命令总结
+</a></li><li class="dropdown-item"><!----> <a href="/Linux/linux_3.html" class="nav-link">
+  centos7部署FastDFS
+</a></li><li class="dropdown-item"><!----> <a href="/Linux/linux_4.html" class="nav-link">
+  centos7中根据文件大小排序
+</a></li><li class="dropdown-item"><!----> <a href="/Linux/linux_5.html" class="nav-link">
+  makefile项目管理demo
+</a></li><li class="dropdown-item"><!----> <a href="/Linux/linux_6.html" class="nav-link">
+  nvm常用命令
+</a></li><li class="dropdown-item"><!----> <a href="/Linux/linux_7.html" class="nav-link">
+  anaconda常用命令
+</a></li><li class="dropdown-item"><!----> <a href="/Jenkins/jenkins_1.html" class="nav-link">
+  快速安装Jenkins完美教程
+</a></li><li class="dropdown-item"><!----> <a href="/Jenkins/jenkins_2.html" class="nav-link">
+  Docker jenkins配置NPM
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="Docker" class="dropdown-title"><span class="title">Docker</span> <span class="arrow down"></span></button> <button type="button" aria-label="Docker" class="mobile-dropdown-title"><span class="title">Docker</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/Docker/docker_1.html" aria-current="page" class="nav-link router-link-exact-active router-link-active">
+  Docker(一)：Docker入门教程
+</a></li><li class="dropdown-item"><!----> <a href="/Docker/docker_2.html" class="nav-link">
+  Docker(二)：Dockerfile使用介绍
+</a></li><li class="dropdown-item"><!----> <a href="/Docker/docker_3.html" class="nav-link">
+  Docker(三)：Dockerfile命令详解
+</a></li><li class="dropdown-item"><!----> <a href="/Docker/docker_4.html" class="nav-link">
+  Docker(四)：Docker三剑客之Docker Compose
+</a></li><li class="dropdown-item"><!----> <a href="/Docker/docker_5.html" class="nav-link">
+  Docker(五)：Docker三剑客之Docker Machine
+</a></li><li class="dropdown-item"><!----> <a href="/Docker/docker_6.html" class="nav-link">
+  Docker(六)：Docker三剑客之Docker Swarm
+</a></li><li class="dropdown-item"><!----> <a href="/Docker/docker_7.html" class="nav-link">
+  Docker安装MariaDB
+</a></li><li class="dropdown-item"><!----> <a href="/Docker/docker_9.html" class="nav-link">
+  Docker安装Mysql8
+</a></li><li class="dropdown-item"><!----> <a href="/Docker/docker_8.html" class="nav-link">
+  Docker安装Redis
+</a></li><li class="dropdown-item"><!----> <a href="/Docker/docker_10.html" class="nav-link">
+  Docker安装Nacos
+</a></li><li class="dropdown-item"><!----> <a href="/Docker/docker_11.html" class="nav-link">
+  Docker安装maven私有仓库
+</a></li><li class="dropdown-item"><!----> <a href="/Docker/docker_12.html" class="nav-link">
+  Docker安装mongodb
+</a></li><li class="dropdown-item"><!----> <a href="/Docker/docker_13.html" class="nav-link">
+  docker-compose.yml开发环境基础中间件配置
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="K8s" class="dropdown-title"><span class="title">K8s</span> <span class="arrow down"></span></button> <button type="button" aria-label="K8s" class="mobile-dropdown-title"><span class="title">K8s</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/K8s/k8s_1.html" class="nav-link">
+  VirtualBox + centos7部署k8s
+</a></li><li class="dropdown-item"><!----> <a href="/K8s/k8s_2.html" class="nav-link">
+  kubectl常用命令
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="Nginx" class="dropdown-title"><span class="title">Nginx</span> <span class="arrow down"></span></button> <button type="button" aria-label="Nginx" class="mobile-dropdown-title"><span class="title">Nginx</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/OpenResty/nginx.html" class="nav-link">
+  Nginx 配置详解
+</a></li><li class="dropdown-item"><!----> <a href="/OpenResty/nginx_2.html" class="nav-link">
+  Nginx 常用命令
+</a></li><li class="dropdown-item"><!----> <a href="/OpenResty/openresty_1.html" class="nav-link">
+  OpenResty 使用介绍
+</a></li><li class="dropdown-item"><!----> <a href="/OpenResty/openresty_2.html" class="nav-link">
+  OpenResty(Nginx+Lua)测试用例
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="单变量微积分" class="dropdown-title"><span class="title">单变量微积分</span> <span class="arrow down"></span></button> <button type="button" aria-label="单变量微积分" class="mobile-dropdown-title"><span class="title">单变量微积分</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/SingleCalculus/SingleCalculus_5.html" class="nav-link">
+  5. 指数函数和对数函数的导数
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="多变量微积分" class="dropdown-title"><span class="title">多变量微积分</span> <span class="arrow down"></span></button> <button type="button" aria-label="多变量微积分" class="mobile-dropdown-title"><span class="title">多变量微积分</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/MultivariableCalculus/MultivariableCalculus_1.html" class="nav-link">
+  1. 偏导数
+</a></li><li class="dropdown-item"><!----> <a href="/MultivariableCalculus/MultivariableCalculus_5.html" class="nav-link">
+  5. 梯度与方向导数
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="线性代数" class="dropdown-title"><span class="title">线性代数</span> <span class="arrow down"></span></button> <button type="button" aria-label="线性代数" class="mobile-dropdown-title"><span class="title">线性代数</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/linear/linear_1.html" class="nav-link">
+  1. 矩阵的基本运算
+</a></li><li class="dropdown-item"><!----> <a href="/linear/linear_2.html" class="nav-link">
+  2. 向量（简介）
+</a></li><li class="dropdown-item"><!----> <a href="/linear/linear_3.html" class="nav-link">
+  3. 向量2（点积）
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="概率论" class="dropdown-title"><span class="title">概率论</span> <span class="arrow down"></span></button> <button type="button" aria-label="概率论" class="mobile-dropdown-title"><span class="title">概率论</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/Probability/probability_1.html" class="nav-link">
+  1. 独立事件下的简单概率
+</a></li><li class="dropdown-item"><!----> <a href="/Probability/probability_2.html" class="nav-link">
+  2. 古典概型
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="其它" class="dropdown-title"><span class="title">其它</span> <span class="arrow down"></span></button> <button type="button" aria-label="其它" class="mobile-dropdown-title"><span class="title">其它</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/Other/2019.1.2.html" class="nav-link">
+  Vuepress搭建静态博客
+</a></li><li class="dropdown-item"><!----> <a href="/Other/markdown.html" class="nav-link">
+  Markdown基本语法
+</a></li></ul></div></div><div class="nav-item"><a href="/Readme/index.html" class="nav-link">
+  关于我
+</a></div> <!----></nav></div></header> <div class="sidebar-mask"></div> <aside class="sidebar"><nav class="nav-links"><div class="nav-item"><a href="/" class="nav-link">
+  主页
+</a></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="Java" class="dropdown-title"><span class="title">Java</span> <span class="arrow down"></span></button> <button type="button" aria-label="Java" class="mobile-dropdown-title"><span class="title">Java</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/Java/java_1.html" class="nav-link">
+  jobHandler调度管理
+</a></li><li class="dropdown-item"><!----> <a href="/Java/java_2.html" class="nav-link">
+  jProtobuf尝鲜
+</a></li><li class="dropdown-item"><!----> <a href="/SpringBoot/springboot_1.html" class="nav-link">
+  使用Docker部署Spring Boot
+</a></li><li class="dropdown-item"><!----> <a href="/SpringCloud/springcloud_1.html" class="nav-link">
+  springcloud(一)：初识Spring Cloud
+</a></li><li class="dropdown-item"><!----> <a href="/SpringCloud/springcloud_2.html" class="nav-link">
+  springcloud(二)：注册中心Eureka
+</a></li><li class="dropdown-item"><!----> <a href="/Java/java_3.html" class="nav-link">
+  java8 toMap问题(key重复如何解决)
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="机器学习" class="dropdown-title"><span class="title">机器学习</span> <span class="arrow down"></span></button> <button type="button" aria-label="机器学习" class="mobile-dropdown-title"><span class="title">机器学习</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/Ai/ai_1.html" class="nav-link">
+  机器学习笔记
+</a></li><li class="dropdown-item"><!----> <a href="/Ai/ai_2.html" class="nav-link">
+  程序员数学笔记
+</a></li><li class="dropdown-item"><!----> <a href="/Ai/ai_3.html" class="nav-link">
+  计算图和求导的链式法则
+</a></li><li class="dropdown-item"><!----> <a href="/Ai/ai_4.html" class="nav-link">
+  卷积神经网络
+</a></li><li class="dropdown-item"><!----> <a href="/Ai/ai_5.html" class="nav-link">
+  PyTorch学习
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="大数据" class="dropdown-title"><span class="title">大数据</span> <span class="arrow down"></span></button> <button type="button" aria-label="大数据" class="mobile-dropdown-title"><span class="title">大数据</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/BigData/bigdata_1.html" class="nav-link">
+  使用Docker搭建Hadoop集群(伪分布式与完全分布式)
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="区块链" class="dropdown-title"><span class="title">区块链</span> <span class="arrow down"></span></button> <button type="button" aria-label="区块链" class="mobile-dropdown-title"><span class="title">区块链</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/BlockChain/block_1.html" class="nav-link">
+  1、Java实现简单区块链
+</a></li><li class="dropdown-item"><!----> <a href="/BlockChain/block_2.html" class="nav-link">
+  2、Java实现可交易钱包
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="Go" class="dropdown-title"><span class="title">Go</span> <span class="arrow down"></span></button> <button type="button" aria-label="Go" class="mobile-dropdown-title"><span class="title">Go</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/Go/go_1.html" class="nav-link">
+  go的基本命令详解
+</a></li><li class="dropdown-item"><!----> <a href="/Go/go_2.html" class="nav-link">
+  gin框架使用案例
+</a></li><li class="dropdown-item"><!----> <a href="/Go/go_3.html" class="nav-link">
+  gorm基本使用
+</a></li><li class="dropdown-item"><!----> <a href="/Go/go_4.html" class="nav-link">
+  Golang操作Redis
+</a></li><li class="dropdown-item"><!----> <a href="/Go/go_5.html" class="nav-link">
+  golang实现tcp通信
+</a></li><li class="dropdown-item"><!----> <a href="/Go/go_6.html" class="nav-link">
+  Golang使用Protobuf 
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="Vue3" class="dropdown-title"><span class="title">Vue3</span> <span class="arrow down"></span></button> <button type="button" aria-label="Vue3" class="mobile-dropdown-title"><span class="title">Vue3</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/Vue3/vue_1.html" class="nav-link">
+  Vue3 安装
+</a></li><li class="dropdown-item"><!----> <a href="/Vue3/vue_2.html" class="nav-link">
+  Vue3 项目打包
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="Linux" class="dropdown-title"><span class="title">Linux</span> <span class="arrow down"></span></button> <button type="button" aria-label="Linux" class="mobile-dropdown-title"><span class="title">Linux</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/Linux/linux_1.html" class="nav-link">
+  虚拟机3种网络模式
+</a></li><li class="dropdown-item"><!----> <a href="/Linux/linux_2.html" class="nav-link">
+  linux常用命令总结
+</a></li><li class="dropdown-item"><!----> <a href="/Linux/linux_3.html" class="nav-link">
+  centos7部署FastDFS
+</a></li><li class="dropdown-item"><!----> <a href="/Linux/linux_4.html" class="nav-link">
+  centos7中根据文件大小排序
+</a></li><li class="dropdown-item"><!----> <a href="/Linux/linux_5.html" class="nav-link">
+  makefile项目管理demo
+</a></li><li class="dropdown-item"><!----> <a href="/Linux/linux_6.html" class="nav-link">
+  nvm常用命令
+</a></li><li class="dropdown-item"><!----> <a href="/Linux/linux_7.html" class="nav-link">
+  anaconda常用命令
+</a></li><li class="dropdown-item"><!----> <a href="/Jenkins/jenkins_1.html" class="nav-link">
+  快速安装Jenkins完美教程
+</a></li><li class="dropdown-item"><!----> <a href="/Jenkins/jenkins_2.html" class="nav-link">
+  Docker jenkins配置NPM
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="Docker" class="dropdown-title"><span class="title">Docker</span> <span class="arrow down"></span></button> <button type="button" aria-label="Docker" class="mobile-dropdown-title"><span class="title">Docker</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/Docker/docker_1.html" aria-current="page" class="nav-link router-link-exact-active router-link-active">
+  Docker(一)：Docker入门教程
+</a></li><li class="dropdown-item"><!----> <a href="/Docker/docker_2.html" class="nav-link">
+  Docker(二)：Dockerfile使用介绍
+</a></li><li class="dropdown-item"><!----> <a href="/Docker/docker_3.html" class="nav-link">
+  Docker(三)：Dockerfile命令详解
+</a></li><li class="dropdown-item"><!----> <a href="/Docker/docker_4.html" class="nav-link">
+  Docker(四)：Docker三剑客之Docker Compose
+</a></li><li class="dropdown-item"><!----> <a href="/Docker/docker_5.html" class="nav-link">
+  Docker(五)：Docker三剑客之Docker Machine
+</a></li><li class="dropdown-item"><!----> <a href="/Docker/docker_6.html" class="nav-link">
+  Docker(六)：Docker三剑客之Docker Swarm
+</a></li><li class="dropdown-item"><!----> <a href="/Docker/docker_7.html" class="nav-link">
+  Docker安装MariaDB
+</a></li><li class="dropdown-item"><!----> <a href="/Docker/docker_9.html" class="nav-link">
+  Docker安装Mysql8
+</a></li><li class="dropdown-item"><!----> <a href="/Docker/docker_8.html" class="nav-link">
+  Docker安装Redis
+</a></li><li class="dropdown-item"><!----> <a href="/Docker/docker_10.html" class="nav-link">
+  Docker安装Nacos
+</a></li><li class="dropdown-item"><!----> <a href="/Docker/docker_11.html" class="nav-link">
+  Docker安装maven私有仓库
+</a></li><li class="dropdown-item"><!----> <a href="/Docker/docker_12.html" class="nav-link">
+  Docker安装mongodb
+</a></li><li class="dropdown-item"><!----> <a href="/Docker/docker_13.html" class="nav-link">
+  docker-compose.yml开发环境基础中间件配置
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="K8s" class="dropdown-title"><span class="title">K8s</span> <span class="arrow down"></span></button> <button type="button" aria-label="K8s" class="mobile-dropdown-title"><span class="title">K8s</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/K8s/k8s_1.html" class="nav-link">
+  VirtualBox + centos7部署k8s
+</a></li><li class="dropdown-item"><!----> <a href="/K8s/k8s_2.html" class="nav-link">
+  kubectl常用命令
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="Nginx" class="dropdown-title"><span class="title">Nginx</span> <span class="arrow down"></span></button> <button type="button" aria-label="Nginx" class="mobile-dropdown-title"><span class="title">Nginx</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/OpenResty/nginx.html" class="nav-link">
+  Nginx 配置详解
+</a></li><li class="dropdown-item"><!----> <a href="/OpenResty/nginx_2.html" class="nav-link">
+  Nginx 常用命令
+</a></li><li class="dropdown-item"><!----> <a href="/OpenResty/openresty_1.html" class="nav-link">
+  OpenResty 使用介绍
+</a></li><li class="dropdown-item"><!----> <a href="/OpenResty/openresty_2.html" class="nav-link">
+  OpenResty(Nginx+Lua)测试用例
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="单变量微积分" class="dropdown-title"><span class="title">单变量微积分</span> <span class="arrow down"></span></button> <button type="button" aria-label="单变量微积分" class="mobile-dropdown-title"><span class="title">单变量微积分</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/SingleCalculus/SingleCalculus_5.html" class="nav-link">
+  5. 指数函数和对数函数的导数
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="多变量微积分" class="dropdown-title"><span class="title">多变量微积分</span> <span class="arrow down"></span></button> <button type="button" aria-label="多变量微积分" class="mobile-dropdown-title"><span class="title">多变量微积分</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/MultivariableCalculus/MultivariableCalculus_1.html" class="nav-link">
+  1. 偏导数
+</a></li><li class="dropdown-item"><!----> <a href="/MultivariableCalculus/MultivariableCalculus_5.html" class="nav-link">
+  5. 梯度与方向导数
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="线性代数" class="dropdown-title"><span class="title">线性代数</span> <span class="arrow down"></span></button> <button type="button" aria-label="线性代数" class="mobile-dropdown-title"><span class="title">线性代数</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/linear/linear_1.html" class="nav-link">
+  1. 矩阵的基本运算
+</a></li><li class="dropdown-item"><!----> <a href="/linear/linear_2.html" class="nav-link">
+  2. 向量（简介）
+</a></li><li class="dropdown-item"><!----> <a href="/linear/linear_3.html" class="nav-link">
+  3. 向量2（点积）
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="概率论" class="dropdown-title"><span class="title">概率论</span> <span class="arrow down"></span></button> <button type="button" aria-label="概率论" class="mobile-dropdown-title"><span class="title">概率论</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/Probability/probability_1.html" class="nav-link">
+  1. 独立事件下的简单概率
+</a></li><li class="dropdown-item"><!----> <a href="/Probability/probability_2.html" class="nav-link">
+  2. 古典概型
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="其它" class="dropdown-title"><span class="title">其它</span> <span class="arrow down"></span></button> <button type="button" aria-label="其它" class="mobile-dropdown-title"><span class="title">其它</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/Other/2019.1.2.html" class="nav-link">
+  Vuepress搭建静态博客
+</a></li><li class="dropdown-item"><!----> <a href="/Other/markdown.html" class="nav-link">
+  Markdown基本语法
+</a></li></ul></div></div><div class="nav-item"><a href="/Readme/index.html" class="nav-link">
+  关于我
+</a></div> <!----></nav>  <!----> </aside> <main class="page"> <div class="theme-default-content content__default"><h1 id="docker-一-docker入门教程"><a href="#docker-一-docker入门教程" class="header-anchor">#</a> Docker(一)：Docker入门教程</h1> <h2 id="前言"><a href="#前言" class="header-anchor">#</a> 前言</h2> <p>架构越来越流行的情况下，微服务+Docker的完美组合，更加方便微服务架构运维部署落地。</p> <p>本文详细解释介绍Docker入门相关内容，后期重点关注Docker在微服务体系中的使用。在了解Docker之前我们先考虑几个问题：1、Docker是什么？2、为什么要使用Docker，它有什么优势？带着这些问题我们来看看下面的内容。</p> <h2 id="什么是docker"><a href="#什么是docker" class="header-anchor">#</a> 什么是Docker?</h2> <p>Docker 是世界领先的软件容器平台。开发人员利用 Docker 可以消除协作编码时“在我的机器上可正常工作”的问题。运维人员利用 Docker 可以在隔离容器中并行运行和管理应用，获得更好的计算密度。企业利用 Docker 可以构建敏捷的软件交付管道，以更快的速度、更高的安全性和可靠的信誉为 Linux 和 Windows Server 应用发布新功能。</p> <p>Docker 属于 Linux 容器的一种封装，提供简单易用的容器使用接口。它是目前最流行的 Linux 容器解决方案。Docker 将应用程序与该程序的依赖，打包在一个文件里面。运行这个文件，就会生成一个虚拟容器。程序在这个虚拟容器里运行，就好像在真实的物理机上运行一样。有了 Docker，就不用担心环境问题。</p> <p>总体来说，Docker 的接口相当简单，用户可以方便地创建和使用容器，把自己的应用放入容器。容器还可以进行版本管理、复制、分享、修改，就像管理普通的代码一样。</p> <p>Docker 最初是 dotCloud 公司创始人 Solomon Hykes 在法国期间发起的一个公司内部项目，它是基于 dotCloud 公司多年云服务技术的一次革新，并于 2013 年 3 月以 Apache 2.0 授权协议开源，主要项目代码在 GitHub 上进行维护。Docker 项目后来还加入了 Linux 基金会，并成立推动 开放容器联盟（OCI）。</p> <p>Docker 自开源后受到广泛的关注和讨论，至今其 GitHub 项目已经超过 4 万 6 千个星标和一万多个 fork。甚至由于 Docker 项目的火爆，在 2013 年底，dotCloud 公司决定改名为 Docker。Docker 最初是在 Ubuntu 12.04 上开发实现的；Red Hat 则从 RHEL 6.5 开始对 Docker 进行支持；Google 也在其 PaaS 产品中广泛应用 Docker。</p> <h2 id="为什么要使用docker"><a href="#为什么要使用docker" class="header-anchor">#</a> 为什么要使用Docker</h2> <p>容器除了运行其中应用外，基本不消耗额外的系统资源，使得应用的性能很高，同时系统的开销尽量小。传统虚拟机方式运行 10 个不同的应用就要起 10 个虚拟机，而Docker 只需要启动 10 个隔离的应用即可。</p> <p>具体说来，Docker 在如下几个方面具有较大的优势。</p> <p>1、更快速的交付和部署</p> <p>对开发和运维（devop）人员来说，最希望的就是一次创建或配置，可以在任意地方正常运行。</p> <p>开发者可以使用一个标准的镜像来构建一套开发容器，开发完成之后，运维人员可以直接使用这个容器来部署代码。 Docker 可以快速创建容器，快速迭代应用程序，并让整个过程全程可见，使团队中的其他成员更容易理解应用程序是如何创建和工作的。 Docker 容器很轻很快！容器的启动时间是秒级的，大量地节约开发、测试、部署的时间。</p> <p>2、更高效的虚拟化</p> <p>Docker 容器的运行不需要额外的 hypervisor 支持，它是内核级的虚拟化，因此可以实现更高的性能和效率。</p> <p>3、更轻松的迁移和扩展</p> <p>Docker 容器几乎可以在任意的平台上运行，包括物理机、虚拟机、公有云、私有云、个人电脑、服务器等。 这种兼容性可以让用户把一个应用程序从一个平台直接迁移到另外一个。</p> <p>4、更简单的管理</p> <p>使用 Docker，只需要小小的修改，就可以替代以往大量的更新工作。所有的修改都以增量的方式被分发和更新，从而实现自动化并且高效的管理。</p> <h2 id="docker-vs-vm"><a href="#docker-vs-vm" class="header-anchor">#</a> Docker vs VM</h2> <p>从下图可以看出，VM是一个运行在宿主机之上的完整的操作系统，VM运行自身操作系统会占用较多的CPU、内存、硬盘资源。Docker不同于VM，只包含应用程序以及依赖库，基于libcontainer运行在宿主机上，并处于一个隔离的环境中，这使得Docker更加轻量高效，启动容器只需几秒钟之内完成。由于Docker轻量、资源占用少，使得Docker可以轻易的应用到构建标准化的应用中。但Docker目前还不够完善，比如隔离效果不如VM，共享宿主机操作系统的一些基础库等；网络配置功能相对简单，主要以桥接方式为主；查看日志也不够方便灵活。</p> <p>Docker 在容器的基础上，进行了进一步的封装，从文件系统、网络互联到进程隔离等等，极大的简化了容器的创建和维护。使得 Docker 技术比虚拟机技术更为轻便、快捷。</p> <p>作为一种新兴的虚拟化方式，Docker 跟传统的虚拟化方式相比具有众多的优势。Docker 容器的启动可以在秒级实现，这相比传统的虚拟机方式要快得多；Docker 对系统资源的利用率很高，一台主机上可以同时运行数千个 Docker 容器。</p> <h2 id="相关概念"><a href="#相关概念" class="header-anchor">#</a> 相关概念</h2> <p>Docker是CS架构，主要有两个概念：</p> <ul><li>Docker daemon: 运行在宿主机上，Docker守护进程，用户通过Docker client(Docker命令)与Docker daemon交互</li> <li>Docker client: Docker 命令行工具，是用户使用Docker的主要方式，Docker client与Docker daemon通信并将结果返回给用户，Docker client也可以通过socket或者RESTful api访问远程的Docker daemon</li></ul> <p>了解了Docker的组成，再来了解一下Docker的三个主要概念：</p> <ul><li>Docker image：镜像是只读的，镜像中包含有需要运行的文件。镜像用来创建container，一个镜像可以运行多个container；镜像可以通过Dockerfile创建，也可以从Docker hub/registry上下载。</li> <li>Docker container：容器是Docker的运行组件，启动一个镜像就是一个容器，容器是一个隔离环境，多个容器之间不会相互影响，保证容器中的程序运行在一个相对安全的环境中。</li> <li>Docker hub/registry: 共享和管理Docker镜像，用户可以上传或者下载上面的镜像，官方地址为https://registry.hub.docker.com/，也可以搭建自己私有的Docker registry。
+镜像就相当于打包好的版本，镜像启动之后运行在容器中，仓库就是装存储镜像的地方。</li></ul> <h2 id="docker安装"><a href="#docker安装" class="header-anchor">#</a> Docker安装</h2> <p>建议在linux环境下安装Docker，window环境搭建比较复杂且容易出错，使用Centos7+yum来安装Docker环境很方便。</p> <p>Docker 软件包已经包括在默认的 CentOS-Extras 软件源里。因此想要安装 docker，只需要运行下面的 yum 命令：</p> <div class="language- extra-class"><pre class="language-text"><code>yum install docker
+</code></pre></div><p>安装完成后，使用下面的命令来启动 docker 服务，并将其设置为开机启动：</p> <div class="language- extra-class"><pre class="language-text"><code>service docker start
+chkconfig docker on
+</code></pre></div><p>LCTT 译注：此处采用了旧式的 sysv 语法，如采用CentOS 7中支持的新式 systemd 语法，如下：</p> <div class="language- extra-class"><pre class="language-text"><code>systemctl start docker.service
+systemctl enable docker.service
+</code></pre></div><p>测试</p> <div class="language- extra-class"><pre class="language-text"><code>docker version
+</code></pre></div><p>输入上述命令，返回docker的版本相关信息，证明docker安装成功。</p> <h2 id="hello-world"><a href="#hello-world" class="header-anchor">#</a> Hello World</h2> <p>下面，我们通过最简单的 image 文件&quot;hello world&quot;，感受一下 Docker。</p> <p>因为国内连接 Docker 的官方仓库很慢，因此我们在日常使用中会使用Docker 中国加速器。通过 Docker 官方镜像加速，中国区用户能够快速访问最流行的 Docker 镜像。该镜像托管于中国大陆，本地用户现在将会享受到更快的下载速度和更强的稳定性，从而能够更敏捷地开发和交付 Docker 化应用。</p> <p>Docker 中国官方镜像加速可通过registry.docker-cn.com访问。该镜像库只包含流行的公有镜像，私有镜像仍需要从美国镜像库中拉取。</p> <p>修改系统中docker对应的配置文件即可，如下：</p> <div class="language- extra-class"><pre class="language-text"><code>vi  /etc/docker/daemon.json
+</code></pre></div><p>添加后</p> <div class="language- extra-class"><pre class="language-text"><code>{
+    &quot;registry-mirrors&quot;: [&quot;https://registry.docker-cn.com&quot;],
+    &quot;live-restore&quot;: true
+}
+</code></pre></div><p>运行下面的命令，将 image 文件从仓库抓取到本地。</p> <div class="language- extra-class"><pre class="language-text"><code>docker pull library/hello-world
+</code></pre></div><p>上面代码中，docker image pull是抓取 image 文件的命令。library/hello-world是 image 文件在仓库里面的位置，其中library是 image 文件所在的组，hello-world是 image 文件的名字。</p> <p>抓取成功以后，就可以在本机看到这个 image 文件了。</p> <div class="language- extra-class"><pre class="language-text"><code>docker images
+#显示结果
+REPOSITORY                      TAG                 IMAGE ID            CREATED             SIZE
+docker.io/hello-world           latest              f2a91732366c        3 months ago        1.848 kB
+</code></pre></div><p>现在，运行这个 image 文件。</p> <div class="language- extra-class"><pre class="language-text"><code>docker run hello-world
+
+#显示结果
+Hello from Docker!
+This message shows that your installation appears to be working correctly.
+...
+</code></pre></div><p>输出这段提示以后，hello world就会停止运行，容器自动终止。有些容器不会自动终止，因为提供的是服务，比如Mysql镜像等。</p> <h2 id="常用命令"><a href="#常用命令" class="header-anchor">#</a> 常用命令</h2> <p>除过以上我们使用的Docker命令外，Docker还有一些其它常用的命令</p> <p>拉取docker镜像</p> <div class="language- extra-class"><pre class="language-text"><code>docker pull image_name
+</code></pre></div><p>查看宿主机上的镜像，Docker镜像保存在/var/lib/docker目录下:</p> <div class="language- extra-class"><pre class="language-text"><code>docker images
+</code></pre></div><p>删除镜像</p> <div class="language- extra-class"><pre class="language-text"><code>docker rmi  docker.io/tomcat:7.0.77-jre7   或者  docker rmi b39c68b7af30
+</code></pre></div><p>查看当前有哪些容器正在运行</p> <div class="language- extra-class"><pre class="language-text"><code>docker ps
+</code></pre></div><p>查看所有容器</p> <div class="language- extra-class"><pre class="language-text"><code>docker ps -a
+</code></pre></div><p>启动、停止、重启容器命令：</p> <div class="language- extra-class"><pre class="language-text"><code>docker start container_name/container_id
+docker stop container_name/container_id
+docker restart container_name/container_id
+</code></pre></div><p>后台启动一个容器后，如果想进入到这个容器，可以使用attach命令：</p> <div class="language- extra-class"><pre class="language-text"><code>docker attach container_name/container_id
+</code></pre></div><p>删除容器的命令：</p> <div class="language- extra-class"><pre class="language-text"><code>docker rm container_name/container_id
+</code></pre></div><p>查看当前系统Docker信息</p> <div class="language- extra-class"><pre class="language-text"><code>docker info
+</code></pre></div><p>从Docker hub上下载某个镜像:</p> <div class="language- extra-class"><pre class="language-text"><code>docker pull centos:latest
+docker pull centos:latest
+</code></pre></div><p>执行docker pull centos会将Centos这个仓库下面的所有镜像下载到本地repository。</p></div> <footer class="page-edit"><!----> <div class="last-updated"><span class="prefix">Last Updated:</span> <span class="time">11/5/2022, 9:32:44 PM</span></div></footer> <!----> </main></div><div class="global-ui"></div></div>
+    <script src="/assets/js/app.466dd957.js" defer></script><script src="/assets/js/2.733019b2.js" defer></script><script src="/assets/js/15.120590aa.js" defer></script>
+  </body>
+</html>

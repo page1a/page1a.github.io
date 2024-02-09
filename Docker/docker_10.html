@@ -1,0 +1,522 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Docker安装Nacos | 程序员练功房</title>
+    <meta name="generator" content="VuePress 1.9.9">
+    <link rel="icon" href="/logo.ico">
+    <meta name="description" content="纵然出走时未曾想要流浪半生，归来时早已发现少年不再">
+    
+    <link rel="preload" href="/assets/css/0.styles.e8e4f3a3.css" as="style"><link rel="preload" href="/assets/js/app.466dd957.js" as="script"><link rel="preload" href="/assets/js/2.733019b2.js" as="script"><link rel="preload" href="/assets/js/16.f46ba600.js" as="script"><link rel="prefetch" href="/assets/js/10.fc32896f.js"><link rel="prefetch" href="/assets/js/11.3a98615b.js"><link rel="prefetch" href="/assets/js/12.0fd6f044.js"><link rel="prefetch" href="/assets/js/13.736846a1.js"><link rel="prefetch" href="/assets/js/14.9c4dc8e5.js"><link rel="prefetch" href="/assets/js/15.120590aa.js"><link rel="prefetch" href="/assets/js/17.f96e2b9e.js"><link rel="prefetch" href="/assets/js/18.5dae5acc.js"><link rel="prefetch" href="/assets/js/19.957d727a.js"><link rel="prefetch" href="/assets/js/20.c957c720.js"><link rel="prefetch" href="/assets/js/21.db4d26e7.js"><link rel="prefetch" href="/assets/js/22.9d19bebe.js"><link rel="prefetch" href="/assets/js/23.b5390312.js"><link rel="prefetch" href="/assets/js/24.289c8fcd.js"><link rel="prefetch" href="/assets/js/25.f7baec4a.js"><link rel="prefetch" href="/assets/js/26.2704ae01.js"><link rel="prefetch" href="/assets/js/27.5189ccb9.js"><link rel="prefetch" href="/assets/js/28.ed5cb93d.js"><link rel="prefetch" href="/assets/js/29.96717473.js"><link rel="prefetch" href="/assets/js/3.0c69ac0f.js"><link rel="prefetch" href="/assets/js/30.7331b634.js"><link rel="prefetch" href="/assets/js/31.d26d187f.js"><link rel="prefetch" href="/assets/js/32.7f286b45.js"><link rel="prefetch" href="/assets/js/33.173b2025.js"><link rel="prefetch" href="/assets/js/34.f31f4bb8.js"><link rel="prefetch" href="/assets/js/35.218fc470.js"><link rel="prefetch" href="/assets/js/36.ebcd9c43.js"><link rel="prefetch" href="/assets/js/37.09d876bc.js"><link rel="prefetch" href="/assets/js/38.3f7ba3d2.js"><link rel="prefetch" href="/assets/js/39.2ac20870.js"><link rel="prefetch" href="/assets/js/4.d12742be.js"><link rel="prefetch" href="/assets/js/40.c1d8f1bc.js"><link rel="prefetch" href="/assets/js/41.ebed8fef.js"><link rel="prefetch" href="/assets/js/42.c1d002b4.js"><link rel="prefetch" href="/assets/js/43.ef429b49.js"><link rel="prefetch" href="/assets/js/44.8adc98bb.js"><link rel="prefetch" href="/assets/js/45.cea62ac9.js"><link rel="prefetch" href="/assets/js/46.d4ffd3f4.js"><link rel="prefetch" href="/assets/js/47.07d237c5.js"><link rel="prefetch" href="/assets/js/48.0ae3a334.js"><link rel="prefetch" href="/assets/js/49.f0515684.js"><link rel="prefetch" href="/assets/js/5.216cae74.js"><link rel="prefetch" href="/assets/js/50.b6ada23c.js"><link rel="prefetch" href="/assets/js/51.6e351bfe.js"><link rel="prefetch" href="/assets/js/52.418a145d.js"><link rel="prefetch" href="/assets/js/53.298699f9.js"><link rel="prefetch" href="/assets/js/54.b3598a19.js"><link rel="prefetch" href="/assets/js/55.ce965562.js"><link rel="prefetch" href="/assets/js/56.bd957b43.js"><link rel="prefetch" href="/assets/js/57.d48da2b8.js"><link rel="prefetch" href="/assets/js/58.999b5a89.js"><link rel="prefetch" href="/assets/js/59.02363b1c.js"><link rel="prefetch" href="/assets/js/6.2d0a63f8.js"><link rel="prefetch" href="/assets/js/60.83e84781.js"><link rel="prefetch" href="/assets/js/61.4449c91d.js"><link rel="prefetch" href="/assets/js/62.56df5e89.js"><link rel="prefetch" href="/assets/js/63.f775d12d.js"><link rel="prefetch" href="/assets/js/64.8add4c27.js"><link rel="prefetch" href="/assets/js/65.346067ba.js"><link rel="prefetch" href="/assets/js/66.dee69efa.js"><link rel="prefetch" href="/assets/js/67.22ab30d5.js"><link rel="prefetch" href="/assets/js/68.0877349f.js"><link rel="prefetch" href="/assets/js/69.0ba59988.js"><link rel="prefetch" href="/assets/js/7.d02ea004.js"><link rel="prefetch" href="/assets/js/70.a02699db.js"><link rel="prefetch" href="/assets/js/8.55b047fc.js"><link rel="prefetch" href="/assets/js/9.22802293.js">
+    <link rel="stylesheet" href="/assets/css/0.styles.e8e4f3a3.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container no-sidebar"><header class="navbar"><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/" class="home-link router-link-active"><!----> <span class="site-name">程序员练功房</span></a> <div class="links"><div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <nav class="nav-links can-hide"><div class="nav-item"><a href="/" class="nav-link">
+  主页
+</a></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="Java" class="dropdown-title"><span class="title">Java</span> <span class="arrow down"></span></button> <button type="button" aria-label="Java" class="mobile-dropdown-title"><span class="title">Java</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/Java/java_1.html" class="nav-link">
+  jobHandler调度管理
+</a></li><li class="dropdown-item"><!----> <a href="/Java/java_2.html" class="nav-link">
+  jProtobuf尝鲜
+</a></li><li class="dropdown-item"><!----> <a href="/SpringBoot/springboot_1.html" class="nav-link">
+  使用Docker部署Spring Boot
+</a></li><li class="dropdown-item"><!----> <a href="/SpringCloud/springcloud_1.html" class="nav-link">
+  springcloud(一)：初识Spring Cloud
+</a></li><li class="dropdown-item"><!----> <a href="/SpringCloud/springcloud_2.html" class="nav-link">
+  springcloud(二)：注册中心Eureka
+</a></li><li class="dropdown-item"><!----> <a href="/Java/java_3.html" class="nav-link">
+  java8 toMap问题(key重复如何解决)
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="机器学习" class="dropdown-title"><span class="title">机器学习</span> <span class="arrow down"></span></button> <button type="button" aria-label="机器学习" class="mobile-dropdown-title"><span class="title">机器学习</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/Ai/ai_1.html" class="nav-link">
+  机器学习笔记
+</a></li><li class="dropdown-item"><!----> <a href="/Ai/ai_2.html" class="nav-link">
+  程序员数学笔记
+</a></li><li class="dropdown-item"><!----> <a href="/Ai/ai_3.html" class="nav-link">
+  计算图和求导的链式法则
+</a></li><li class="dropdown-item"><!----> <a href="/Ai/ai_4.html" class="nav-link">
+  卷积神经网络
+</a></li><li class="dropdown-item"><!----> <a href="/Ai/ai_5.html" class="nav-link">
+  PyTorch学习
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="大数据" class="dropdown-title"><span class="title">大数据</span> <span class="arrow down"></span></button> <button type="button" aria-label="大数据" class="mobile-dropdown-title"><span class="title">大数据</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/BigData/bigdata_1.html" class="nav-link">
+  使用Docker搭建Hadoop集群(伪分布式与完全分布式)
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="区块链" class="dropdown-title"><span class="title">区块链</span> <span class="arrow down"></span></button> <button type="button" aria-label="区块链" class="mobile-dropdown-title"><span class="title">区块链</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/BlockChain/block_1.html" class="nav-link">
+  1、Java实现简单区块链
+</a></li><li class="dropdown-item"><!----> <a href="/BlockChain/block_2.html" class="nav-link">
+  2、Java实现可交易钱包
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="Go" class="dropdown-title"><span class="title">Go</span> <span class="arrow down"></span></button> <button type="button" aria-label="Go" class="mobile-dropdown-title"><span class="title">Go</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/Go/go_1.html" class="nav-link">
+  go的基本命令详解
+</a></li><li class="dropdown-item"><!----> <a href="/Go/go_2.html" class="nav-link">
+  gin框架使用案例
+</a></li><li class="dropdown-item"><!----> <a href="/Go/go_3.html" class="nav-link">
+  gorm基本使用
+</a></li><li class="dropdown-item"><!----> <a href="/Go/go_4.html" class="nav-link">
+  Golang操作Redis
+</a></li><li class="dropdown-item"><!----> <a href="/Go/go_5.html" class="nav-link">
+  golang实现tcp通信
+</a></li><li class="dropdown-item"><!----> <a href="/Go/go_6.html" class="nav-link">
+  Golang使用Protobuf 
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="Vue3" class="dropdown-title"><span class="title">Vue3</span> <span class="arrow down"></span></button> <button type="button" aria-label="Vue3" class="mobile-dropdown-title"><span class="title">Vue3</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/Vue3/vue_1.html" class="nav-link">
+  Vue3 安装
+</a></li><li class="dropdown-item"><!----> <a href="/Vue3/vue_2.html" class="nav-link">
+  Vue3 项目打包
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="Linux" class="dropdown-title"><span class="title">Linux</span> <span class="arrow down"></span></button> <button type="button" aria-label="Linux" class="mobile-dropdown-title"><span class="title">Linux</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/Linux/linux_1.html" class="nav-link">
+  虚拟机3种网络模式
+</a></li><li class="dropdown-item"><!----> <a href="/Linux/linux_2.html" class="nav-link">
+  linux常用命令总结
+</a></li><li class="dropdown-item"><!----> <a href="/Linux/linux_3.html" class="nav-link">
+  centos7部署FastDFS
+</a></li><li class="dropdown-item"><!----> <a href="/Linux/linux_4.html" class="nav-link">
+  centos7中根据文件大小排序
+</a></li><li class="dropdown-item"><!----> <a href="/Linux/linux_5.html" class="nav-link">
+  makefile项目管理demo
+</a></li><li class="dropdown-item"><!----> <a href="/Linux/linux_6.html" class="nav-link">
+  nvm常用命令
+</a></li><li class="dropdown-item"><!----> <a href="/Linux/linux_7.html" class="nav-link">
+  anaconda常用命令
+</a></li><li class="dropdown-item"><!----> <a href="/Jenkins/jenkins_1.html" class="nav-link">
+  快速安装Jenkins完美教程
+</a></li><li class="dropdown-item"><!----> <a href="/Jenkins/jenkins_2.html" class="nav-link">
+  Docker jenkins配置NPM
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="Docker" class="dropdown-title"><span class="title">Docker</span> <span class="arrow down"></span></button> <button type="button" aria-label="Docker" class="mobile-dropdown-title"><span class="title">Docker</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/Docker/docker_1.html" class="nav-link">
+  Docker(一)：Docker入门教程
+</a></li><li class="dropdown-item"><!----> <a href="/Docker/docker_2.html" class="nav-link">
+  Docker(二)：Dockerfile使用介绍
+</a></li><li class="dropdown-item"><!----> <a href="/Docker/docker_3.html" class="nav-link">
+  Docker(三)：Dockerfile命令详解
+</a></li><li class="dropdown-item"><!----> <a href="/Docker/docker_4.html" class="nav-link">
+  Docker(四)：Docker三剑客之Docker Compose
+</a></li><li class="dropdown-item"><!----> <a href="/Docker/docker_5.html" class="nav-link">
+  Docker(五)：Docker三剑客之Docker Machine
+</a></li><li class="dropdown-item"><!----> <a href="/Docker/docker_6.html" class="nav-link">
+  Docker(六)：Docker三剑客之Docker Swarm
+</a></li><li class="dropdown-item"><!----> <a href="/Docker/docker_7.html" class="nav-link">
+  Docker安装MariaDB
+</a></li><li class="dropdown-item"><!----> <a href="/Docker/docker_9.html" class="nav-link">
+  Docker安装Mysql8
+</a></li><li class="dropdown-item"><!----> <a href="/Docker/docker_8.html" class="nav-link">
+  Docker安装Redis
+</a></li><li class="dropdown-item"><!----> <a href="/Docker/docker_10.html" aria-current="page" class="nav-link router-link-exact-active router-link-active">
+  Docker安装Nacos
+</a></li><li class="dropdown-item"><!----> <a href="/Docker/docker_11.html" class="nav-link">
+  Docker安装maven私有仓库
+</a></li><li class="dropdown-item"><!----> <a href="/Docker/docker_12.html" class="nav-link">
+  Docker安装mongodb
+</a></li><li class="dropdown-item"><!----> <a href="/Docker/docker_13.html" class="nav-link">
+  docker-compose.yml开发环境基础中间件配置
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="K8s" class="dropdown-title"><span class="title">K8s</span> <span class="arrow down"></span></button> <button type="button" aria-label="K8s" class="mobile-dropdown-title"><span class="title">K8s</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/K8s/k8s_1.html" class="nav-link">
+  VirtualBox + centos7部署k8s
+</a></li><li class="dropdown-item"><!----> <a href="/K8s/k8s_2.html" class="nav-link">
+  kubectl常用命令
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="Nginx" class="dropdown-title"><span class="title">Nginx</span> <span class="arrow down"></span></button> <button type="button" aria-label="Nginx" class="mobile-dropdown-title"><span class="title">Nginx</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/OpenResty/nginx.html" class="nav-link">
+  Nginx 配置详解
+</a></li><li class="dropdown-item"><!----> <a href="/OpenResty/nginx_2.html" class="nav-link">
+  Nginx 常用命令
+</a></li><li class="dropdown-item"><!----> <a href="/OpenResty/openresty_1.html" class="nav-link">
+  OpenResty 使用介绍
+</a></li><li class="dropdown-item"><!----> <a href="/OpenResty/openresty_2.html" class="nav-link">
+  OpenResty(Nginx+Lua)测试用例
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="单变量微积分" class="dropdown-title"><span class="title">单变量微积分</span> <span class="arrow down"></span></button> <button type="button" aria-label="单变量微积分" class="mobile-dropdown-title"><span class="title">单变量微积分</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/SingleCalculus/SingleCalculus_5.html" class="nav-link">
+  5. 指数函数和对数函数的导数
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="多变量微积分" class="dropdown-title"><span class="title">多变量微积分</span> <span class="arrow down"></span></button> <button type="button" aria-label="多变量微积分" class="mobile-dropdown-title"><span class="title">多变量微积分</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/MultivariableCalculus/MultivariableCalculus_1.html" class="nav-link">
+  1. 偏导数
+</a></li><li class="dropdown-item"><!----> <a href="/MultivariableCalculus/MultivariableCalculus_5.html" class="nav-link">
+  5. 梯度与方向导数
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="线性代数" class="dropdown-title"><span class="title">线性代数</span> <span class="arrow down"></span></button> <button type="button" aria-label="线性代数" class="mobile-dropdown-title"><span class="title">线性代数</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/linear/linear_1.html" class="nav-link">
+  1. 矩阵的基本运算
+</a></li><li class="dropdown-item"><!----> <a href="/linear/linear_2.html" class="nav-link">
+  2. 向量（简介）
+</a></li><li class="dropdown-item"><!----> <a href="/linear/linear_3.html" class="nav-link">
+  3. 向量2（点积）
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="概率论" class="dropdown-title"><span class="title">概率论</span> <span class="arrow down"></span></button> <button type="button" aria-label="概率论" class="mobile-dropdown-title"><span class="title">概率论</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/Probability/probability_1.html" class="nav-link">
+  1. 独立事件下的简单概率
+</a></li><li class="dropdown-item"><!----> <a href="/Probability/probability_2.html" class="nav-link">
+  2. 古典概型
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="其它" class="dropdown-title"><span class="title">其它</span> <span class="arrow down"></span></button> <button type="button" aria-label="其它" class="mobile-dropdown-title"><span class="title">其它</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/Other/2019.1.2.html" class="nav-link">
+  Vuepress搭建静态博客
+</a></li><li class="dropdown-item"><!----> <a href="/Other/markdown.html" class="nav-link">
+  Markdown基本语法
+</a></li></ul></div></div><div class="nav-item"><a href="/Readme/index.html" class="nav-link">
+  关于我
+</a></div> <!----></nav></div></header> <div class="sidebar-mask"></div> <aside class="sidebar"><nav class="nav-links"><div class="nav-item"><a href="/" class="nav-link">
+  主页
+</a></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="Java" class="dropdown-title"><span class="title">Java</span> <span class="arrow down"></span></button> <button type="button" aria-label="Java" class="mobile-dropdown-title"><span class="title">Java</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/Java/java_1.html" class="nav-link">
+  jobHandler调度管理
+</a></li><li class="dropdown-item"><!----> <a href="/Java/java_2.html" class="nav-link">
+  jProtobuf尝鲜
+</a></li><li class="dropdown-item"><!----> <a href="/SpringBoot/springboot_1.html" class="nav-link">
+  使用Docker部署Spring Boot
+</a></li><li class="dropdown-item"><!----> <a href="/SpringCloud/springcloud_1.html" class="nav-link">
+  springcloud(一)：初识Spring Cloud
+</a></li><li class="dropdown-item"><!----> <a href="/SpringCloud/springcloud_2.html" class="nav-link">
+  springcloud(二)：注册中心Eureka
+</a></li><li class="dropdown-item"><!----> <a href="/Java/java_3.html" class="nav-link">
+  java8 toMap问题(key重复如何解决)
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="机器学习" class="dropdown-title"><span class="title">机器学习</span> <span class="arrow down"></span></button> <button type="button" aria-label="机器学习" class="mobile-dropdown-title"><span class="title">机器学习</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/Ai/ai_1.html" class="nav-link">
+  机器学习笔记
+</a></li><li class="dropdown-item"><!----> <a href="/Ai/ai_2.html" class="nav-link">
+  程序员数学笔记
+</a></li><li class="dropdown-item"><!----> <a href="/Ai/ai_3.html" class="nav-link">
+  计算图和求导的链式法则
+</a></li><li class="dropdown-item"><!----> <a href="/Ai/ai_4.html" class="nav-link">
+  卷积神经网络
+</a></li><li class="dropdown-item"><!----> <a href="/Ai/ai_5.html" class="nav-link">
+  PyTorch学习
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="大数据" class="dropdown-title"><span class="title">大数据</span> <span class="arrow down"></span></button> <button type="button" aria-label="大数据" class="mobile-dropdown-title"><span class="title">大数据</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/BigData/bigdata_1.html" class="nav-link">
+  使用Docker搭建Hadoop集群(伪分布式与完全分布式)
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="区块链" class="dropdown-title"><span class="title">区块链</span> <span class="arrow down"></span></button> <button type="button" aria-label="区块链" class="mobile-dropdown-title"><span class="title">区块链</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/BlockChain/block_1.html" class="nav-link">
+  1、Java实现简单区块链
+</a></li><li class="dropdown-item"><!----> <a href="/BlockChain/block_2.html" class="nav-link">
+  2、Java实现可交易钱包
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="Go" class="dropdown-title"><span class="title">Go</span> <span class="arrow down"></span></button> <button type="button" aria-label="Go" class="mobile-dropdown-title"><span class="title">Go</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/Go/go_1.html" class="nav-link">
+  go的基本命令详解
+</a></li><li class="dropdown-item"><!----> <a href="/Go/go_2.html" class="nav-link">
+  gin框架使用案例
+</a></li><li class="dropdown-item"><!----> <a href="/Go/go_3.html" class="nav-link">
+  gorm基本使用
+</a></li><li class="dropdown-item"><!----> <a href="/Go/go_4.html" class="nav-link">
+  Golang操作Redis
+</a></li><li class="dropdown-item"><!----> <a href="/Go/go_5.html" class="nav-link">
+  golang实现tcp通信
+</a></li><li class="dropdown-item"><!----> <a href="/Go/go_6.html" class="nav-link">
+  Golang使用Protobuf 
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="Vue3" class="dropdown-title"><span class="title">Vue3</span> <span class="arrow down"></span></button> <button type="button" aria-label="Vue3" class="mobile-dropdown-title"><span class="title">Vue3</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/Vue3/vue_1.html" class="nav-link">
+  Vue3 安装
+</a></li><li class="dropdown-item"><!----> <a href="/Vue3/vue_2.html" class="nav-link">
+  Vue3 项目打包
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="Linux" class="dropdown-title"><span class="title">Linux</span> <span class="arrow down"></span></button> <button type="button" aria-label="Linux" class="mobile-dropdown-title"><span class="title">Linux</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/Linux/linux_1.html" class="nav-link">
+  虚拟机3种网络模式
+</a></li><li class="dropdown-item"><!----> <a href="/Linux/linux_2.html" class="nav-link">
+  linux常用命令总结
+</a></li><li class="dropdown-item"><!----> <a href="/Linux/linux_3.html" class="nav-link">
+  centos7部署FastDFS
+</a></li><li class="dropdown-item"><!----> <a href="/Linux/linux_4.html" class="nav-link">
+  centos7中根据文件大小排序
+</a></li><li class="dropdown-item"><!----> <a href="/Linux/linux_5.html" class="nav-link">
+  makefile项目管理demo
+</a></li><li class="dropdown-item"><!----> <a href="/Linux/linux_6.html" class="nav-link">
+  nvm常用命令
+</a></li><li class="dropdown-item"><!----> <a href="/Linux/linux_7.html" class="nav-link">
+  anaconda常用命令
+</a></li><li class="dropdown-item"><!----> <a href="/Jenkins/jenkins_1.html" class="nav-link">
+  快速安装Jenkins完美教程
+</a></li><li class="dropdown-item"><!----> <a href="/Jenkins/jenkins_2.html" class="nav-link">
+  Docker jenkins配置NPM
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="Docker" class="dropdown-title"><span class="title">Docker</span> <span class="arrow down"></span></button> <button type="button" aria-label="Docker" class="mobile-dropdown-title"><span class="title">Docker</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/Docker/docker_1.html" class="nav-link">
+  Docker(一)：Docker入门教程
+</a></li><li class="dropdown-item"><!----> <a href="/Docker/docker_2.html" class="nav-link">
+  Docker(二)：Dockerfile使用介绍
+</a></li><li class="dropdown-item"><!----> <a href="/Docker/docker_3.html" class="nav-link">
+  Docker(三)：Dockerfile命令详解
+</a></li><li class="dropdown-item"><!----> <a href="/Docker/docker_4.html" class="nav-link">
+  Docker(四)：Docker三剑客之Docker Compose
+</a></li><li class="dropdown-item"><!----> <a href="/Docker/docker_5.html" class="nav-link">
+  Docker(五)：Docker三剑客之Docker Machine
+</a></li><li class="dropdown-item"><!----> <a href="/Docker/docker_6.html" class="nav-link">
+  Docker(六)：Docker三剑客之Docker Swarm
+</a></li><li class="dropdown-item"><!----> <a href="/Docker/docker_7.html" class="nav-link">
+  Docker安装MariaDB
+</a></li><li class="dropdown-item"><!----> <a href="/Docker/docker_9.html" class="nav-link">
+  Docker安装Mysql8
+</a></li><li class="dropdown-item"><!----> <a href="/Docker/docker_8.html" class="nav-link">
+  Docker安装Redis
+</a></li><li class="dropdown-item"><!----> <a href="/Docker/docker_10.html" aria-current="page" class="nav-link router-link-exact-active router-link-active">
+  Docker安装Nacos
+</a></li><li class="dropdown-item"><!----> <a href="/Docker/docker_11.html" class="nav-link">
+  Docker安装maven私有仓库
+</a></li><li class="dropdown-item"><!----> <a href="/Docker/docker_12.html" class="nav-link">
+  Docker安装mongodb
+</a></li><li class="dropdown-item"><!----> <a href="/Docker/docker_13.html" class="nav-link">
+  docker-compose.yml开发环境基础中间件配置
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="K8s" class="dropdown-title"><span class="title">K8s</span> <span class="arrow down"></span></button> <button type="button" aria-label="K8s" class="mobile-dropdown-title"><span class="title">K8s</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/K8s/k8s_1.html" class="nav-link">
+  VirtualBox + centos7部署k8s
+</a></li><li class="dropdown-item"><!----> <a href="/K8s/k8s_2.html" class="nav-link">
+  kubectl常用命令
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="Nginx" class="dropdown-title"><span class="title">Nginx</span> <span class="arrow down"></span></button> <button type="button" aria-label="Nginx" class="mobile-dropdown-title"><span class="title">Nginx</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/OpenResty/nginx.html" class="nav-link">
+  Nginx 配置详解
+</a></li><li class="dropdown-item"><!----> <a href="/OpenResty/nginx_2.html" class="nav-link">
+  Nginx 常用命令
+</a></li><li class="dropdown-item"><!----> <a href="/OpenResty/openresty_1.html" class="nav-link">
+  OpenResty 使用介绍
+</a></li><li class="dropdown-item"><!----> <a href="/OpenResty/openresty_2.html" class="nav-link">
+  OpenResty(Nginx+Lua)测试用例
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="单变量微积分" class="dropdown-title"><span class="title">单变量微积分</span> <span class="arrow down"></span></button> <button type="button" aria-label="单变量微积分" class="mobile-dropdown-title"><span class="title">单变量微积分</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/SingleCalculus/SingleCalculus_5.html" class="nav-link">
+  5. 指数函数和对数函数的导数
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="多变量微积分" class="dropdown-title"><span class="title">多变量微积分</span> <span class="arrow down"></span></button> <button type="button" aria-label="多变量微积分" class="mobile-dropdown-title"><span class="title">多变量微积分</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/MultivariableCalculus/MultivariableCalculus_1.html" class="nav-link">
+  1. 偏导数
+</a></li><li class="dropdown-item"><!----> <a href="/MultivariableCalculus/MultivariableCalculus_5.html" class="nav-link">
+  5. 梯度与方向导数
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="线性代数" class="dropdown-title"><span class="title">线性代数</span> <span class="arrow down"></span></button> <button type="button" aria-label="线性代数" class="mobile-dropdown-title"><span class="title">线性代数</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/linear/linear_1.html" class="nav-link">
+  1. 矩阵的基本运算
+</a></li><li class="dropdown-item"><!----> <a href="/linear/linear_2.html" class="nav-link">
+  2. 向量（简介）
+</a></li><li class="dropdown-item"><!----> <a href="/linear/linear_3.html" class="nav-link">
+  3. 向量2（点积）
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="概率论" class="dropdown-title"><span class="title">概率论</span> <span class="arrow down"></span></button> <button type="button" aria-label="概率论" class="mobile-dropdown-title"><span class="title">概率论</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/Probability/probability_1.html" class="nav-link">
+  1. 独立事件下的简单概率
+</a></li><li class="dropdown-item"><!----> <a href="/Probability/probability_2.html" class="nav-link">
+  2. 古典概型
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="其它" class="dropdown-title"><span class="title">其它</span> <span class="arrow down"></span></button> <button type="button" aria-label="其它" class="mobile-dropdown-title"><span class="title">其它</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/Other/2019.1.2.html" class="nav-link">
+  Vuepress搭建静态博客
+</a></li><li class="dropdown-item"><!----> <a href="/Other/markdown.html" class="nav-link">
+  Markdown基本语法
+</a></li></ul></div></div><div class="nav-item"><a href="/Readme/index.html" class="nav-link">
+  关于我
+</a></div> <!----></nav>  <!----> </aside> <main class="page"> <div class="theme-default-content content__default"><h1 id="docker安装nacos"><a href="#docker安装nacos" class="header-anchor">#</a> Docker安装Nacos</h1> <h2 id="_1-拉取nacos镜像文件"><a href="#_1-拉取nacos镜像文件" class="header-anchor">#</a> 1.拉取nacos镜像文件</h2> <div class="language- extra-class"><pre class="language-text"><code>docker pull nacos/nacos-server:2.0.3
+</code></pre></div><h2 id="_2-挂载目录"><a href="#_2-挂载目录" class="header-anchor">#</a> 2.挂载目录</h2> <div class="language- extra-class"><pre class="language-text"><code># 新建logs目录
+mkdir -p /var/nacos_mount/logs/
+# 新建配置文件目录
+mkdir -p /var/nacos_mount/conf/
+</code></pre></div><h2 id="_3-添加配置文件"><a href="#_3-添加配置文件" class="header-anchor">#</a> 3.添加配置文件</h2> <div class="language- extra-class"><pre class="language-text"><code>vi /mydata/nacos/conf/application.properties
+</code></pre></div><div class="language- extra-class"><pre class="language-text"><code>#
+# Copyright 1999-2021 Alibaba Group Holding Ltd.
+#
+# Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#      http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+#
+
+#*************** Spring Boot Related Configurations ***************#
+### Default web context path:
+server.servlet.contextPath=/nacos
+### Default web server port:
+server.port=8848
+
+#*************** Network Related Configurations ***************#
+### If prefer hostname over ip for Nacos server addresses in cluster.conf:
+# nacos.inetutils.prefer-hostname-over-ip=false
+
+### Specify local server's IP:
+# nacos.inetutils.ip-address=
+
+
+#*************** Config Module Related Configurations ***************#
+### If use MySQL as datasource:
+spring.datasource.platform=mysql
+
+### Count of DB:
+db.num=1
+
+### Connect URL of DB:
+db.url.0=jdbc:mysql://192.168.71.19:3306/nacos_dev?serverTimezone=Asia/Shanghai&amp;characterEncoding=utf8&amp;allowPublicKeyRetrieval=true&amp;useSSL=false
+db.user=root
+db.password=budsoft2020
+
+### Connection pool configuration: hikariCP
+db.pool.config.connectionTimeout=30000
+db.pool.config.validationTimeout=10000
+db.pool.config.maximumPoolSize=20
+db.pool.config.minimumIdle=2
+
+#*************** Naming Module Related Configurations ***************#
+### Data dispatch task execution period in milliseconds: Will removed on v2.1.X, replace with nacos.core.protocol.distro.data.sync.delayMs
+# nacos.naming.distro.taskDispatchPeriod=200
+
+### Data count of batch sync task: Will removed on v2.1.X. Deprecated
+# nacos.naming.distro.batchSyncKeyCount=1000
+
+### Retry delay in milliseconds if sync task failed: Will removed on v2.1.X, replace with nacos.core.protocol.distro.data.sync.retryDelayMs
+# nacos.naming.distro.syncRetryDelay=5000
+
+### If enable data warmup. If set to false, the server would accept request without local data preparation:
+# nacos.naming.data.warmup=true
+
+### If enable the instance auto expiration, kind like of health check of instance:
+# nacos.naming.expireInstance=true
+
+### will be removed and replaced by `nacos.naming.clean` properties
+nacos.naming.empty-service.auto-clean=true
+nacos.naming.empty-service.clean.initial-delay-ms=50000
+nacos.naming.empty-service.clean.period-time-ms=30000
+
+### Add in 2.0.0
+### The interval to clean empty service, unit: milliseconds.
+# nacos.naming.clean.empty-service.interval=60000
+
+### The expired time to clean empty service, unit: milliseconds.
+# nacos.naming.clean.empty-service.expired-time=60000
+
+### The interval to clean expired metadata, unit: milliseconds.
+# nacos.naming.clean.expired-metadata.interval=5000
+
+### The expired time to clean metadata, unit: milliseconds.
+# nacos.naming.clean.expired-metadata.expired-time=60000
+
+### The delay time before push task to execute from service changed, unit: milliseconds.
+# nacos.naming.push.pushTaskDelay=500
+
+### The timeout for push task execute, unit: milliseconds.
+# nacos.naming.push.pushTaskTimeout=5000
+
+### The delay time for retrying failed push task, unit: milliseconds.
+# nacos.naming.push.pushTaskRetryDelay=1000
+
+### Since 2.0.3
+### The expired time for inactive client, unit: milliseconds.
+# nacos.naming.client.expired.time=180000
+
+#*************** CMDB Module Related Configurations ***************#
+### The interval to dump external CMDB in seconds:
+# nacos.cmdb.dumpTaskInterval=3600
+
+### The interval of polling data change event in seconds:
+# nacos.cmdb.eventTaskInterval=10
+
+### The interval of loading labels in seconds:
+# nacos.cmdb.labelTaskInterval=300
+
+### If turn on data loading task:
+# nacos.cmdb.loadDataAtStart=false
+
+
+#*************** Metrics Related Configurations ***************#
+### Metrics for prometheus
+#management.endpoints.web.exposure.include=*
+
+### Metrics for elastic search
+management.metrics.export.elastic.enabled=false
+#management.metrics.export.elastic.host=http://localhost:9200
+
+### Metrics for influx
+management.metrics.export.influx.enabled=false
+#management.metrics.export.influx.db=springboot
+#management.metrics.export.influx.uri=http://localhost:8086
+#management.metrics.export.influx.auto-create-db=true
+#management.metrics.export.influx.consistency=one
+#management.metrics.export.influx.compressed=true
+
+#*************** Access Log Related Configurations ***************#
+### If turn on the access log:
+server.tomcat.accesslog.enabled=true
+
+### The access log pattern:
+server.tomcat.accesslog.pattern=%h %l %u %t &quot;%r&quot; %s %b %D %{User-Agent}i %{Request-Source}i
+
+### The directory of access log:
+server.tomcat.basedir=
+
+#*************** Access Control Related Configurations ***************#
+### If enable spring security, this option is deprecated in 1.2.0:
+#spring.security.enabled=false
+
+### The ignore urls of auth, is deprecated in 1.2.0:
+nacos.security.ignore.urls=/,/error,/**/*.css,/**/*.js,/**/*.html,/**/*.map,/**/*.svg,/**/*.png,/**/*.ico,/console-ui/public/**,/v1/auth/**,/v1/console/health/**,/actuator/**,/v1/console/server/**
+
+### The auth system to use, currently only 'nacos' and 'ldap' is supported:
+nacos.core.auth.system.type=nacos
+
+### If turn on auth system:
+nacos.core.auth.enabled=false
+
+### worked when nacos.core.auth.system.type=ldap，{0} is Placeholder,replace login username
+# nacos.core.auth.ldap.url=ldap://localhost:389
+# nacos.core.auth.ldap.userdn=cn={0},ou=user,dc=company,dc=com
+
+### The token expiration in seconds:
+nacos.core.auth.default.token.expire.seconds=18000
+
+### The default token:
+nacos.core.auth.default.token.secret.key=SecretKey012345678901234567890123456789012345678901234567890123456789
+
+### Turn on/off caching of auth information. By turning on this switch, the update of auth information would have a 15 seconds delay.
+nacos.core.auth.caching.enabled=true
+
+### Since 1.4.1, Turn on/off white auth for user-agent: nacos-server, only for upgrade from old version.
+nacos.core.auth.enable.userAgentAuthWhite=false
+
+### Since 1.4.1, worked when nacos.core.auth.enabled=true and nacos.core.auth.enable.userAgentAuthWhite=false.
+### The two properties is the white list for auth and used by identity the request from other server.
+nacos.core.auth.server.identity.key=serverIdentity
+nacos.core.auth.server.identity.value=security
+
+#*************** Istio Related Configurations ***************#
+### If turn on the MCP server:
+nacos.istio.mcp.server.enabled=false
+
+#*************** Core Related Configurations ***************#
+
+### set the WorkerID manually
+# nacos.core.snowflake.worker-id=
+
+### Member-MetaData
+# nacos.core.member.meta.site=
+# nacos.core.member.meta.adweight=
+# nacos.core.member.meta.weight=
+
+### MemberLookup
+### Addressing pattern category, If set, the priority is highest
+# nacos.core.member.lookup.type=[file,address-server]
+## Set the cluster list with a configuration file or command-line argument
+# nacos.member.list=192.168.16.101:8847?raft_port=8807,192.168.16.101?raft_port=8808,192.168.16.101:8849?raft_port=8809
+## for AddressServerMemberLookup
+# Maximum number of retries to query the address server upon initialization
+# nacos.core.address-server.retry=5
+## Server domain name address of [address-server] mode
+# address.server.domain=jmenv.tbsite.net
+## Server port of [address-server] mode
+# address.server.port=8080
+## Request address of [address-server] mode
+# address.server.url=/nacos/serverlist
+
+#*************** JRaft Related Configurations ***************#
+
+### Sets the Raft cluster election timeout, default value is 5 second
+# nacos.core.protocol.raft.data.election_timeout_ms=5000
+### Sets the amount of time the Raft snapshot will execute periodically, default is 30 minute
+# nacos.core.protocol.raft.data.snapshot_interval_secs=30
+### raft internal worker threads
+# nacos.core.protocol.raft.data.core_thread_num=8
+### Number of threads required for raft business request processing
+# nacos.core.protocol.raft.data.cli_service_thread_num=4
+### raft linear read strategy. Safe linear reads are used by default, that is, the Leader tenure is confirmed by heartbeat
+# nacos.core.protocol.raft.data.read_index_type=ReadOnlySafe
+### rpc request timeout, default 5 seconds
+# nacos.core.protocol.raft.data.rpc_request_timeout_ms=5000
+
+#*************** Distro Related Configurations ***************#
+
+### Distro data sync delay time, when sync task delayed, task will be merged for same data key. Default 1 second.
+# nacos.core.protocol.distro.data.sync.delayMs=1000
+
+### Distro data sync timeout for one sync data, default 3 seconds.
+# nacos.core.protocol.distro.data.sync.timeoutMs=3000
+
+### Distro data sync retry delay time when sync data failed or timeout, same behavior with delayMs, default 3 seconds.
+# nacos.core.protocol.distro.data.sync.retryDelayMs=3000
+
+### Distro data verify interval time, verify synced data whether expired for a interval. Default 5 seconds.
+# nacos.core.protocol.distro.data.verify.intervalMs=5000
+
+### Distro data verify timeout for one verify, default 3 seconds.
+# nacos.core.protocol.distro.data.verify.timeoutMs=3000
+
+### Distro data load retry delay when load snapshot data failed, default 30 seconds.
+# nacos.core.protocol.distro.data.load.retryDelayMs=30000
+</code></pre></div><h2 id="_4-启动容器"><a href="#_4-启动容器" class="header-anchor">#</a> 4.启动容器</h2> <div class="language- extra-class"><pre class="language-text"><code># 普通启动命令
+docker run --rm -e MODE=standalone --name nacos -p 8848:8848 -p 9848:9848 -p 9849:9849 -d nacos/nacos-server:2.0.3
+
+# 带配置信息的启动
+docker  run --name nacos -p 8848:8848 -p 9848:9848 -p 9849:9849 \
+-m 500M \
+--memory-swap -1 \
+--privileged=true \
+--restart=always \
+-e JVM_XMS=128m \
+-e JVM_XMX=128m \
+-e MODE=standalone \
+-e PREFER_HOST_MODE=hostname \
+-v /var/nacos_mount/logs:/home/nacos/logs \
+-v /var/nacos_mount/conf/application.properties:/home/nacos/conf/application.properties \
+-d nacos/nacos-server:2.0.3
+
+</code></pre></div><h2 id="_5-设置nacos服务自启动"><a href="#_5-设置nacos服务自启动" class="header-anchor">#</a> 5.设置nacos服务自启动</h2> <div class="language- extra-class"><pre class="language-text"><code>docker update --restart=always  nacos
+</code></pre></div></div> <footer class="page-edit"><!----> <div class="last-updated"><span class="prefix">Last Updated:</span> <span class="time">11/27/2022, 10:16:50 AM</span></div></footer> <!----> </main></div><div class="global-ui"></div></div>
+    <script src="/assets/js/app.466dd957.js" defer></script><script src="/assets/js/2.733019b2.js" defer></script><script src="/assets/js/16.f46ba600.js" defer></script>
+  </body>
+</html>

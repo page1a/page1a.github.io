@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>VirtualBox + centos7部署k8s | 程序员练功房</title>
+    <meta name="generator" content="VuePress 1.9.9">
+    <link rel="icon" href="/logo.ico">
+    <meta name="description" content="纵然出走时未曾想要流浪半生，归来时早已发现少年不再">
+    
+    <link rel="preload" href="/assets/css/0.styles.e8e4f3a3.css" as="style"><link rel="preload" href="/assets/js/app.466dd957.js" as="script"><link rel="preload" href="/assets/js/2.733019b2.js" as="script"><link rel="preload" href="/assets/js/39.2ac20870.js" as="script"><link rel="prefetch" href="/assets/js/10.fc32896f.js"><link rel="prefetch" href="/assets/js/11.3a98615b.js"><link rel="prefetch" href="/assets/js/12.0fd6f044.js"><link rel="prefetch" href="/assets/js/13.736846a1.js"><link rel="prefetch" href="/assets/js/14.9c4dc8e5.js"><link rel="prefetch" href="/assets/js/15.120590aa.js"><link rel="prefetch" href="/assets/js/16.f46ba600.js"><link rel="prefetch" href="/assets/js/17.f96e2b9e.js"><link rel="prefetch" href="/assets/js/18.5dae5acc.js"><link rel="prefetch" href="/assets/js/19.957d727a.js"><link rel="prefetch" href="/assets/js/20.c957c720.js"><link rel="prefetch" href="/assets/js/21.db4d26e7.js"><link rel="prefetch" href="/assets/js/22.9d19bebe.js"><link rel="prefetch" href="/assets/js/23.b5390312.js"><link rel="prefetch" href="/assets/js/24.289c8fcd.js"><link rel="prefetch" href="/assets/js/25.f7baec4a.js"><link rel="prefetch" href="/assets/js/26.2704ae01.js"><link rel="prefetch" href="/assets/js/27.5189ccb9.js"><link rel="prefetch" href="/assets/js/28.ed5cb93d.js"><link rel="prefetch" href="/assets/js/29.96717473.js"><link rel="prefetch" href="/assets/js/3.0c69ac0f.js"><link rel="prefetch" href="/assets/js/30.7331b634.js"><link rel="prefetch" href="/assets/js/31.d26d187f.js"><link rel="prefetch" href="/assets/js/32.7f286b45.js"><link rel="prefetch" href="/assets/js/33.173b2025.js"><link rel="prefetch" href="/assets/js/34.f31f4bb8.js"><link rel="prefetch" href="/assets/js/35.218fc470.js"><link rel="prefetch" href="/assets/js/36.ebcd9c43.js"><link rel="prefetch" href="/assets/js/37.09d876bc.js"><link rel="prefetch" href="/assets/js/38.3f7ba3d2.js"><link rel="prefetch" href="/assets/js/4.d12742be.js"><link rel="prefetch" href="/assets/js/40.c1d8f1bc.js"><link rel="prefetch" href="/assets/js/41.ebed8fef.js"><link rel="prefetch" href="/assets/js/42.c1d002b4.js"><link rel="prefetch" href="/assets/js/43.ef429b49.js"><link rel="prefetch" href="/assets/js/44.8adc98bb.js"><link rel="prefetch" href="/assets/js/45.cea62ac9.js"><link rel="prefetch" href="/assets/js/46.d4ffd3f4.js"><link rel="prefetch" href="/assets/js/47.07d237c5.js"><link rel="prefetch" href="/assets/js/48.0ae3a334.js"><link rel="prefetch" href="/assets/js/49.f0515684.js"><link rel="prefetch" href="/assets/js/5.216cae74.js"><link rel="prefetch" href="/assets/js/50.b6ada23c.js"><link rel="prefetch" href="/assets/js/51.6e351bfe.js"><link rel="prefetch" href="/assets/js/52.418a145d.js"><link rel="prefetch" href="/assets/js/53.298699f9.js"><link rel="prefetch" href="/assets/js/54.b3598a19.js"><link rel="prefetch" href="/assets/js/55.ce965562.js"><link rel="prefetch" href="/assets/js/56.bd957b43.js"><link rel="prefetch" href="/assets/js/57.d48da2b8.js"><link rel="prefetch" href="/assets/js/58.999b5a89.js"><link rel="prefetch" href="/assets/js/59.02363b1c.js"><link rel="prefetch" href="/assets/js/6.2d0a63f8.js"><link rel="prefetch" href="/assets/js/60.83e84781.js"><link rel="prefetch" href="/assets/js/61.4449c91d.js"><link rel="prefetch" href="/assets/js/62.56df5e89.js"><link rel="prefetch" href="/assets/js/63.f775d12d.js"><link rel="prefetch" href="/assets/js/64.8add4c27.js"><link rel="prefetch" href="/assets/js/65.346067ba.js"><link rel="prefetch" href="/assets/js/66.dee69efa.js"><link rel="prefetch" href="/assets/js/67.22ab30d5.js"><link rel="prefetch" href="/assets/js/68.0877349f.js"><link rel="prefetch" href="/assets/js/69.0ba59988.js"><link rel="prefetch" href="/assets/js/7.d02ea004.js"><link rel="prefetch" href="/assets/js/70.a02699db.js"><link rel="prefetch" href="/assets/js/8.55b047fc.js"><link rel="prefetch" href="/assets/js/9.22802293.js">
+    <link rel="stylesheet" href="/assets/css/0.styles.e8e4f3a3.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container no-sidebar"><header class="navbar"><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/" class="home-link router-link-active"><!----> <span class="site-name">程序员练功房</span></a> <div class="links"><div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <nav class="nav-links can-hide"><div class="nav-item"><a href="/" class="nav-link">
+  主页
+</a></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="Java" class="dropdown-title"><span class="title">Java</span> <span class="arrow down"></span></button> <button type="button" aria-label="Java" class="mobile-dropdown-title"><span class="title">Java</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/Java/java_1.html" class="nav-link">
+  jobHandler调度管理
+</a></li><li class="dropdown-item"><!----> <a href="/Java/java_2.html" class="nav-link">
+  jProtobuf尝鲜
+</a></li><li class="dropdown-item"><!----> <a href="/SpringBoot/springboot_1.html" class="nav-link">
+  使用Docker部署Spring Boot
+</a></li><li class="dropdown-item"><!----> <a href="/SpringCloud/springcloud_1.html" class="nav-link">
+  springcloud(一)：初识Spring Cloud
+</a></li><li class="dropdown-item"><!----> <a href="/SpringCloud/springcloud_2.html" class="nav-link">
+  springcloud(二)：注册中心Eureka
+</a></li><li class="dropdown-item"><!----> <a href="/Java/java_3.html" class="nav-link">
+  java8 toMap问题(key重复如何解决)
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="机器学习" class="dropdown-title"><span class="title">机器学习</span> <span class="arrow down"></span></button> <button type="button" aria-label="机器学习" class="mobile-dropdown-title"><span class="title">机器学习</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/Ai/ai_1.html" class="nav-link">
+  机器学习笔记
+</a></li><li class="dropdown-item"><!----> <a href="/Ai/ai_2.html" class="nav-link">
+  程序员数学笔记
+</a></li><li class="dropdown-item"><!----> <a href="/Ai/ai_3.html" class="nav-link">
+  计算图和求导的链式法则
+</a></li><li class="dropdown-item"><!----> <a href="/Ai/ai_4.html" class="nav-link">
+  卷积神经网络
+</a></li><li class="dropdown-item"><!----> <a href="/Ai/ai_5.html" class="nav-link">
+  PyTorch学习
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="大数据" class="dropdown-title"><span class="title">大数据</span> <span class="arrow down"></span></button> <button type="button" aria-label="大数据" class="mobile-dropdown-title"><span class="title">大数据</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/BigData/bigdata_1.html" class="nav-link">
+  使用Docker搭建Hadoop集群(伪分布式与完全分布式)
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="区块链" class="dropdown-title"><span class="title">区块链</span> <span class="arrow down"></span></button> <button type="button" aria-label="区块链" class="mobile-dropdown-title"><span class="title">区块链</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/BlockChain/block_1.html" class="nav-link">
+  1、Java实现简单区块链
+</a></li><li class="dropdown-item"><!----> <a href="/BlockChain/block_2.html" class="nav-link">
+  2、Java实现可交易钱包
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="Go" class="dropdown-title"><span class="title">Go</span> <span class="arrow down"></span></button> <button type="button" aria-label="Go" class="mobile-dropdown-title"><span class="title">Go</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/Go/go_1.html" class="nav-link">
+  go的基本命令详解
+</a></li><li class="dropdown-item"><!----> <a href="/Go/go_2.html" class="nav-link">
+  gin框架使用案例
+</a></li><li class="dropdown-item"><!----> <a href="/Go/go_3.html" class="nav-link">
+  gorm基本使用
+</a></li><li class="dropdown-item"><!----> <a href="/Go/go_4.html" class="nav-link">
+  Golang操作Redis
+</a></li><li class="dropdown-item"><!----> <a href="/Go/go_5.html" class="nav-link">
+  golang实现tcp通信
+</a></li><li class="dropdown-item"><!----> <a href="/Go/go_6.html" class="nav-link">
+  Golang使用Protobuf 
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="Vue3" class="dropdown-title"><span class="title">Vue3</span> <span class="arrow down"></span></button> <button type="button" aria-label="Vue3" class="mobile-dropdown-title"><span class="title">Vue3</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/Vue3/vue_1.html" class="nav-link">
+  Vue3 安装
+</a></li><li class="dropdown-item"><!----> <a href="/Vue3/vue_2.html" class="nav-link">
+  Vue3 项目打包
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="Linux" class="dropdown-title"><span class="title">Linux</span> <span class="arrow down"></span></button> <button type="button" aria-label="Linux" class="mobile-dropdown-title"><span class="title">Linux</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/Linux/linux_1.html" class="nav-link">
+  虚拟机3种网络模式
+</a></li><li class="dropdown-item"><!----> <a href="/Linux/linux_2.html" class="nav-link">
+  linux常用命令总结
+</a></li><li class="dropdown-item"><!----> <a href="/Linux/linux_3.html" class="nav-link">
+  centos7部署FastDFS
+</a></li><li class="dropdown-item"><!----> <a href="/Linux/linux_4.html" class="nav-link">
+  centos7中根据文件大小排序
+</a></li><li class="dropdown-item"><!----> <a href="/Linux/linux_5.html" class="nav-link">
+  makefile项目管理demo
+</a></li><li class="dropdown-item"><!----> <a href="/Linux/linux_6.html" class="nav-link">
+  nvm常用命令
+</a></li><li class="dropdown-item"><!----> <a href="/Linux/linux_7.html" class="nav-link">
+  anaconda常用命令
+</a></li><li class="dropdown-item"><!----> <a href="/Jenkins/jenkins_1.html" class="nav-link">
+  快速安装Jenkins完美教程
+</a></li><li class="dropdown-item"><!----> <a href="/Jenkins/jenkins_2.html" class="nav-link">
+  Docker jenkins配置NPM
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="Docker" class="dropdown-title"><span class="title">Docker</span> <span class="arrow down"></span></button> <button type="button" aria-label="Docker" class="mobile-dropdown-title"><span class="title">Docker</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/Docker/docker_1.html" class="nav-link">
+  Docker(一)：Docker入门教程
+</a></li><li class="dropdown-item"><!----> <a href="/Docker/docker_2.html" class="nav-link">
+  Docker(二)：Dockerfile使用介绍
+</a></li><li class="dropdown-item"><!----> <a href="/Docker/docker_3.html" class="nav-link">
+  Docker(三)：Dockerfile命令详解
+</a></li><li class="dropdown-item"><!----> <a href="/Docker/docker_4.html" class="nav-link">
+  Docker(四)：Docker三剑客之Docker Compose
+</a></li><li class="dropdown-item"><!----> <a href="/Docker/docker_5.html" class="nav-link">
+  Docker(五)：Docker三剑客之Docker Machine
+</a></li><li class="dropdown-item"><!----> <a href="/Docker/docker_6.html" class="nav-link">
+  Docker(六)：Docker三剑客之Docker Swarm
+</a></li><li class="dropdown-item"><!----> <a href="/Docker/docker_7.html" class="nav-link">
+  Docker安装MariaDB
+</a></li><li class="dropdown-item"><!----> <a href="/Docker/docker_9.html" class="nav-link">
+  Docker安装Mysql8
+</a></li><li class="dropdown-item"><!----> <a href="/Docker/docker_8.html" class="nav-link">
+  Docker安装Redis
+</a></li><li class="dropdown-item"><!----> <a href="/Docker/docker_10.html" class="nav-link">
+  Docker安装Nacos
+</a></li><li class="dropdown-item"><!----> <a href="/Docker/docker_11.html" class="nav-link">
+  Docker安装maven私有仓库
+</a></li><li class="dropdown-item"><!----> <a href="/Docker/docker_12.html" class="nav-link">
+  Docker安装mongodb
+</a></li><li class="dropdown-item"><!----> <a href="/Docker/docker_13.html" class="nav-link">
+  docker-compose.yml开发环境基础中间件配置
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="K8s" class="dropdown-title"><span class="title">K8s</span> <span class="arrow down"></span></button> <button type="button" aria-label="K8s" class="mobile-dropdown-title"><span class="title">K8s</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/K8s/k8s_1.html" aria-current="page" class="nav-link router-link-exact-active router-link-active">
+  VirtualBox + centos7部署k8s
+</a></li><li class="dropdown-item"><!----> <a href="/K8s/k8s_2.html" class="nav-link">
+  kubectl常用命令
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="Nginx" class="dropdown-title"><span class="title">Nginx</span> <span class="arrow down"></span></button> <button type="button" aria-label="Nginx" class="mobile-dropdown-title"><span class="title">Nginx</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/OpenResty/nginx.html" class="nav-link">
+  Nginx 配置详解
+</a></li><li class="dropdown-item"><!----> <a href="/OpenResty/nginx_2.html" class="nav-link">
+  Nginx 常用命令
+</a></li><li class="dropdown-item"><!----> <a href="/OpenResty/openresty_1.html" class="nav-link">
+  OpenResty 使用介绍
+</a></li><li class="dropdown-item"><!----> <a href="/OpenResty/openresty_2.html" class="nav-link">
+  OpenResty(Nginx+Lua)测试用例
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="单变量微积分" class="dropdown-title"><span class="title">单变量微积分</span> <span class="arrow down"></span></button> <button type="button" aria-label="单变量微积分" class="mobile-dropdown-title"><span class="title">单变量微积分</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/SingleCalculus/SingleCalculus_5.html" class="nav-link">
+  5. 指数函数和对数函数的导数
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="多变量微积分" class="dropdown-title"><span class="title">多变量微积分</span> <span class="arrow down"></span></button> <button type="button" aria-label="多变量微积分" class="mobile-dropdown-title"><span class="title">多变量微积分</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/MultivariableCalculus/MultivariableCalculus_1.html" class="nav-link">
+  1. 偏导数
+</a></li><li class="dropdown-item"><!----> <a href="/MultivariableCalculus/MultivariableCalculus_5.html" class="nav-link">
+  5. 梯度与方向导数
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="线性代数" class="dropdown-title"><span class="title">线性代数</span> <span class="arrow down"></span></button> <button type="button" aria-label="线性代数" class="mobile-dropdown-title"><span class="title">线性代数</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/linear/linear_1.html" class="nav-link">
+  1. 矩阵的基本运算
+</a></li><li class="dropdown-item"><!----> <a href="/linear/linear_2.html" class="nav-link">
+  2. 向量（简介）
+</a></li><li class="dropdown-item"><!----> <a href="/linear/linear_3.html" class="nav-link">
+  3. 向量2（点积）
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="概率论" class="dropdown-title"><span class="title">概率论</span> <span class="arrow down"></span></button> <button type="button" aria-label="概率论" class="mobile-dropdown-title"><span class="title">概率论</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/Probability/probability_1.html" class="nav-link">
+  1. 独立事件下的简单概率
+</a></li><li class="dropdown-item"><!----> <a href="/Probability/probability_2.html" class="nav-link">
+  2. 古典概型
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="其它" class="dropdown-title"><span class="title">其它</span> <span class="arrow down"></span></button> <button type="button" aria-label="其它" class="mobile-dropdown-title"><span class="title">其它</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/Other/2019.1.2.html" class="nav-link">
+  Vuepress搭建静态博客
+</a></li><li class="dropdown-item"><!----> <a href="/Other/markdown.html" class="nav-link">
+  Markdown基本语法
+</a></li></ul></div></div><div class="nav-item"><a href="/Readme/index.html" class="nav-link">
+  关于我
+</a></div> <!----></nav></div></header> <div class="sidebar-mask"></div> <aside class="sidebar"><nav class="nav-links"><div class="nav-item"><a href="/" class="nav-link">
+  主页
+</a></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="Java" class="dropdown-title"><span class="title">Java</span> <span class="arrow down"></span></button> <button type="button" aria-label="Java" class="mobile-dropdown-title"><span class="title">Java</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/Java/java_1.html" class="nav-link">
+  jobHandler调度管理
+</a></li><li class="dropdown-item"><!----> <a href="/Java/java_2.html" class="nav-link">
+  jProtobuf尝鲜
+</a></li><li class="dropdown-item"><!----> <a href="/SpringBoot/springboot_1.html" class="nav-link">
+  使用Docker部署Spring Boot
+</a></li><li class="dropdown-item"><!----> <a href="/SpringCloud/springcloud_1.html" class="nav-link">
+  springcloud(一)：初识Spring Cloud
+</a></li><li class="dropdown-item"><!----> <a href="/SpringCloud/springcloud_2.html" class="nav-link">
+  springcloud(二)：注册中心Eureka
+</a></li><li class="dropdown-item"><!----> <a href="/Java/java_3.html" class="nav-link">
+  java8 toMap问题(key重复如何解决)
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="机器学习" class="dropdown-title"><span class="title">机器学习</span> <span class="arrow down"></span></button> <button type="button" aria-label="机器学习" class="mobile-dropdown-title"><span class="title">机器学习</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/Ai/ai_1.html" class="nav-link">
+  机器学习笔记
+</a></li><li class="dropdown-item"><!----> <a href="/Ai/ai_2.html" class="nav-link">
+  程序员数学笔记
+</a></li><li class="dropdown-item"><!----> <a href="/Ai/ai_3.html" class="nav-link">
+  计算图和求导的链式法则
+</a></li><li class="dropdown-item"><!----> <a href="/Ai/ai_4.html" class="nav-link">
+  卷积神经网络
+</a></li><li class="dropdown-item"><!----> <a href="/Ai/ai_5.html" class="nav-link">
+  PyTorch学习
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="大数据" class="dropdown-title"><span class="title">大数据</span> <span class="arrow down"></span></button> <button type="button" aria-label="大数据" class="mobile-dropdown-title"><span class="title">大数据</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/BigData/bigdata_1.html" class="nav-link">
+  使用Docker搭建Hadoop集群(伪分布式与完全分布式)
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="区块链" class="dropdown-title"><span class="title">区块链</span> <span class="arrow down"></span></button> <button type="button" aria-label="区块链" class="mobile-dropdown-title"><span class="title">区块链</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/BlockChain/block_1.html" class="nav-link">
+  1、Java实现简单区块链
+</a></li><li class="dropdown-item"><!----> <a href="/BlockChain/block_2.html" class="nav-link">
+  2、Java实现可交易钱包
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="Go" class="dropdown-title"><span class="title">Go</span> <span class="arrow down"></span></button> <button type="button" aria-label="Go" class="mobile-dropdown-title"><span class="title">Go</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/Go/go_1.html" class="nav-link">
+  go的基本命令详解
+</a></li><li class="dropdown-item"><!----> <a href="/Go/go_2.html" class="nav-link">
+  gin框架使用案例
+</a></li><li class="dropdown-item"><!----> <a href="/Go/go_3.html" class="nav-link">
+  gorm基本使用
+</a></li><li class="dropdown-item"><!----> <a href="/Go/go_4.html" class="nav-link">
+  Golang操作Redis
+</a></li><li class="dropdown-item"><!----> <a href="/Go/go_5.html" class="nav-link">
+  golang实现tcp通信
+</a></li><li class="dropdown-item"><!----> <a href="/Go/go_6.html" class="nav-link">
+  Golang使用Protobuf 
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="Vue3" class="dropdown-title"><span class="title">Vue3</span> <span class="arrow down"></span></button> <button type="button" aria-label="Vue3" class="mobile-dropdown-title"><span class="title">Vue3</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/Vue3/vue_1.html" class="nav-link">
+  Vue3 安装
+</a></li><li class="dropdown-item"><!----> <a href="/Vue3/vue_2.html" class="nav-link">
+  Vue3 项目打包
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="Linux" class="dropdown-title"><span class="title">Linux</span> <span class="arrow down"></span></button> <button type="button" aria-label="Linux" class="mobile-dropdown-title"><span class="title">Linux</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/Linux/linux_1.html" class="nav-link">
+  虚拟机3种网络模式
+</a></li><li class="dropdown-item"><!----> <a href="/Linux/linux_2.html" class="nav-link">
+  linux常用命令总结
+</a></li><li class="dropdown-item"><!----> <a href="/Linux/linux_3.html" class="nav-link">
+  centos7部署FastDFS
+</a></li><li class="dropdown-item"><!----> <a href="/Linux/linux_4.html" class="nav-link">
+  centos7中根据文件大小排序
+</a></li><li class="dropdown-item"><!----> <a href="/Linux/linux_5.html" class="nav-link">
+  makefile项目管理demo
+</a></li><li class="dropdown-item"><!----> <a href="/Linux/linux_6.html" class="nav-link">
+  nvm常用命令
+</a></li><li class="dropdown-item"><!----> <a href="/Linux/linux_7.html" class="nav-link">
+  anaconda常用命令
+</a></li><li class="dropdown-item"><!----> <a href="/Jenkins/jenkins_1.html" class="nav-link">
+  快速安装Jenkins完美教程
+</a></li><li class="dropdown-item"><!----> <a href="/Jenkins/jenkins_2.html" class="nav-link">
+  Docker jenkins配置NPM
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="Docker" class="dropdown-title"><span class="title">Docker</span> <span class="arrow down"></span></button> <button type="button" aria-label="Docker" class="mobile-dropdown-title"><span class="title">Docker</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/Docker/docker_1.html" class="nav-link">
+  Docker(一)：Docker入门教程
+</a></li><li class="dropdown-item"><!----> <a href="/Docker/docker_2.html" class="nav-link">
+  Docker(二)：Dockerfile使用介绍
+</a></li><li class="dropdown-item"><!----> <a href="/Docker/docker_3.html" class="nav-link">
+  Docker(三)：Dockerfile命令详解
+</a></li><li class="dropdown-item"><!----> <a href="/Docker/docker_4.html" class="nav-link">
+  Docker(四)：Docker三剑客之Docker Compose
+</a></li><li class="dropdown-item"><!----> <a href="/Docker/docker_5.html" class="nav-link">
+  Docker(五)：Docker三剑客之Docker Machine
+</a></li><li class="dropdown-item"><!----> <a href="/Docker/docker_6.html" class="nav-link">
+  Docker(六)：Docker三剑客之Docker Swarm
+</a></li><li class="dropdown-item"><!----> <a href="/Docker/docker_7.html" class="nav-link">
+  Docker安装MariaDB
+</a></li><li class="dropdown-item"><!----> <a href="/Docker/docker_9.html" class="nav-link">
+  Docker安装Mysql8
+</a></li><li class="dropdown-item"><!----> <a href="/Docker/docker_8.html" class="nav-link">
+  Docker安装Redis
+</a></li><li class="dropdown-item"><!----> <a href="/Docker/docker_10.html" class="nav-link">
+  Docker安装Nacos
+</a></li><li class="dropdown-item"><!----> <a href="/Docker/docker_11.html" class="nav-link">
+  Docker安装maven私有仓库
+</a></li><li class="dropdown-item"><!----> <a href="/Docker/docker_12.html" class="nav-link">
+  Docker安装mongodb
+</a></li><li class="dropdown-item"><!----> <a href="/Docker/docker_13.html" class="nav-link">
+  docker-compose.yml开发环境基础中间件配置
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="K8s" class="dropdown-title"><span class="title">K8s</span> <span class="arrow down"></span></button> <button type="button" aria-label="K8s" class="mobile-dropdown-title"><span class="title">K8s</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/K8s/k8s_1.html" aria-current="page" class="nav-link router-link-exact-active router-link-active">
+  VirtualBox + centos7部署k8s
+</a></li><li class="dropdown-item"><!----> <a href="/K8s/k8s_2.html" class="nav-link">
+  kubectl常用命令
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="Nginx" class="dropdown-title"><span class="title">Nginx</span> <span class="arrow down"></span></button> <button type="button" aria-label="Nginx" class="mobile-dropdown-title"><span class="title">Nginx</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/OpenResty/nginx.html" class="nav-link">
+  Nginx 配置详解
+</a></li><li class="dropdown-item"><!----> <a href="/OpenResty/nginx_2.html" class="nav-link">
+  Nginx 常用命令
+</a></li><li class="dropdown-item"><!----> <a href="/OpenResty/openresty_1.html" class="nav-link">
+  OpenResty 使用介绍
+</a></li><li class="dropdown-item"><!----> <a href="/OpenResty/openresty_2.html" class="nav-link">
+  OpenResty(Nginx+Lua)测试用例
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="单变量微积分" class="dropdown-title"><span class="title">单变量微积分</span> <span class="arrow down"></span></button> <button type="button" aria-label="单变量微积分" class="mobile-dropdown-title"><span class="title">单变量微积分</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/SingleCalculus/SingleCalculus_5.html" class="nav-link">
+  5. 指数函数和对数函数的导数
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="多变量微积分" class="dropdown-title"><span class="title">多变量微积分</span> <span class="arrow down"></span></button> <button type="button" aria-label="多变量微积分" class="mobile-dropdown-title"><span class="title">多变量微积分</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/MultivariableCalculus/MultivariableCalculus_1.html" class="nav-link">
+  1. 偏导数
+</a></li><li class="dropdown-item"><!----> <a href="/MultivariableCalculus/MultivariableCalculus_5.html" class="nav-link">
+  5. 梯度与方向导数
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="线性代数" class="dropdown-title"><span class="title">线性代数</span> <span class="arrow down"></span></button> <button type="button" aria-label="线性代数" class="mobile-dropdown-title"><span class="title">线性代数</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/linear/linear_1.html" class="nav-link">
+  1. 矩阵的基本运算
+</a></li><li class="dropdown-item"><!----> <a href="/linear/linear_2.html" class="nav-link">
+  2. 向量（简介）
+</a></li><li class="dropdown-item"><!----> <a href="/linear/linear_3.html" class="nav-link">
+  3. 向量2（点积）
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="概率论" class="dropdown-title"><span class="title">概率论</span> <span class="arrow down"></span></button> <button type="button" aria-label="概率论" class="mobile-dropdown-title"><span class="title">概率论</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/Probability/probability_1.html" class="nav-link">
+  1. 独立事件下的简单概率
+</a></li><li class="dropdown-item"><!----> <a href="/Probability/probability_2.html" class="nav-link">
+  2. 古典概型
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="其它" class="dropdown-title"><span class="title">其它</span> <span class="arrow down"></span></button> <button type="button" aria-label="其它" class="mobile-dropdown-title"><span class="title">其它</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/Other/2019.1.2.html" class="nav-link">
+  Vuepress搭建静态博客
+</a></li><li class="dropdown-item"><!----> <a href="/Other/markdown.html" class="nav-link">
+  Markdown基本语法
+</a></li></ul></div></div><div class="nav-item"><a href="/Readme/index.html" class="nav-link">
+  关于我
+</a></div> <!----></nav>  <!----> </aside> <main class="page"> <div class="theme-default-content content__default"><h1 id="virtualbox-centos7部署k8s"><a href="#virtualbox-centos7部署k8s" class="header-anchor">#</a> VirtualBox + centos7部署k8s</h1> <h2 id="软件和系统准备"><a href="#软件和系统准备" class="header-anchor">#</a> 软件和系统准备</h2> <p>下载CentOS 7.X镜像
+centos 7.9</p> <div class="language- extra-class"><pre class="language-text"><code>https://mirrors.aliyun.com/centos/7.9.2009/isos/x86_64/CentOS-7-x86_64-Everything-2009.iso
+</code></pre></div><p>centos 7.6（推荐，可以避免虚拟机配置网络时出现问题）</p> <div class="language- extra-class"><pre class="language-text"><code>https://mirrors.aliyun.com/centos-vault/7.6.1810/isos/x86_64/CentOS-7-x86_64-Everything-1810.iso
+</code></pre></div><p>建议下载7.6版本</p> <p>下载VirtualBox
+VirtualBox 6.1.18</p> <div class="language- extra-class"><pre class="language-text"><code>https://download.virtualbox.org/virtualbox/6.1.18/VirtualBox-6.1.18-142142-Win.exe
+</code></pre></div><h2 id="安装virtualbox和创建centos-7-6虚拟机"><a href="#安装virtualbox和创建centos-7-6虚拟机" class="header-anchor">#</a> 安装VirtualBox和创建CentOS 7.6虚拟机</h2> <h3 id="viratualbox安装"><a href="#viratualbox安装" class="header-anchor">#</a> ViratualBox安装</h3> <ul><li>1、选好安装地方。</li> <li>2、下一步就行了。</li> <li>3、过程中需要安装虚拟网卡，这里需要允许。</li></ul> <h3 id="virtualbox创建虚拟机安装centos"><a href="#virtualbox创建虚拟机安装centos" class="header-anchor">#</a> VirtualBox创建虚拟机安装CentOS</h3> <ul><li>1、创建的时候名字编上号，后面需要三台虚拟机，不编号后面就不好区分，用以弄混。这里先创建一台，后面用复制来创建其他两台虚拟机。</li> <li>2、创建虚拟机的时候，给出至少2个G的内存。</li> <li>3、创建好后启动，选择下载好的镜像。</li> <li>4、选择镜像后就是一些安装工作。</li></ul> <h2 id="配置网络"><a href="#配置网络" class="header-anchor">#</a> 配置网络</h2> <p>这里选择NAT 网络和仅主机(Host Only)网络。“NAT 网络”用来访问外网，“仅主机(Host Only)网络”用来虚拟主机之间、虚拟主机和宿主机之间通信。
+NAT网络也可以用“桥接网卡”代替，但是对于多网卡的用户，比如有无线网和有线网的电脑。如果后面切换了上网方式，需要重新配置网络。
+NAT网络用DHCP的方式获取IP，仅主机(Host Only)网络用固定IP的方式以供其他虚拟机和宿主机访问。
+配置“仅主机(Host Only)网络”（如果使用了NAT 网络并且访问外网不通的情况下需要配置“NAT 网络”）</p> <h3 id="_1、启用一个连接方式为-仅主机-host-only-网络-的网卡-记下网卡mac地址-在虚拟机设置-网络-网卡n-仅主机-host-only-网络"><a href="#_1、启用一个连接方式为-仅主机-host-only-网络-的网卡-记下网卡mac地址-在虚拟机设置-网络-网卡n-仅主机-host-only-网络" class="header-anchor">#</a> 1、启用一个连接方式为“仅主机(Host Only)网络”的网卡，记下网卡MAC地址，在虚拟机设置-&gt;网络-&gt;网卡n(仅主机(Host Only)网络)</h3> <h3 id="_2、第二步-打开虚拟机-输入ip-add或者ifconfig-ifconfig可能会没有安装。利用前面两个命令查看虚拟机的ip地址。虚拟机的-仅主机-host-only-网络-的ip地址段在安装virtual-box安装的那个虚拟网卡上看。这一步的意义在于可以先用ssh工具连上虚拟机-这样操作更加方便。-nat-网络-在virtual-box的管理-全局设定-网络。"><a href="#_2、第二步-打开虚拟机-输入ip-add或者ifconfig-ifconfig可能会没有安装。利用前面两个命令查看虚拟机的ip地址。虚拟机的-仅主机-host-only-网络-的ip地址段在安装virtual-box安装的那个虚拟网卡上看。这一步的意义在于可以先用ssh工具连上虚拟机-这样操作更加方便。-nat-网络-在virtual-box的管理-全局设定-网络。" class="header-anchor">#</a> 2、第二步，打开虚拟机，输入ip add或者ifconfig,ifconfig可能会没有安装。利用前面两个命令查看虚拟机的IP地址。虚拟机的“仅主机(Host Only)网络”的IP地址段在安装virtual box安装的那个虚拟网卡上看。这一步的意义在于可以先用ssh工具连上虚拟机，这样操作更加方便。“NAT 网络”在Virtual Box的管理-&gt;全局设定-&gt;网络。</h3> <h4 id="_2-1、仅主机-host-only-网络查看方式"><a href="#_2-1、仅主机-host-only-网络查看方式" class="header-anchor">#</a> 2.1、仅主机(Host Only)网络查看方式</h4> <p>可以看到红圈的192.168.56.1就是虚拟网卡的网关地址，那虚拟机中192.168.56开头的就是host only的网卡的IP地址，我们在宿主机可以用这个地址来连接虚拟机。</p> <h4 id="_2-2、nat-网络设置和查看方式。"><a href="#_2-2、nat-网络设置和查看方式。" class="header-anchor">#</a> 2.2、NAT 网络设置和查看方式。</h4> <h3 id="_3、利用ssh工具连上虚拟机后-如果ifconfig工具没有装上-先把ifconfig装上。如果没有公网-比如-ping-baidu-com-的时候ping不通-这是改虚拟机-nat-网络-这张网卡的配置在虚拟机中有问题-这里需要在后面的步骤把该网卡也配置上。"><a href="#_3、利用ssh工具连上虚拟机后-如果ifconfig工具没有装上-先把ifconfig装上。如果没有公网-比如-ping-baidu-com-的时候ping不通-这是改虚拟机-nat-网络-这张网卡的配置在虚拟机中有问题-这里需要在后面的步骤把该网卡也配置上。" class="header-anchor">#</a> 3、利用ssh工具连上虚拟机后，如果ifconfig工具没有装上，先把ifconfig装上。如果没有公网，比如** ping baidu.com **的时候ping不通，这是改虚拟机&quot;NAT 网络&quot;这张网卡的配置在虚拟机中有问题，这里需要在后面的步骤把该网卡也配置上。</h3> <div class="language- extra-class"><pre class="language-text"><code>sudo yum install net-tools -y
+</code></pre></div><p>装上过后用ifconfig查看ip地址，网卡的名字，和网卡的mac地址，后期好确认是否修改成功。</p> <h3 id="_4、进入到虚拟机的-etc-sysconfig-network-scripts"><a href="#_4、进入到虚拟机的-etc-sysconfig-network-scripts" class="header-anchor">#</a> 4、进入到虚拟机的**/etc/sysconfig/network-scripts**</h3> <div class="language- extra-class"><pre class="language-text"><code>cd /etc/sysconfig/network-scripts
+</code></pre></div><p>这里一般会有一个文件名为**ifcfg-**开头的文件（上面两个镜像一般是文件名为ifcfg-enp0s3），可以使用这个文件作为其中一个网卡的配置文件，再创建一个网卡配置文件，一般为ifcfg-enp0s8（ifcfg-必须，后面的名字随意取）。</p> <div class="language- extra-class"><pre class="language-text"><code>vim ifcfg-enp0s8
+</code></pre></div><ul><li>添加配置文件，下面是模板</li></ul> <div class="language- extra-class"><pre class="language-text"><code>TYPE=Ethernet
+HWADDR=08:00:27:d9:7d:47#改为上面复制的网卡的mac地址，nat网络和host only都需要配置。
+BOOTPROTO=static#如果是host only的，这里用static,如果是NAT 网络，可以使用dhcp。static表示固定网络，dhcp为从IP池中获取。
+DEFROUTE=yes
+PEERDNS=yes
+PEERROUTES=yes
+IPV4_FAILURE_FATAL=no
+IPV6INIT=yes
+IPV6_AUTOCONF=yes
+IPV6_DEFROUTE=yes
+IPV6_PEERDNS=yes
+IPV6_PEERROUTES=yes
+IPV6_FAILURE_FATAL=no
+NAME=enp0s8#这里注意，不同网卡配置名字不一样
+UUID=b6dca412-c3cb-426d-b4d2-45c1374efa4c#这里用uuidgen生成
+DEVICE=enp0s8#这里注意，不同网卡配置名字不一样
+ONBOOT=yes#开机启动，这里注意，初始化进系统的时候，有一个默认的ifcfg-xxx，这里是没有开启的，所以将这里改成yes
+NETMASK=255.255.255.0
+GATEWAY=192.168.56.1 #网关地址，为上面虚拟网卡中的地址
+IPADDR=192.168.56.152 #固定的IP地址，由网关和掩码决定，一般用255.255.255.0做掩码，只修改ip地址的最后一位
+</code></pre></div><h3 id="_6、重启network-systemctl-restart-network。如果启动失败-journalctl-xe查看错误原因-如果错误原因是uuid不符合规范-用uuidgen生成新的uuid。"><a href="#_6、重启network-systemctl-restart-network。如果启动失败-journalctl-xe查看错误原因-如果错误原因是uuid不符合规范-用uuidgen生成新的uuid。" class="header-anchor">#</a> 6、重启network，systemctl restart network。如果启动失败，journalctl -xe查看错误原因，如果错误原因是UUID不符合规范，用uuidgen生成新的UUID。</h3> <div class="language- extra-class"><pre class="language-text"><code>uuidgen enp0s8 #这里的enp0s8为上面网卡配置文件的DEVICE的值
+</code></pre></div><p>生成后重新放到配置文中，重复第6步。</p> <ul><li>注意：这里必须把网络配置通过，能访问公网和宿主机与虚拟机间能连通，特别是宿主机和虚拟机，虚拟机和虚拟机之间。</li></ul> <h3 id="_7、如果上面的配置生效-这里可能ssh工具会和虚拟机之间断开-这是因为新配置的host-only的配置已经生效-切换ip为配置的静态ip地址即可。这里开始复制创建好的这个虚拟机-复制2个出来-复制好后在另外的两个虚拟主机重复第5和第6步。"><a href="#_7、如果上面的配置生效-这里可能ssh工具会和虚拟机之间断开-这是因为新配置的host-only的配置已经生效-切换ip为配置的静态ip地址即可。这里开始复制创建好的这个虚拟机-复制2个出来-复制好后在另外的两个虚拟主机重复第5和第6步。" class="header-anchor">#</a> 7、如果上面的配置生效，这里可能ssh工具会和虚拟机之间断开，这是因为新配置的host only的配置已经生效，切换ip为配置的静态ip地址即可。这里开始复制创建好的这个虚拟机，复制2个出来，复制好后在另外的两个虚拟主机重复第5和第6步。</h3> <p>这里可能出现复制后的主机在经过第5和第6步后，配置不生效，网络依然不通的问题，这个时候删除掉这个虚拟机，重新复制一遍（最笨的办法）。
+确认是否上述问题的办法</p> <div class="language- extra-class"><pre class="language-text"><code>nmcli connection show
+</code></pre></div><p>查看网卡配置文件中的device的值是否和UUID的值对的上。如果对不上，并且在下面会多没有连接的connection。而这个没连接connection的UUID才是你网卡配置文件中的UUID。这个时候就可以按照上面的办法尝试了</p> <h1 id="安装k8s-kubeadm"><a href="#安装k8s-kubeadm" class="header-anchor">#</a> 安装k8s(Kubeadm)</h1> <h2 id="centos的系统初始化"><a href="#centos的系统初始化" class="header-anchor">#</a> CentOS的系统初始化</h2> <h3 id="初始化环境"><a href="#初始化环境" class="header-anchor">#</a> 初始化环境</h3> <h3 id="_1、关闭防火墙"><a href="#_1、关闭防火墙" class="header-anchor">#</a> 1、关闭防火墙</h3> <div class="language- extra-class"><pre class="language-text"><code>systemctl stop firewalld
+systemctl disable firewalld
+</code></pre></div><h3 id="_2、关闭-selinux"><a href="#_2、关闭-selinux" class="header-anchor">#</a> 2、关闭 selinux</h3> <div class="language- extra-class"><pre class="language-text"><code>sed -i 's/enforcing/disabled/' /etc/selinux/config # 永久
+setenforce 0 # 临时
+</code></pre></div><h3 id="_3、关闭-swap"><a href="#_3、关闭-swap" class="header-anchor">#</a> 3、关闭 swap</h3> <div class="language- extra-class"><pre class="language-text"><code>swapoff -a # 临时
+sed -ri 's/.*swap.*/#&amp;/' /etc/fstab    # 永久
+</code></pre></div><h3 id="_4、设置主机名-方便查看。"><a href="#_4、设置主机名-方便查看。" class="header-anchor">#</a> 4、设置主机名,方便查看。</h3> <p><code>hostnamectl set-hostname &lt;hostname&gt;</code></p> <h3 id="_5、添加master和node节点添加hosts"><a href="#_5、添加master和node节点添加hosts" class="header-anchor">#</a> 5、添加master和node节点添加hosts</h3> <div class="language- extra-class"><pre class="language-text"><code>cat &gt;&gt; /etc/hosts &lt;&lt; EOF
+192.168.56.150 master
+192.168.56.151 node1
+192.168.56.152 node2
+EOF
+</code></pre></div><h3 id="_6、将桥接的-ipv4-流量传递到-iptables-的链"><a href="#_6、将桥接的-ipv4-流量传递到-iptables-的链" class="header-anchor">#</a> 6、将桥接的 IPv4 流量传递到 iptables 的链</h3> <div class="language- extra-class"><pre class="language-text"><code>cat &gt; /etc/sysctl.d/k8s.conf &lt;&lt; EOF
+net.bridge.bridge-nf-call-ip6tables = 1
+net.bridge.bridge-nf-call-iptables = 1
+EOF
+
+sysctl --system #生效
+</code></pre></div><h3 id="_7、时间同步"><a href="#_7、时间同步" class="header-anchor">#</a> 7、时间同步</h3> <p>这里注意，本地安装虚拟机的，建议每次打开虚拟机都执行一次同步时间的命令。因为本地休眠或者关机后，时间就不会更新了。</p> <div class="language- extra-class"><pre class="language-text"><code>yum install ntpdate -y
+ntpdate time.windows.com #每次打开虚拟机都执行一次这个
+</code></pre></div><h2 id="安装docker-kubeadm-kubelet-master节点和node节点都要执行"><a href="#安装docker-kubeadm-kubelet-master节点和node节点都要执行" class="header-anchor">#</a> 安装Docker/kubeadm/kubelet(master节点和node节点都要执行)</h2> <h3 id="_1、安装docker"><a href="#_1、安装docker" class="header-anchor">#</a> 1、安装Docker</h3> <div class="language- extra-class"><pre class="language-text"><code>wget https://mirrors.aliyun.com/docker-ce/linux/centos/docker-ce.repo -O /etc/yum.repos.d/docker-ce.repo
+yum -y install docker-ce-18.06.1.ce-3.el7
+systemctl enable docker &amp;&amp; systemctl start docker
+docker --version
+</code></pre></div><h3 id="_2、设置docker镜像地址-registry-mirrors后面的为阿里云的docker镜像地址-建议自己申请一个"><a href="#_2、设置docker镜像地址-registry-mirrors后面的为阿里云的docker镜像地址-建议自己申请一个" class="header-anchor">#</a> 2、设置docker镜像地址,registry-mirrors后面的为阿里云的docker镜像地址，建议自己申请一个</h3> <div class="language- extra-class"><pre class="language-text"><code>cat &gt; /etc/docker/daemon.json &lt;&lt; EOF
+{
+  &quot;registry-mirrors&quot;: [&quot;https://hrblko1e.mirror.aliyuncs.com&quot;]
+}
+EOF
+</code></pre></div><h3 id="_3、添加阿里云-kubernetes的yum-软件源"><a href="#_3、添加阿里云-kubernetes的yum-软件源" class="header-anchor">#</a> 3、添加阿里云 kubernetes的YUM 软件源</h3> <div class="language- extra-class"><pre class="language-text"><code>cat &gt; /etc/yum.repos.d/kubernetes.repo &lt;&lt; EOF
+[kubernetes]
+name=Kubernetes
+baseurl=https://mirrors.aliyun.com/kubernetes/yum/repos/kubernetes-el7-x86_64
+enabled=1
+gpgcheck=0
+repo_gpgcheck=0
+gpgkey=https://mirrors.aliyun.com/kubernetes/yum/doc/yum-key.gpg https://mirrors.aliyun.com/kubernetes/yum/doc/rpm-package-key.gpg
+EOF
+</code></pre></div><h3 id="_4、安装-kubeadm-kubelet-和-kubectl"><a href="#_4、安装-kubeadm-kubelet-和-kubectl" class="header-anchor">#</a> 4、安装 kubeadm， kubelet 和 kubectl</h3> <div class="language- extra-class"><pre class="language-text"><code>yum install -y kubelet-1.18.0 kubeadm-1.18.0 kubectl-1.18.0
+systemctl enable kubelet
+</code></pre></div><h2 id="部署master节点-只在master执行"><a href="#部署master节点-只在master执行" class="header-anchor">#</a> 部署master节点（只在master执行）</h2> <h3 id="_1、初始化k8s-master"><a href="#_1、初始化k8s-master" class="header-anchor">#</a> 1、初始化k8s master</h3> <p>去除下面的\，并且将命令放在一行。apiserver-advertise-address为master的ip地址，service-cidr和pod-network-cidr为虚拟的docker内网，需要和虚拟机实际内网地址网段不同</p> <div class="language- extra-class"><pre class="language-text"><code>kubeadm init \
+  --apiserver-advertise-address=192.168.56.150 \ 
+  --image-repository registry.aliyuncs.com/google_containers \
+  --kubernetes-version v1.18.0 \
+  --service-cidr=10.96.0.0/12 \
+  --pod-network-cidr=10.244.0.0/16
+</code></pre></div><p>master节点init后后出现一个node用来join到master的命令，里面包含了token等信息，但是这个有效期只有24小时，需要重新获取重新输入以下命令
+kubeadm token create --print-join-command</p> <h3 id="_2、指定阿里云镜像仓库地址-下面的命令是将配置文件放到k8s的默认配置文件地址-k8s会在这个文件夹内查找配置文件"><a href="#_2、指定阿里云镜像仓库地址-下面的命令是将配置文件放到k8s的默认配置文件地址-k8s会在这个文件夹内查找配置文件" class="header-anchor">#</a> 2、指定阿里云镜像仓库地址,下面的命令是将配置文件放到k8s的默认配置文件地址，k8s会在这个文件夹内查找配置文件</h3> <div class="language- extra-class"><pre class="language-text"><code>mkdir -p $HOME/.kube
+sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
+sudo chown $(id -u):$(id -g) $HOME/.kube/config
+</code></pre></div><p>查看配置文件是否生效，不报错就是配置文件没问题</p> <div class="language- extra-class"><pre class="language-text"><code>kubectl get nodes
+</code></pre></div><h2 id="部署node节点-只在node节点执行"><a href="#部署node节点-只在node节点执行" class="header-anchor">#</a> 部署node节点(只在node节点执行)</h2> <h3 id="_1、将node节点join到master节点-复制上面master在init时打印出来的join命令"><a href="#_1、将node节点join到master节点-复制上面master在init时打印出来的join命令" class="header-anchor">#</a> 1、将node节点join到master节点，复制上面master在init时打印出来的join命令</h3> <div class="language- extra-class"><pre class="language-text"><code>kubeadm join 192.168.31.150:6443 --token 0ss9kb.lwa6felhf51v5il1 \
+    --discovery-token-ca-cert-hash sha256:78aa77e56ef68d2b985b1371e278614a032135d438091ab8097bfab826815458 
+</code></pre></div><p>上面的token只有24小时的有效时间，如果后面节点超过了token有效期想要加入master，需要重新获取token。</p> <h3 id="_2、查看node节点有无加入到master节点-下面命令在master机器执行"><a href="#_2、查看node节点有无加入到master节点-下面命令在master机器执行" class="header-anchor">#</a> 2、查看node节点有无加入到master节点,下面命令在master机器执行</h3> <div class="language- extra-class"><pre class="language-text"><code>kubectl get nodes
+</code></pre></div><p>这个命令会看到node节点已加入到master节点，但是他的状态时NotReady，下面会安装网络插件。</p> <h2 id="安装网络插件-master节点执行"><a href="#安装网络插件-master节点执行" class="header-anchor">#</a> 安装网络插件(master节点执行)</h2> <h3 id="_1、安装网络插件-下面的文件可能无法在国内下载"><a href="#_1、安装网络插件-下面的文件可能无法在国内下载" class="header-anchor">#</a> 1、安装网络插件，下面的文件可能无法在国内下载</h3> <div class="language- extra-class"><pre class="language-text"><code>kubectl apply -f https://raw.githubusercontent.com/coreos/flannel/master/Documentation/kube-flannel.yml
+</code></pre></div><p>可以使用其他方法下载下来，然后使用
+kubectl apply -f 本地文件地址</p> <h3 id="_2、查看是否成功"><a href="#_2、查看是否成功" class="header-anchor">#</a> 2、查看是否成功</h3> <div class="language- extra-class"><pre class="language-text"><code>kubectl get pods -n kube-system
+</code></pre></div><p>可以看到name为kube-flannel-ds开头的，status为running的，即为成功。如果有不是running，可能node节点正在下载。</p> <h3 id="_3、查看node节点状态-如果为ready-即node节点的网络插件也下载完成-如果状态不是ready-稍等一下-下载比较慢。"><a href="#_3、查看node节点状态-如果为ready-即node节点的网络插件也下载完成-如果状态不是ready-稍等一下-下载比较慢。" class="header-anchor">#</a> 3、查看node节点状态，如果为ready，即node节点的网络插件也下载完成，如果状态不是ready，稍等一下，下载比较慢。</h3> <div class="language- extra-class"><pre class="language-text"><code>kubectl get nodes
+</code></pre></div><h2 id="测试整个集群"><a href="#测试整个集群" class="header-anchor">#</a> 测试整个集群</h2> <h3 id="_1、master节点执行安装nginx"><a href="#_1、master节点执行安装nginx" class="header-anchor">#</a> 1、master节点执行安装nginx</h3> <div class="language- extra-class"><pre class="language-text"><code>kubectl create deployment nginx --image=nginx
+kubectl expose deployment nginx --port=80 --type=NodePort
+kubectl get pod,svc
+</code></pre></div><p>在最后一个命令会出现node节点的nginx的状态，访问node节点的ip加端口就可以访问到nginx</p></div> <footer class="page-edit"><!----> <div class="last-updated"><span class="prefix">Last Updated:</span> <span class="time">11/5/2022, 10:40:11 PM</span></div></footer> <!----> </main></div><div class="global-ui"></div></div>
+    <script src="/assets/js/app.466dd957.js" defer></script><script src="/assets/js/2.733019b2.js" defer></script><script src="/assets/js/39.2ac20870.js" defer></script>
+  </body>
+</html>

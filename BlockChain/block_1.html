@@ -1,0 +1,511 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>1、Java实现简单区块链 | 程序员练功房</title>
+    <meta name="generator" content="VuePress 1.9.9">
+    <link rel="icon" href="/logo.ico">
+    <meta name="description" content="纵然出走时未曾想要流浪半生，归来时早已发现少年不再">
+    
+    <link rel="preload" href="/assets/css/0.styles.e8e4f3a3.css" as="style"><link rel="preload" href="/assets/js/app.466dd957.js" as="script"><link rel="preload" href="/assets/js/2.733019b2.js" as="script"><link rel="preload" href="/assets/js/13.736846a1.js" as="script"><link rel="prefetch" href="/assets/js/10.fc32896f.js"><link rel="prefetch" href="/assets/js/11.3a98615b.js"><link rel="prefetch" href="/assets/js/12.0fd6f044.js"><link rel="prefetch" href="/assets/js/14.9c4dc8e5.js"><link rel="prefetch" href="/assets/js/15.120590aa.js"><link rel="prefetch" href="/assets/js/16.f46ba600.js"><link rel="prefetch" href="/assets/js/17.f96e2b9e.js"><link rel="prefetch" href="/assets/js/18.5dae5acc.js"><link rel="prefetch" href="/assets/js/19.957d727a.js"><link rel="prefetch" href="/assets/js/20.c957c720.js"><link rel="prefetch" href="/assets/js/21.db4d26e7.js"><link rel="prefetch" href="/assets/js/22.9d19bebe.js"><link rel="prefetch" href="/assets/js/23.b5390312.js"><link rel="prefetch" href="/assets/js/24.289c8fcd.js"><link rel="prefetch" href="/assets/js/25.f7baec4a.js"><link rel="prefetch" href="/assets/js/26.2704ae01.js"><link rel="prefetch" href="/assets/js/27.5189ccb9.js"><link rel="prefetch" href="/assets/js/28.ed5cb93d.js"><link rel="prefetch" href="/assets/js/29.96717473.js"><link rel="prefetch" href="/assets/js/3.0c69ac0f.js"><link rel="prefetch" href="/assets/js/30.7331b634.js"><link rel="prefetch" href="/assets/js/31.d26d187f.js"><link rel="prefetch" href="/assets/js/32.7f286b45.js"><link rel="prefetch" href="/assets/js/33.173b2025.js"><link rel="prefetch" href="/assets/js/34.f31f4bb8.js"><link rel="prefetch" href="/assets/js/35.218fc470.js"><link rel="prefetch" href="/assets/js/36.ebcd9c43.js"><link rel="prefetch" href="/assets/js/37.09d876bc.js"><link rel="prefetch" href="/assets/js/38.3f7ba3d2.js"><link rel="prefetch" href="/assets/js/39.2ac20870.js"><link rel="prefetch" href="/assets/js/4.d12742be.js"><link rel="prefetch" href="/assets/js/40.c1d8f1bc.js"><link rel="prefetch" href="/assets/js/41.ebed8fef.js"><link rel="prefetch" href="/assets/js/42.c1d002b4.js"><link rel="prefetch" href="/assets/js/43.ef429b49.js"><link rel="prefetch" href="/assets/js/44.8adc98bb.js"><link rel="prefetch" href="/assets/js/45.cea62ac9.js"><link rel="prefetch" href="/assets/js/46.d4ffd3f4.js"><link rel="prefetch" href="/assets/js/47.07d237c5.js"><link rel="prefetch" href="/assets/js/48.0ae3a334.js"><link rel="prefetch" href="/assets/js/49.f0515684.js"><link rel="prefetch" href="/assets/js/5.216cae74.js"><link rel="prefetch" href="/assets/js/50.b6ada23c.js"><link rel="prefetch" href="/assets/js/51.6e351bfe.js"><link rel="prefetch" href="/assets/js/52.418a145d.js"><link rel="prefetch" href="/assets/js/53.298699f9.js"><link rel="prefetch" href="/assets/js/54.b3598a19.js"><link rel="prefetch" href="/assets/js/55.ce965562.js"><link rel="prefetch" href="/assets/js/56.bd957b43.js"><link rel="prefetch" href="/assets/js/57.d48da2b8.js"><link rel="prefetch" href="/assets/js/58.999b5a89.js"><link rel="prefetch" href="/assets/js/59.02363b1c.js"><link rel="prefetch" href="/assets/js/6.2d0a63f8.js"><link rel="prefetch" href="/assets/js/60.83e84781.js"><link rel="prefetch" href="/assets/js/61.4449c91d.js"><link rel="prefetch" href="/assets/js/62.56df5e89.js"><link rel="prefetch" href="/assets/js/63.f775d12d.js"><link rel="prefetch" href="/assets/js/64.8add4c27.js"><link rel="prefetch" href="/assets/js/65.346067ba.js"><link rel="prefetch" href="/assets/js/66.dee69efa.js"><link rel="prefetch" href="/assets/js/67.22ab30d5.js"><link rel="prefetch" href="/assets/js/68.0877349f.js"><link rel="prefetch" href="/assets/js/69.0ba59988.js"><link rel="prefetch" href="/assets/js/7.d02ea004.js"><link rel="prefetch" href="/assets/js/70.a02699db.js"><link rel="prefetch" href="/assets/js/8.55b047fc.js"><link rel="prefetch" href="/assets/js/9.22802293.js">
+    <link rel="stylesheet" href="/assets/css/0.styles.e8e4f3a3.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container no-sidebar"><header class="navbar"><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/" class="home-link router-link-active"><!----> <span class="site-name">程序员练功房</span></a> <div class="links"><div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <nav class="nav-links can-hide"><div class="nav-item"><a href="/" class="nav-link">
+  主页
+</a></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="Java" class="dropdown-title"><span class="title">Java</span> <span class="arrow down"></span></button> <button type="button" aria-label="Java" class="mobile-dropdown-title"><span class="title">Java</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/Java/java_1.html" class="nav-link">
+  jobHandler调度管理
+</a></li><li class="dropdown-item"><!----> <a href="/Java/java_2.html" class="nav-link">
+  jProtobuf尝鲜
+</a></li><li class="dropdown-item"><!----> <a href="/SpringBoot/springboot_1.html" class="nav-link">
+  使用Docker部署Spring Boot
+</a></li><li class="dropdown-item"><!----> <a href="/SpringCloud/springcloud_1.html" class="nav-link">
+  springcloud(一)：初识Spring Cloud
+</a></li><li class="dropdown-item"><!----> <a href="/SpringCloud/springcloud_2.html" class="nav-link">
+  springcloud(二)：注册中心Eureka
+</a></li><li class="dropdown-item"><!----> <a href="/Java/java_3.html" class="nav-link">
+  java8 toMap问题(key重复如何解决)
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="机器学习" class="dropdown-title"><span class="title">机器学习</span> <span class="arrow down"></span></button> <button type="button" aria-label="机器学习" class="mobile-dropdown-title"><span class="title">机器学习</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/Ai/ai_1.html" class="nav-link">
+  机器学习笔记
+</a></li><li class="dropdown-item"><!----> <a href="/Ai/ai_2.html" class="nav-link">
+  程序员数学笔记
+</a></li><li class="dropdown-item"><!----> <a href="/Ai/ai_3.html" class="nav-link">
+  计算图和求导的链式法则
+</a></li><li class="dropdown-item"><!----> <a href="/Ai/ai_4.html" class="nav-link">
+  卷积神经网络
+</a></li><li class="dropdown-item"><!----> <a href="/Ai/ai_5.html" class="nav-link">
+  PyTorch学习
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="大数据" class="dropdown-title"><span class="title">大数据</span> <span class="arrow down"></span></button> <button type="button" aria-label="大数据" class="mobile-dropdown-title"><span class="title">大数据</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/BigData/bigdata_1.html" class="nav-link">
+  使用Docker搭建Hadoop集群(伪分布式与完全分布式)
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="区块链" class="dropdown-title"><span class="title">区块链</span> <span class="arrow down"></span></button> <button type="button" aria-label="区块链" class="mobile-dropdown-title"><span class="title">区块链</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/BlockChain/block_1.html" aria-current="page" class="nav-link router-link-exact-active router-link-active">
+  1、Java实现简单区块链
+</a></li><li class="dropdown-item"><!----> <a href="/BlockChain/block_2.html" class="nav-link">
+  2、Java实现可交易钱包
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="Go" class="dropdown-title"><span class="title">Go</span> <span class="arrow down"></span></button> <button type="button" aria-label="Go" class="mobile-dropdown-title"><span class="title">Go</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/Go/go_1.html" class="nav-link">
+  go的基本命令详解
+</a></li><li class="dropdown-item"><!----> <a href="/Go/go_2.html" class="nav-link">
+  gin框架使用案例
+</a></li><li class="dropdown-item"><!----> <a href="/Go/go_3.html" class="nav-link">
+  gorm基本使用
+</a></li><li class="dropdown-item"><!----> <a href="/Go/go_4.html" class="nav-link">
+  Golang操作Redis
+</a></li><li class="dropdown-item"><!----> <a href="/Go/go_5.html" class="nav-link">
+  golang实现tcp通信
+</a></li><li class="dropdown-item"><!----> <a href="/Go/go_6.html" class="nav-link">
+  Golang使用Protobuf 
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="Vue3" class="dropdown-title"><span class="title">Vue3</span> <span class="arrow down"></span></button> <button type="button" aria-label="Vue3" class="mobile-dropdown-title"><span class="title">Vue3</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/Vue3/vue_1.html" class="nav-link">
+  Vue3 安装
+</a></li><li class="dropdown-item"><!----> <a href="/Vue3/vue_2.html" class="nav-link">
+  Vue3 项目打包
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="Linux" class="dropdown-title"><span class="title">Linux</span> <span class="arrow down"></span></button> <button type="button" aria-label="Linux" class="mobile-dropdown-title"><span class="title">Linux</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/Linux/linux_1.html" class="nav-link">
+  虚拟机3种网络模式
+</a></li><li class="dropdown-item"><!----> <a href="/Linux/linux_2.html" class="nav-link">
+  linux常用命令总结
+</a></li><li class="dropdown-item"><!----> <a href="/Linux/linux_3.html" class="nav-link">
+  centos7部署FastDFS
+</a></li><li class="dropdown-item"><!----> <a href="/Linux/linux_4.html" class="nav-link">
+  centos7中根据文件大小排序
+</a></li><li class="dropdown-item"><!----> <a href="/Linux/linux_5.html" class="nav-link">
+  makefile项目管理demo
+</a></li><li class="dropdown-item"><!----> <a href="/Linux/linux_6.html" class="nav-link">
+  nvm常用命令
+</a></li><li class="dropdown-item"><!----> <a href="/Linux/linux_7.html" class="nav-link">
+  anaconda常用命令
+</a></li><li class="dropdown-item"><!----> <a href="/Jenkins/jenkins_1.html" class="nav-link">
+  快速安装Jenkins完美教程
+</a></li><li class="dropdown-item"><!----> <a href="/Jenkins/jenkins_2.html" class="nav-link">
+  Docker jenkins配置NPM
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="Docker" class="dropdown-title"><span class="title">Docker</span> <span class="arrow down"></span></button> <button type="button" aria-label="Docker" class="mobile-dropdown-title"><span class="title">Docker</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/Docker/docker_1.html" class="nav-link">
+  Docker(一)：Docker入门教程
+</a></li><li class="dropdown-item"><!----> <a href="/Docker/docker_2.html" class="nav-link">
+  Docker(二)：Dockerfile使用介绍
+</a></li><li class="dropdown-item"><!----> <a href="/Docker/docker_3.html" class="nav-link">
+  Docker(三)：Dockerfile命令详解
+</a></li><li class="dropdown-item"><!----> <a href="/Docker/docker_4.html" class="nav-link">
+  Docker(四)：Docker三剑客之Docker Compose
+</a></li><li class="dropdown-item"><!----> <a href="/Docker/docker_5.html" class="nav-link">
+  Docker(五)：Docker三剑客之Docker Machine
+</a></li><li class="dropdown-item"><!----> <a href="/Docker/docker_6.html" class="nav-link">
+  Docker(六)：Docker三剑客之Docker Swarm
+</a></li><li class="dropdown-item"><!----> <a href="/Docker/docker_7.html" class="nav-link">
+  Docker安装MariaDB
+</a></li><li class="dropdown-item"><!----> <a href="/Docker/docker_9.html" class="nav-link">
+  Docker安装Mysql8
+</a></li><li class="dropdown-item"><!----> <a href="/Docker/docker_8.html" class="nav-link">
+  Docker安装Redis
+</a></li><li class="dropdown-item"><!----> <a href="/Docker/docker_10.html" class="nav-link">
+  Docker安装Nacos
+</a></li><li class="dropdown-item"><!----> <a href="/Docker/docker_11.html" class="nav-link">
+  Docker安装maven私有仓库
+</a></li><li class="dropdown-item"><!----> <a href="/Docker/docker_12.html" class="nav-link">
+  Docker安装mongodb
+</a></li><li class="dropdown-item"><!----> <a href="/Docker/docker_13.html" class="nav-link">
+  docker-compose.yml开发环境基础中间件配置
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="K8s" class="dropdown-title"><span class="title">K8s</span> <span class="arrow down"></span></button> <button type="button" aria-label="K8s" class="mobile-dropdown-title"><span class="title">K8s</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/K8s/k8s_1.html" class="nav-link">
+  VirtualBox + centos7部署k8s
+</a></li><li class="dropdown-item"><!----> <a href="/K8s/k8s_2.html" class="nav-link">
+  kubectl常用命令
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="Nginx" class="dropdown-title"><span class="title">Nginx</span> <span class="arrow down"></span></button> <button type="button" aria-label="Nginx" class="mobile-dropdown-title"><span class="title">Nginx</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/OpenResty/nginx.html" class="nav-link">
+  Nginx 配置详解
+</a></li><li class="dropdown-item"><!----> <a href="/OpenResty/nginx_2.html" class="nav-link">
+  Nginx 常用命令
+</a></li><li class="dropdown-item"><!----> <a href="/OpenResty/openresty_1.html" class="nav-link">
+  OpenResty 使用介绍
+</a></li><li class="dropdown-item"><!----> <a href="/OpenResty/openresty_2.html" class="nav-link">
+  OpenResty(Nginx+Lua)测试用例
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="单变量微积分" class="dropdown-title"><span class="title">单变量微积分</span> <span class="arrow down"></span></button> <button type="button" aria-label="单变量微积分" class="mobile-dropdown-title"><span class="title">单变量微积分</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/SingleCalculus/SingleCalculus_5.html" class="nav-link">
+  5. 指数函数和对数函数的导数
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="多变量微积分" class="dropdown-title"><span class="title">多变量微积分</span> <span class="arrow down"></span></button> <button type="button" aria-label="多变量微积分" class="mobile-dropdown-title"><span class="title">多变量微积分</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/MultivariableCalculus/MultivariableCalculus_1.html" class="nav-link">
+  1. 偏导数
+</a></li><li class="dropdown-item"><!----> <a href="/MultivariableCalculus/MultivariableCalculus_5.html" class="nav-link">
+  5. 梯度与方向导数
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="线性代数" class="dropdown-title"><span class="title">线性代数</span> <span class="arrow down"></span></button> <button type="button" aria-label="线性代数" class="mobile-dropdown-title"><span class="title">线性代数</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/linear/linear_1.html" class="nav-link">
+  1. 矩阵的基本运算
+</a></li><li class="dropdown-item"><!----> <a href="/linear/linear_2.html" class="nav-link">
+  2. 向量（简介）
+</a></li><li class="dropdown-item"><!----> <a href="/linear/linear_3.html" class="nav-link">
+  3. 向量2（点积）
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="概率论" class="dropdown-title"><span class="title">概率论</span> <span class="arrow down"></span></button> <button type="button" aria-label="概率论" class="mobile-dropdown-title"><span class="title">概率论</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/Probability/probability_1.html" class="nav-link">
+  1. 独立事件下的简单概率
+</a></li><li class="dropdown-item"><!----> <a href="/Probability/probability_2.html" class="nav-link">
+  2. 古典概型
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="其它" class="dropdown-title"><span class="title">其它</span> <span class="arrow down"></span></button> <button type="button" aria-label="其它" class="mobile-dropdown-title"><span class="title">其它</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/Other/2019.1.2.html" class="nav-link">
+  Vuepress搭建静态博客
+</a></li><li class="dropdown-item"><!----> <a href="/Other/markdown.html" class="nav-link">
+  Markdown基本语法
+</a></li></ul></div></div><div class="nav-item"><a href="/Readme/index.html" class="nav-link">
+  关于我
+</a></div> <!----></nav></div></header> <div class="sidebar-mask"></div> <aside class="sidebar"><nav class="nav-links"><div class="nav-item"><a href="/" class="nav-link">
+  主页
+</a></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="Java" class="dropdown-title"><span class="title">Java</span> <span class="arrow down"></span></button> <button type="button" aria-label="Java" class="mobile-dropdown-title"><span class="title">Java</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/Java/java_1.html" class="nav-link">
+  jobHandler调度管理
+</a></li><li class="dropdown-item"><!----> <a href="/Java/java_2.html" class="nav-link">
+  jProtobuf尝鲜
+</a></li><li class="dropdown-item"><!----> <a href="/SpringBoot/springboot_1.html" class="nav-link">
+  使用Docker部署Spring Boot
+</a></li><li class="dropdown-item"><!----> <a href="/SpringCloud/springcloud_1.html" class="nav-link">
+  springcloud(一)：初识Spring Cloud
+</a></li><li class="dropdown-item"><!----> <a href="/SpringCloud/springcloud_2.html" class="nav-link">
+  springcloud(二)：注册中心Eureka
+</a></li><li class="dropdown-item"><!----> <a href="/Java/java_3.html" class="nav-link">
+  java8 toMap问题(key重复如何解决)
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="机器学习" class="dropdown-title"><span class="title">机器学习</span> <span class="arrow down"></span></button> <button type="button" aria-label="机器学习" class="mobile-dropdown-title"><span class="title">机器学习</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/Ai/ai_1.html" class="nav-link">
+  机器学习笔记
+</a></li><li class="dropdown-item"><!----> <a href="/Ai/ai_2.html" class="nav-link">
+  程序员数学笔记
+</a></li><li class="dropdown-item"><!----> <a href="/Ai/ai_3.html" class="nav-link">
+  计算图和求导的链式法则
+</a></li><li class="dropdown-item"><!----> <a href="/Ai/ai_4.html" class="nav-link">
+  卷积神经网络
+</a></li><li class="dropdown-item"><!----> <a href="/Ai/ai_5.html" class="nav-link">
+  PyTorch学习
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="大数据" class="dropdown-title"><span class="title">大数据</span> <span class="arrow down"></span></button> <button type="button" aria-label="大数据" class="mobile-dropdown-title"><span class="title">大数据</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/BigData/bigdata_1.html" class="nav-link">
+  使用Docker搭建Hadoop集群(伪分布式与完全分布式)
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="区块链" class="dropdown-title"><span class="title">区块链</span> <span class="arrow down"></span></button> <button type="button" aria-label="区块链" class="mobile-dropdown-title"><span class="title">区块链</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/BlockChain/block_1.html" aria-current="page" class="nav-link router-link-exact-active router-link-active">
+  1、Java实现简单区块链
+</a></li><li class="dropdown-item"><!----> <a href="/BlockChain/block_2.html" class="nav-link">
+  2、Java实现可交易钱包
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="Go" class="dropdown-title"><span class="title">Go</span> <span class="arrow down"></span></button> <button type="button" aria-label="Go" class="mobile-dropdown-title"><span class="title">Go</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/Go/go_1.html" class="nav-link">
+  go的基本命令详解
+</a></li><li class="dropdown-item"><!----> <a href="/Go/go_2.html" class="nav-link">
+  gin框架使用案例
+</a></li><li class="dropdown-item"><!----> <a href="/Go/go_3.html" class="nav-link">
+  gorm基本使用
+</a></li><li class="dropdown-item"><!----> <a href="/Go/go_4.html" class="nav-link">
+  Golang操作Redis
+</a></li><li class="dropdown-item"><!----> <a href="/Go/go_5.html" class="nav-link">
+  golang实现tcp通信
+</a></li><li class="dropdown-item"><!----> <a href="/Go/go_6.html" class="nav-link">
+  Golang使用Protobuf 
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="Vue3" class="dropdown-title"><span class="title">Vue3</span> <span class="arrow down"></span></button> <button type="button" aria-label="Vue3" class="mobile-dropdown-title"><span class="title">Vue3</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/Vue3/vue_1.html" class="nav-link">
+  Vue3 安装
+</a></li><li class="dropdown-item"><!----> <a href="/Vue3/vue_2.html" class="nav-link">
+  Vue3 项目打包
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="Linux" class="dropdown-title"><span class="title">Linux</span> <span class="arrow down"></span></button> <button type="button" aria-label="Linux" class="mobile-dropdown-title"><span class="title">Linux</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/Linux/linux_1.html" class="nav-link">
+  虚拟机3种网络模式
+</a></li><li class="dropdown-item"><!----> <a href="/Linux/linux_2.html" class="nav-link">
+  linux常用命令总结
+</a></li><li class="dropdown-item"><!----> <a href="/Linux/linux_3.html" class="nav-link">
+  centos7部署FastDFS
+</a></li><li class="dropdown-item"><!----> <a href="/Linux/linux_4.html" class="nav-link">
+  centos7中根据文件大小排序
+</a></li><li class="dropdown-item"><!----> <a href="/Linux/linux_5.html" class="nav-link">
+  makefile项目管理demo
+</a></li><li class="dropdown-item"><!----> <a href="/Linux/linux_6.html" class="nav-link">
+  nvm常用命令
+</a></li><li class="dropdown-item"><!----> <a href="/Linux/linux_7.html" class="nav-link">
+  anaconda常用命令
+</a></li><li class="dropdown-item"><!----> <a href="/Jenkins/jenkins_1.html" class="nav-link">
+  快速安装Jenkins完美教程
+</a></li><li class="dropdown-item"><!----> <a href="/Jenkins/jenkins_2.html" class="nav-link">
+  Docker jenkins配置NPM
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="Docker" class="dropdown-title"><span class="title">Docker</span> <span class="arrow down"></span></button> <button type="button" aria-label="Docker" class="mobile-dropdown-title"><span class="title">Docker</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/Docker/docker_1.html" class="nav-link">
+  Docker(一)：Docker入门教程
+</a></li><li class="dropdown-item"><!----> <a href="/Docker/docker_2.html" class="nav-link">
+  Docker(二)：Dockerfile使用介绍
+</a></li><li class="dropdown-item"><!----> <a href="/Docker/docker_3.html" class="nav-link">
+  Docker(三)：Dockerfile命令详解
+</a></li><li class="dropdown-item"><!----> <a href="/Docker/docker_4.html" class="nav-link">
+  Docker(四)：Docker三剑客之Docker Compose
+</a></li><li class="dropdown-item"><!----> <a href="/Docker/docker_5.html" class="nav-link">
+  Docker(五)：Docker三剑客之Docker Machine
+</a></li><li class="dropdown-item"><!----> <a href="/Docker/docker_6.html" class="nav-link">
+  Docker(六)：Docker三剑客之Docker Swarm
+</a></li><li class="dropdown-item"><!----> <a href="/Docker/docker_7.html" class="nav-link">
+  Docker安装MariaDB
+</a></li><li class="dropdown-item"><!----> <a href="/Docker/docker_9.html" class="nav-link">
+  Docker安装Mysql8
+</a></li><li class="dropdown-item"><!----> <a href="/Docker/docker_8.html" class="nav-link">
+  Docker安装Redis
+</a></li><li class="dropdown-item"><!----> <a href="/Docker/docker_10.html" class="nav-link">
+  Docker安装Nacos
+</a></li><li class="dropdown-item"><!----> <a href="/Docker/docker_11.html" class="nav-link">
+  Docker安装maven私有仓库
+</a></li><li class="dropdown-item"><!----> <a href="/Docker/docker_12.html" class="nav-link">
+  Docker安装mongodb
+</a></li><li class="dropdown-item"><!----> <a href="/Docker/docker_13.html" class="nav-link">
+  docker-compose.yml开发环境基础中间件配置
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="K8s" class="dropdown-title"><span class="title">K8s</span> <span class="arrow down"></span></button> <button type="button" aria-label="K8s" class="mobile-dropdown-title"><span class="title">K8s</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/K8s/k8s_1.html" class="nav-link">
+  VirtualBox + centos7部署k8s
+</a></li><li class="dropdown-item"><!----> <a href="/K8s/k8s_2.html" class="nav-link">
+  kubectl常用命令
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="Nginx" class="dropdown-title"><span class="title">Nginx</span> <span class="arrow down"></span></button> <button type="button" aria-label="Nginx" class="mobile-dropdown-title"><span class="title">Nginx</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/OpenResty/nginx.html" class="nav-link">
+  Nginx 配置详解
+</a></li><li class="dropdown-item"><!----> <a href="/OpenResty/nginx_2.html" class="nav-link">
+  Nginx 常用命令
+</a></li><li class="dropdown-item"><!----> <a href="/OpenResty/openresty_1.html" class="nav-link">
+  OpenResty 使用介绍
+</a></li><li class="dropdown-item"><!----> <a href="/OpenResty/openresty_2.html" class="nav-link">
+  OpenResty(Nginx+Lua)测试用例
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="单变量微积分" class="dropdown-title"><span class="title">单变量微积分</span> <span class="arrow down"></span></button> <button type="button" aria-label="单变量微积分" class="mobile-dropdown-title"><span class="title">单变量微积分</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/SingleCalculus/SingleCalculus_5.html" class="nav-link">
+  5. 指数函数和对数函数的导数
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="多变量微积分" class="dropdown-title"><span class="title">多变量微积分</span> <span class="arrow down"></span></button> <button type="button" aria-label="多变量微积分" class="mobile-dropdown-title"><span class="title">多变量微积分</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/MultivariableCalculus/MultivariableCalculus_1.html" class="nav-link">
+  1. 偏导数
+</a></li><li class="dropdown-item"><!----> <a href="/MultivariableCalculus/MultivariableCalculus_5.html" class="nav-link">
+  5. 梯度与方向导数
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="线性代数" class="dropdown-title"><span class="title">线性代数</span> <span class="arrow down"></span></button> <button type="button" aria-label="线性代数" class="mobile-dropdown-title"><span class="title">线性代数</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/linear/linear_1.html" class="nav-link">
+  1. 矩阵的基本运算
+</a></li><li class="dropdown-item"><!----> <a href="/linear/linear_2.html" class="nav-link">
+  2. 向量（简介）
+</a></li><li class="dropdown-item"><!----> <a href="/linear/linear_3.html" class="nav-link">
+  3. 向量2（点积）
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="概率论" class="dropdown-title"><span class="title">概率论</span> <span class="arrow down"></span></button> <button type="button" aria-label="概率论" class="mobile-dropdown-title"><span class="title">概率论</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/Probability/probability_1.html" class="nav-link">
+  1. 独立事件下的简单概率
+</a></li><li class="dropdown-item"><!----> <a href="/Probability/probability_2.html" class="nav-link">
+  2. 古典概型
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="其它" class="dropdown-title"><span class="title">其它</span> <span class="arrow down"></span></button> <button type="button" aria-label="其它" class="mobile-dropdown-title"><span class="title">其它</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/Other/2019.1.2.html" class="nav-link">
+  Vuepress搭建静态博客
+</a></li><li class="dropdown-item"><!----> <a href="/Other/markdown.html" class="nav-link">
+  Markdown基本语法
+</a></li></ul></div></div><div class="nav-item"><a href="/Readme/index.html" class="nav-link">
+  关于我
+</a></div> <!----></nav>  <!----> </aside> <main class="page"> <div class="theme-default-content content__default"><h1 id="_1、java实现简单区块链"><a href="#_1、java实现简单区块链" class="header-anchor">#</a> 1、Java实现简单区块链</h1> <p>区块链是分布式数据存储、点对点传输、共识机制、加密算法等计算机技术的新型应用模式。所谓共识机制是区块链系统中实现不同节点之间建立信任、获取权益的数学算法 。</p> <h2 id="本章目标"><a href="#本章目标" class="header-anchor">#</a> 本章目标</h2> <ul><li>创建你第一个非常基本的区块链</li> <li>实现一个简单的工作量证明系统即挖矿</li></ul> <h2 id="创建区块链"><a href="#创建区块链" class="header-anchor">#</a> 创建区块链</h2> <p>区块链就是一串或者是一系列区块的集合，类似于链表的概念，每个区块都指向于后面一个区块，然后顺序的连接在一起。那么每个区块中的内容是什么呢？在区块链中的每一个区块都存放了很多很有价值的信息，主要包括三个部分：自己的数字签名，上一个区块的数字签名，还有一切需要加密的数据（这些数据在比特币中就相当于是交易的信息，它是加密货币的本质）。每个数字签名不但证明了自己是特有的一个区块，而且指向了前一个区块的来源，让所有的区块在链条中可以串起来，而数据就是一些特定的信息，你可以按照业务逻辑来保存业务数据。
+</p><p><img src="/BlockChain/block_1/block_1-1.png" alt=""><br></p>
+这里的hash指的就是数字签名<p></p> <p>所以每一个区块不仅包含前一个区块的hash值，同时包含自身的一个hash值，自身的hash值是通过之前的hash值和数据data通过hash计算出来的。如果前一个区块的数据一旦被篡改了，那么前一个区块的hash值也会同样发生变化（因为数据也被计算在内），这样也就导致了所有后续的区块中的hash值。所以计算和比对hash值会让我们检查到当前的区块链是否是有效的，也就避免了数据被恶意篡改的可能性，因为篡改数据就会改变hash值并破坏整个区块链。</p> <h2 id="定义区块链的类快"><a href="#定义区块链的类快" class="header-anchor">#</a> 定义区块链的类快</h2> <div class="language- extra-class"><pre class="language-text"><code>import java.util.Date;
+
+public class Block {
+
+	public String hash;
+	public String previousHash;
+	private String data; //our data will be a simple message.
+	private long timeStamp; //as number of milliseconds since 1/1/1970.
+
+	//Block Constructor.
+	public Block(String data,String previousHash ) {
+		this.data = data;
+		this.previousHash = previousHash;
+		this.timeStamp = new Date().getTime();
+	}
+}
+</code></pre></div><p>正如你可以看到我们的基本块包含String hash，它将保存我们的数字签名。变量previoushash保存前一个块的hash和String data来保存我们的块数据</p> <h2 id="创建数字签名"><a href="#创建数字签名" class="header-anchor">#</a> 创建数字签名</h2> <p>熟悉加密算法的朋友们，Java方式可以实现的加密方式有很多，例如BASE、MD、RSA、SHA等等，我在这里选用了SHA256这种加密方式，SHA（Secure Hash Algorithm）安全散列算法，这种算法的特点是数据的少量更改会在Hash值中产生不可预知的大量更改，hash值用作表示大量数据的固定大小的唯一值，而SHA256算法的hash值大小为256位。之所以选用SHA256是因为它的大小正合适，一方面产生重复hash值的可能性很小，另一方面在区块链实际应用过程中，有可能会产生大量的区块，而使得信息量很大，那么256位的大小就比较恰当了。</p> <p>下面我创建了一个StringUtil方法来方便调用SHA256算法</p> <div class="language- extra-class"><pre class="language-text"><code>import java.security.MessageDigest;
+
+public class StringUtil {
+	//Applies Sha256 to a string and returns the result. 
+	public static String applySha256(String input){		
+		try {
+			MessageDigest digest = MessageDigest.getInstance(&quot;SHA-256&quot;);	        
+			//Applies sha256 to our input, 
+			byte[] hash = digest.digest(input.getBytes(&quot;UTF-8&quot;));	        
+			StringBuffer hexString = new StringBuffer(); // This will contain hash as hexidecimal
+			for (int i = 0; i &lt; hash.length; i++) {
+				String hex = Integer.toHexString(0xff &amp; hash[i]);
+				if(hex.length() == 1) hexString.append('0');
+				hexString.append(hex);
+			}
+			return hexString.toString();
+		}
+		catch(Exception e) {
+			throw new RuntimeException(e);
+		}
+	}	
+}
+</code></pre></div><p>或许你完全不理解上述代码的含义，但是你只要理解所有的输入调用此方法后均会生成一个独一无二的hash值（数字签名），而这个hash值在区块链中是非常重要的。</p> <p>接下来让我们在Block类中应用 方法 applySha256 方法，其主要的目的就是计算hash值，我们计算的hash值应该包括区块中所有我们不希望被恶意篡改的数据，在我们上面所列的Block类中就一定包括previousHash，data和timeStamp，</p> <div class="language- extra-class"><pre class="language-text"><code>public String calculateHash() {
+	String calculatedhash = StringUtil.applySha256( 
+			previousHash +
+			Long.toString(timeStamp) +
+			data 
+			);
+	return calculatedhash;
+}
+</code></pre></div><p>然后把这个方法加入到Block的构造函数中去</p> <div class="language- extra-class"><pre class="language-text"><code>public Block(String data,String previousHash ) {
+    this.data = data;
+    this.previousHash = previousHash;
+    this.timeStamp = new Date().getTime();
+    this.hash = calculateHash(); //Making sure we do this after we set the other values.
+}
+</code></pre></div><h2 id="测试"><a href="#测试" class="header-anchor">#</a> 测试</h2> <p>在主方法中让我们创建一些区块，并把其hash值打印出来，来看看是否一切都在我们的掌控中。
+第一个块称为创世纪区块，因为它是头区块，所以我们只需输入“0”作为前一个块的previous hash。</p> <div class="language- extra-class"><pre class="language-text"><code>public class NoobChain {
+
+	public static void main(String[] args) {
+		
+		Block genesisBlock = new Block(&quot;Hi im the first block&quot;, &quot;0&quot;);
+		System.out.println(&quot;Hash for block 1 : &quot; + genesisBlock.hash);
+		
+		Block secondBlock = new Block(&quot;Yo im the second block&quot;,genesisBlock.hash);
+		System.out.println(&quot;Hash for block 2 : &quot; + secondBlock.hash);
+		
+		Block thirdBlock = new Block(&quot;Hey im the third block&quot;,secondBlock.hash);
+		System.out.println(&quot;Hash for block 3 : &quot; + thirdBlock.hash);
+		
+	}
+}
+</code></pre></div><p>打印：</p> <div class="language- extra-class"><pre class="language-text"><code>Hash for block 1: f6d1bc5f7b0016eab53ec022db9a5d9e1873ee78513b1c666696e66777fe55fb
+Hash for block 2: 6936612b3380660840f22ee6cb8b72ffc01dbca5369f305b92018321d883f4a3
+Hash for block 3: f3e58f74b5adbd59a7a1fc68c97055d42e94d33f6c322d87b29ab20d3c959b8f
+</code></pre></div><p>每一个区块都必须要有自己的数据签名即hash值，这个hash值依赖于自身的信息（data）和上一个区块的数字签名（previousHash），但这个还不是区块链，下面让我们存储区块到数组中，这里我会引入gson包，目的是可以用json方式查看整个一条区块链结构。</p> <div class="language- extra-class"><pre class="language-text"><code>import java.util.ArrayList;
+import com.google.gson.GsonBuilder;
+
+public class NoobChain {
+	
+	public static ArrayList&lt;Block&gt; blockchain = new ArrayList&lt;Block&gt;(); 
+
+	public static void main(String[] args) {	
+		//add our blocks to the blockchain ArrayList:
+		blockchain.add(new Block(&quot;Hi im the first block&quot;, &quot;0&quot;));		
+		blockchain.add(new Block(&quot;Yo im the second block&quot;,blockchain.get(blockchain.size()-1).hash)); 
+		blockchain.add(new Block(&quot;Hey im the third block&quot;,blockchain.get(blockchain.size()-1).hash));
+		
+		String blockchainJson = new GsonBuilder().setPrettyPrinting().create().toJson(blockchain);		
+		System.out.println(blockchainJson);
+	}
+
+}
+</code></pre></div><p>这样的输出结构就更类似于我们所期待的区块链的样子。</p> <h2 id="检查区块链的完整性"><a href="#检查区块链的完整性" class="header-anchor">#</a> 检查区块链的完整性</h2> <p>在主方法中增加一个isChainValid()方法，目的是循环区块链中的所有区块并且比较hash值，这个方法用来检查hash值是否是于计算出来的hash值相等，同时previousHash值是否和前一个区块的hash值相等。或许你会产生如下的疑问，我们就在一个主函数中创建区块链中的区块，所以不存在被修改的可能性，但是你要注意的是，区块链中的一个核心概念就是去中心化，每一个区块可能是在网络中的某一个节点中产生的，所以很有可能某个节点把自己节点中的数据修改了，那么根据上述的理论数据改变会导致整个区块链的破裂，也就是区块链就无效了。</p> <div class="language- extra-class"><pre class="language-text"><code>public static Boolean isChainValid() {
+	Block currentBlock; 
+	Block previousBlock;
+	
+	//loop through blockchain to check hashes:
+	for(int i=1; i &lt; blockchain.size(); i++) {
+		currentBlock = blockchain.get(i);
+		previousBlock = blockchain.get(i-1);
+		//compare registered hash and calculated hash:
+		if(!currentBlock.hash.equals(currentBlock.calculateHash()) ){
+			System.out.println(&quot;Current Hashes not equal&quot;);			
+			return false;
+		}
+		//compare previous hash and registered previous hash
+		if(!previousBlock.hash.equals(currentBlock.previousHash) ) {
+			System.out.println(&quot;Previous Hashes not equal&quot;);
+			return false;
+		}
+	}
+	return true;
+}
+</code></pre></div><p>任何区块链中区块的一丝一毫改变都会导致这个函数返回false，也就证明了区块链无效了。</p> <p>在比特币网络中所有的网络节点都分享了它们各自的区块链，然而最长的有效区块链是被全网所统一承认的，如果有人恶意来篡改之前的数据，然后创建一条更长的区块链并全网发布呈现在网络中，我们该怎么办呢？这就涉及到了区块链中另外一个重要的概念工作量证明，这里就不得不提及一下hashcash，这个概念最早来自于Adam Back的一篇论文，主要应用于邮件过滤和比特币中防止双重支付。</p> <h2 id="挖矿"><a href="#挖矿" class="header-anchor">#</a> 挖矿</h2> <p>这里我们要求挖矿者做工作量证明，具体的方式是在区块中尝试不同的参数值直到它的hash值是从一系列的0开始的。让我们添加一个名为nonce的int类型以包含在我们的calculatehash（）方法中，以及需要的mineblock（）方法</p> <div class="language- extra-class"><pre class="language-text"><code>import java.util.Date;
+
+public class Block {
+	
+	public String hash;
+	public String previousHash; 
+	private String data; //our data will be a simple message.
+	private long timeStamp; //as number of milliseconds since 1/1/1970.
+	private int nonce;
+	
+	//Block Constructor.  
+	public Block(String data,String previousHash ) {
+		this.data = data;
+		this.previousHash = previousHash;
+		this.timeStamp = new Date().getTime();
+		
+		this.hash = calculateHash(); //Making sure we do this after we set the other values.
+	}
+	
+	//Calculate new hash based on blocks contents
+	public String calculateHash() {
+		String calculatedhash = StringUtil.applySha256( 
+				previousHash +
+				Long.toString(timeStamp) +
+				Integer.toString(nonce) + 
+				data 
+				);
+		return calculatedhash;
+	}
+	
+	public void mineBlock(int difficulty) {
+		String target = new String(new char[difficulty]).replace('\0', '0'); //Create a string with difficulty * &quot;0&quot; 
+		while(!hash.substring( 0, difficulty).equals(target)) {
+			nonce ++;
+			hash = calculateHash();
+		}
+		System.out.println(&quot;Block Mined!!! : &quot; + hash);
+	}
+}
+</code></pre></div><p>mineBlock()方法中引入了一个int值称为difficulty难度，低的难度比如1和2，普通的电脑基本都可以马上计算出来，我的建议是在4-6之间进行测试，普通电脑大概会花费3秒时间，在莱特币中难度大概围绕在442592左右，而在比特币中每一次挖矿都要求大概在10分钟左右，当然根据所有网络中的计算能力，难度也会不断的进行修改。</p> <p>我们在NoobChain类 中增加difficulty这个静态变量。</p> <div class="language- extra-class"><pre class="language-text"><code>public static int difficulty = 5;
+</code></pre></div><p>这样我们必须修改主方法中让创建每个新区块时必须触发mineBlock()方法，而isChainValid()方法用来检查每个区块的hash值是否正确，整个区块链是否是有效的。</p> <div class="language- extra-class"><pre class="language-text"><code>import java.util.ArrayList;
+import com.google.gson.GsonBuilder;
+
+public class NoobChain {
+	
+	public static ArrayList&lt;Block&gt; blockchain = new ArrayList&lt;Block&gt;();
+	public static int difficulty = 5;
+
+	public static void main(String[] args) {	
+		//add our blocks to the blockchain ArrayList:
+		
+		blockchain.add(new Block(&quot;Hi im the first block&quot;, &quot;0&quot;));
+		System.out.println(&quot;Trying to Mine block 1... &quot;);
+		blockchain.get(0).mineBlock(difficulty);
+		
+		blockchain.add(new Block(&quot;Yo im the second block&quot;,blockchain.get(blockchain.size()-1).hash));
+		System.out.println(&quot;Trying to Mine block 2... &quot;);
+		blockchain.get(1).mineBlock(difficulty);
+		
+		blockchain.add(new Block(&quot;Hey im the third block&quot;,blockchain.get(blockchain.size()-1).hash));
+		System.out.println(&quot;Trying to Mine block 3... &quot;);
+		blockchain.get(2).mineBlock(difficulty);	
+		
+		System.out.println(&quot;\nBlockchain is Valid: &quot; + isChainValid());
+		
+		String blockchainJson = new GsonBuilder().setPrettyPrinting().create().toJson(blockchain);
+		System.out.println(&quot;\nThe block chain: &quot;);
+		System.out.println(blockchainJson);
+	}
+	
+	public static Boolean isChainValid() {
+		Block currentBlock; 
+		Block previousBlock;
+		String hashTarget = new String(new char[difficulty]).replace('\0', '0');
+		
+		//loop through blockchain to check hashes:
+		for(int i=1; i &lt; blockchain.size(); i++) {
+			currentBlock = blockchain.get(i);
+			previousBlock = blockchain.get(i-1);
+			//compare registered hash and calculated hash:
+			if(!currentBlock.hash.equals(currentBlock.calculateHash()) ){
+				System.out.println(&quot;Current Hashes not equal&quot;);			
+				return false;
+			}
+			//compare previous hash and registered previous hash
+			if(!previousBlock.hash.equals(currentBlock.previousHash) ) {
+				System.out.println(&quot;Previous Hashes not equal&quot;);
+				return false;
+			}
+			//check if hash is solved
+			if(!currentBlock.hash.substring( 0, difficulty).equals(hashTarget)) {
+				System.out.println(&quot;This block hasn't been mined&quot;);
+				return false;
+			}
+		}
+		return true;
+	}
+}
+</code></pre></div><h2 id="打印"><a href="#打印" class="header-anchor">#</a> 打印：</h2> <div class="language- extra-class"><pre class="language-text"><code>Connected to the target VM, address: '127.0.0.1:61863', transport: 'socket'
+Trying to Mine block 1... 
+Block Mined!!! : 0000016667d4240e9c30f53015310b0ec6ce99032d7e1d66d670afc509cab082
+Trying to Mine block 2... 
+Block Mined!!! : 000002ea55735bea4cac7e358c7b0d8d81e8ca24021f5f85211bf54fd4ac795a
+Trying to Mine block 3... 
+Block Mined!!! : 000000576987e5e9afbdf19b512b2b7d0c56db0e6ca49b3a7e638177f617994b
+
+Blockchain is Valid: true
+[
+  {
+    &quot;hash&quot;: &quot;0000016667d4240e9c30f53015310b0ec6ce99032d7e1d66d670afc509cab082&quot;,
+    &quot;previousHash&quot;: &quot;0&quot;,
+    &quot;data&quot;: &quot;first&quot;,
+    &quot;timeStamp&quot;: 1520659506042,
+    &quot;nonce&quot;: 618139
+  },
+  {
+    &quot;hash&quot;: &quot;000002ea55735bea4cac7e358c7b0d8d81e8ca24021f5f85211bf54fd4ac795a&quot;,
+    &quot;previousHash&quot;: &quot;0000016667d4240e9c30f53015310b0ec6ce99032d7e1d66d670afc509cab082&quot;,
+    &quot;data&quot;: &quot;second&quot;,
+    &quot;timeStamp&quot;: 1520659508825,
+    &quot;nonce&quot;: 1819877
+  },
+  {
+    &quot;hash&quot;: &quot;000000576987e5e9afbdf19b512b2b7d0c56db0e6ca49b3a7e638177f617994b&quot;,
+    &quot;previousHash&quot;: &quot;000002ea55735bea4cac7e358c7b0d8d81e8ca24021f5f85211bf54fd4ac795a&quot;,
+    &quot;data&quot;: &quot;third&quot;,
+    &quot;timeStamp&quot;: 1520659515910,
+    &quot;nonce&quot;: 1404341
+  }
+]
+</code></pre></div><p>经过测试增加一个新的区块即挖矿必须花费一定时间，大概是3秒左右，你可以提高difficulty难度来看，它是如何影响数据难题所花费的时间的</p> <p>如果有人在你的区块链系统中恶意篡改数据：</p> <p>他们的区块链是无效的。
+他们无法创建更长的区块链
+网络中诚实的区块链会在长链中更有时间的优势
+因为篡改的区块链将无法赶上长链和有效链，除非他们比你网络中所有的节点拥有更大的计算速度，可能是未来的量子计算机或者是其他什么。</p> <p>你的区块链：</p> <ul><li>有很多区块组成用来存储数据</li> <li>有数字签名让你的区块链链接在一起</li> <li>需要挖矿的工作量证明新的区块</li> <li>可以用来检查数据是否是有效的同时是未经篡改的</li></ul></div> <footer class="page-edit"><!----> <div class="last-updated"><span class="prefix">Last Updated:</span> <span class="time">11/9/2022, 5:08:28 PM</span></div></footer> <!----> </main></div><div class="global-ui"></div></div>
+    <script src="/assets/js/app.466dd957.js" defer></script><script src="/assets/js/2.733019b2.js" defer></script><script src="/assets/js/13.736846a1.js" defer></script>
+  </body>
+</html>

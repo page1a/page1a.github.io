@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>linux常用命令总结 | 程序员练功房</title>
+    <meta name="generator" content="VuePress 1.9.9">
+    <link rel="icon" href="/logo.ico">
+    <meta name="description" content="纵然出走时未曾想要流浪半生，归来时早已发现少年不再">
+    
+    <link rel="preload" href="/assets/css/0.styles.e8e4f3a3.css" as="style"><link rel="preload" href="/assets/js/app.466dd957.js" as="script"><link rel="preload" href="/assets/js/2.733019b2.js" as="script"><link rel="preload" href="/assets/js/42.c1d002b4.js" as="script"><link rel="prefetch" href="/assets/js/10.fc32896f.js"><link rel="prefetch" href="/assets/js/11.3a98615b.js"><link rel="prefetch" href="/assets/js/12.0fd6f044.js"><link rel="prefetch" href="/assets/js/13.736846a1.js"><link rel="prefetch" href="/assets/js/14.9c4dc8e5.js"><link rel="prefetch" href="/assets/js/15.120590aa.js"><link rel="prefetch" href="/assets/js/16.f46ba600.js"><link rel="prefetch" href="/assets/js/17.f96e2b9e.js"><link rel="prefetch" href="/assets/js/18.5dae5acc.js"><link rel="prefetch" href="/assets/js/19.957d727a.js"><link rel="prefetch" href="/assets/js/20.c957c720.js"><link rel="prefetch" href="/assets/js/21.db4d26e7.js"><link rel="prefetch" href="/assets/js/22.9d19bebe.js"><link rel="prefetch" href="/assets/js/23.b5390312.js"><link rel="prefetch" href="/assets/js/24.289c8fcd.js"><link rel="prefetch" href="/assets/js/25.f7baec4a.js"><link rel="prefetch" href="/assets/js/26.2704ae01.js"><link rel="prefetch" href="/assets/js/27.5189ccb9.js"><link rel="prefetch" href="/assets/js/28.ed5cb93d.js"><link rel="prefetch" href="/assets/js/29.96717473.js"><link rel="prefetch" href="/assets/js/3.0c69ac0f.js"><link rel="prefetch" href="/assets/js/30.7331b634.js"><link rel="prefetch" href="/assets/js/31.d26d187f.js"><link rel="prefetch" href="/assets/js/32.7f286b45.js"><link rel="prefetch" href="/assets/js/33.173b2025.js"><link rel="prefetch" href="/assets/js/34.f31f4bb8.js"><link rel="prefetch" href="/assets/js/35.218fc470.js"><link rel="prefetch" href="/assets/js/36.ebcd9c43.js"><link rel="prefetch" href="/assets/js/37.09d876bc.js"><link rel="prefetch" href="/assets/js/38.3f7ba3d2.js"><link rel="prefetch" href="/assets/js/39.2ac20870.js"><link rel="prefetch" href="/assets/js/4.d12742be.js"><link rel="prefetch" href="/assets/js/40.c1d8f1bc.js"><link rel="prefetch" href="/assets/js/41.ebed8fef.js"><link rel="prefetch" href="/assets/js/43.ef429b49.js"><link rel="prefetch" href="/assets/js/44.8adc98bb.js"><link rel="prefetch" href="/assets/js/45.cea62ac9.js"><link rel="prefetch" href="/assets/js/46.d4ffd3f4.js"><link rel="prefetch" href="/assets/js/47.07d237c5.js"><link rel="prefetch" href="/assets/js/48.0ae3a334.js"><link rel="prefetch" href="/assets/js/49.f0515684.js"><link rel="prefetch" href="/assets/js/5.216cae74.js"><link rel="prefetch" href="/assets/js/50.b6ada23c.js"><link rel="prefetch" href="/assets/js/51.6e351bfe.js"><link rel="prefetch" href="/assets/js/52.418a145d.js"><link rel="prefetch" href="/assets/js/53.298699f9.js"><link rel="prefetch" href="/assets/js/54.b3598a19.js"><link rel="prefetch" href="/assets/js/55.ce965562.js"><link rel="prefetch" href="/assets/js/56.bd957b43.js"><link rel="prefetch" href="/assets/js/57.d48da2b8.js"><link rel="prefetch" href="/assets/js/58.999b5a89.js"><link rel="prefetch" href="/assets/js/59.02363b1c.js"><link rel="prefetch" href="/assets/js/6.2d0a63f8.js"><link rel="prefetch" href="/assets/js/60.83e84781.js"><link rel="prefetch" href="/assets/js/61.4449c91d.js"><link rel="prefetch" href="/assets/js/62.56df5e89.js"><link rel="prefetch" href="/assets/js/63.f775d12d.js"><link rel="prefetch" href="/assets/js/64.8add4c27.js"><link rel="prefetch" href="/assets/js/65.346067ba.js"><link rel="prefetch" href="/assets/js/66.dee69efa.js"><link rel="prefetch" href="/assets/js/67.22ab30d5.js"><link rel="prefetch" href="/assets/js/68.0877349f.js"><link rel="prefetch" href="/assets/js/69.0ba59988.js"><link rel="prefetch" href="/assets/js/7.d02ea004.js"><link rel="prefetch" href="/assets/js/70.a02699db.js"><link rel="prefetch" href="/assets/js/8.55b047fc.js"><link rel="prefetch" href="/assets/js/9.22802293.js">
+    <link rel="stylesheet" href="/assets/css/0.styles.e8e4f3a3.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container no-sidebar"><header class="navbar"><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/" class="home-link router-link-active"><!----> <span class="site-name">程序员练功房</span></a> <div class="links"><div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <nav class="nav-links can-hide"><div class="nav-item"><a href="/" class="nav-link">
+  主页
+</a></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="Java" class="dropdown-title"><span class="title">Java</span> <span class="arrow down"></span></button> <button type="button" aria-label="Java" class="mobile-dropdown-title"><span class="title">Java</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/Java/java_1.html" class="nav-link">
+  jobHandler调度管理
+</a></li><li class="dropdown-item"><!----> <a href="/Java/java_2.html" class="nav-link">
+  jProtobuf尝鲜
+</a></li><li class="dropdown-item"><!----> <a href="/SpringBoot/springboot_1.html" class="nav-link">
+  使用Docker部署Spring Boot
+</a></li><li class="dropdown-item"><!----> <a href="/SpringCloud/springcloud_1.html" class="nav-link">
+  springcloud(一)：初识Spring Cloud
+</a></li><li class="dropdown-item"><!----> <a href="/SpringCloud/springcloud_2.html" class="nav-link">
+  springcloud(二)：注册中心Eureka
+</a></li><li class="dropdown-item"><!----> <a href="/Java/java_3.html" class="nav-link">
+  java8 toMap问题(key重复如何解决)
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="机器学习" class="dropdown-title"><span class="title">机器学习</span> <span class="arrow down"></span></button> <button type="button" aria-label="机器学习" class="mobile-dropdown-title"><span class="title">机器学习</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/Ai/ai_1.html" class="nav-link">
+  机器学习笔记
+</a></li><li class="dropdown-item"><!----> <a href="/Ai/ai_2.html" class="nav-link">
+  程序员数学笔记
+</a></li><li class="dropdown-item"><!----> <a href="/Ai/ai_3.html" class="nav-link">
+  计算图和求导的链式法则
+</a></li><li class="dropdown-item"><!----> <a href="/Ai/ai_4.html" class="nav-link">
+  卷积神经网络
+</a></li><li class="dropdown-item"><!----> <a href="/Ai/ai_5.html" class="nav-link">
+  PyTorch学习
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="大数据" class="dropdown-title"><span class="title">大数据</span> <span class="arrow down"></span></button> <button type="button" aria-label="大数据" class="mobile-dropdown-title"><span class="title">大数据</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/BigData/bigdata_1.html" class="nav-link">
+  使用Docker搭建Hadoop集群(伪分布式与完全分布式)
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="区块链" class="dropdown-title"><span class="title">区块链</span> <span class="arrow down"></span></button> <button type="button" aria-label="区块链" class="mobile-dropdown-title"><span class="title">区块链</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/BlockChain/block_1.html" class="nav-link">
+  1、Java实现简单区块链
+</a></li><li class="dropdown-item"><!----> <a href="/BlockChain/block_2.html" class="nav-link">
+  2、Java实现可交易钱包
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="Go" class="dropdown-title"><span class="title">Go</span> <span class="arrow down"></span></button> <button type="button" aria-label="Go" class="mobile-dropdown-title"><span class="title">Go</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/Go/go_1.html" class="nav-link">
+  go的基本命令详解
+</a></li><li class="dropdown-item"><!----> <a href="/Go/go_2.html" class="nav-link">
+  gin框架使用案例
+</a></li><li class="dropdown-item"><!----> <a href="/Go/go_3.html" class="nav-link">
+  gorm基本使用
+</a></li><li class="dropdown-item"><!----> <a href="/Go/go_4.html" class="nav-link">
+  Golang操作Redis
+</a></li><li class="dropdown-item"><!----> <a href="/Go/go_5.html" class="nav-link">
+  golang实现tcp通信
+</a></li><li class="dropdown-item"><!----> <a href="/Go/go_6.html" class="nav-link">
+  Golang使用Protobuf 
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="Vue3" class="dropdown-title"><span class="title">Vue3</span> <span class="arrow down"></span></button> <button type="button" aria-label="Vue3" class="mobile-dropdown-title"><span class="title">Vue3</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/Vue3/vue_1.html" class="nav-link">
+  Vue3 安装
+</a></li><li class="dropdown-item"><!----> <a href="/Vue3/vue_2.html" class="nav-link">
+  Vue3 项目打包
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="Linux" class="dropdown-title"><span class="title">Linux</span> <span class="arrow down"></span></button> <button type="button" aria-label="Linux" class="mobile-dropdown-title"><span class="title">Linux</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/Linux/linux_1.html" class="nav-link">
+  虚拟机3种网络模式
+</a></li><li class="dropdown-item"><!----> <a href="/Linux/linux_2.html" aria-current="page" class="nav-link router-link-exact-active router-link-active">
+  linux常用命令总结
+</a></li><li class="dropdown-item"><!----> <a href="/Linux/linux_3.html" class="nav-link">
+  centos7部署FastDFS
+</a></li><li class="dropdown-item"><!----> <a href="/Linux/linux_4.html" class="nav-link">
+  centos7中根据文件大小排序
+</a></li><li class="dropdown-item"><!----> <a href="/Linux/linux_5.html" class="nav-link">
+  makefile项目管理demo
+</a></li><li class="dropdown-item"><!----> <a href="/Linux/linux_6.html" class="nav-link">
+  nvm常用命令
+</a></li><li class="dropdown-item"><!----> <a href="/Linux/linux_7.html" class="nav-link">
+  anaconda常用命令
+</a></li><li class="dropdown-item"><!----> <a href="/Jenkins/jenkins_1.html" class="nav-link">
+  快速安装Jenkins完美教程
+</a></li><li class="dropdown-item"><!----> <a href="/Jenkins/jenkins_2.html" class="nav-link">
+  Docker jenkins配置NPM
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="Docker" class="dropdown-title"><span class="title">Docker</span> <span class="arrow down"></span></button> <button type="button" aria-label="Docker" class="mobile-dropdown-title"><span class="title">Docker</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/Docker/docker_1.html" class="nav-link">
+  Docker(一)：Docker入门教程
+</a></li><li class="dropdown-item"><!----> <a href="/Docker/docker_2.html" class="nav-link">
+  Docker(二)：Dockerfile使用介绍
+</a></li><li class="dropdown-item"><!----> <a href="/Docker/docker_3.html" class="nav-link">
+  Docker(三)：Dockerfile命令详解
+</a></li><li class="dropdown-item"><!----> <a href="/Docker/docker_4.html" class="nav-link">
+  Docker(四)：Docker三剑客之Docker Compose
+</a></li><li class="dropdown-item"><!----> <a href="/Docker/docker_5.html" class="nav-link">
+  Docker(五)：Docker三剑客之Docker Machine
+</a></li><li class="dropdown-item"><!----> <a href="/Docker/docker_6.html" class="nav-link">
+  Docker(六)：Docker三剑客之Docker Swarm
+</a></li><li class="dropdown-item"><!----> <a href="/Docker/docker_7.html" class="nav-link">
+  Docker安装MariaDB
+</a></li><li class="dropdown-item"><!----> <a href="/Docker/docker_9.html" class="nav-link">
+  Docker安装Mysql8
+</a></li><li class="dropdown-item"><!----> <a href="/Docker/docker_8.html" class="nav-link">
+  Docker安装Redis
+</a></li><li class="dropdown-item"><!----> <a href="/Docker/docker_10.html" class="nav-link">
+  Docker安装Nacos
+</a></li><li class="dropdown-item"><!----> <a href="/Docker/docker_11.html" class="nav-link">
+  Docker安装maven私有仓库
+</a></li><li class="dropdown-item"><!----> <a href="/Docker/docker_12.html" class="nav-link">
+  Docker安装mongodb
+</a></li><li class="dropdown-item"><!----> <a href="/Docker/docker_13.html" class="nav-link">
+  docker-compose.yml开发环境基础中间件配置
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="K8s" class="dropdown-title"><span class="title">K8s</span> <span class="arrow down"></span></button> <button type="button" aria-label="K8s" class="mobile-dropdown-title"><span class="title">K8s</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/K8s/k8s_1.html" class="nav-link">
+  VirtualBox + centos7部署k8s
+</a></li><li class="dropdown-item"><!----> <a href="/K8s/k8s_2.html" class="nav-link">
+  kubectl常用命令
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="Nginx" class="dropdown-title"><span class="title">Nginx</span> <span class="arrow down"></span></button> <button type="button" aria-label="Nginx" class="mobile-dropdown-title"><span class="title">Nginx</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/OpenResty/nginx.html" class="nav-link">
+  Nginx 配置详解
+</a></li><li class="dropdown-item"><!----> <a href="/OpenResty/nginx_2.html" class="nav-link">
+  Nginx 常用命令
+</a></li><li class="dropdown-item"><!----> <a href="/OpenResty/openresty_1.html" class="nav-link">
+  OpenResty 使用介绍
+</a></li><li class="dropdown-item"><!----> <a href="/OpenResty/openresty_2.html" class="nav-link">
+  OpenResty(Nginx+Lua)测试用例
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="单变量微积分" class="dropdown-title"><span class="title">单变量微积分</span> <span class="arrow down"></span></button> <button type="button" aria-label="单变量微积分" class="mobile-dropdown-title"><span class="title">单变量微积分</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/SingleCalculus/SingleCalculus_5.html" class="nav-link">
+  5. 指数函数和对数函数的导数
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="多变量微积分" class="dropdown-title"><span class="title">多变量微积分</span> <span class="arrow down"></span></button> <button type="button" aria-label="多变量微积分" class="mobile-dropdown-title"><span class="title">多变量微积分</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/MultivariableCalculus/MultivariableCalculus_1.html" class="nav-link">
+  1. 偏导数
+</a></li><li class="dropdown-item"><!----> <a href="/MultivariableCalculus/MultivariableCalculus_5.html" class="nav-link">
+  5. 梯度与方向导数
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="线性代数" class="dropdown-title"><span class="title">线性代数</span> <span class="arrow down"></span></button> <button type="button" aria-label="线性代数" class="mobile-dropdown-title"><span class="title">线性代数</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/linear/linear_1.html" class="nav-link">
+  1. 矩阵的基本运算
+</a></li><li class="dropdown-item"><!----> <a href="/linear/linear_2.html" class="nav-link">
+  2. 向量（简介）
+</a></li><li class="dropdown-item"><!----> <a href="/linear/linear_3.html" class="nav-link">
+  3. 向量2（点积）
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="概率论" class="dropdown-title"><span class="title">概率论</span> <span class="arrow down"></span></button> <button type="button" aria-label="概率论" class="mobile-dropdown-title"><span class="title">概率论</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/Probability/probability_1.html" class="nav-link">
+  1. 独立事件下的简单概率
+</a></li><li class="dropdown-item"><!----> <a href="/Probability/probability_2.html" class="nav-link">
+  2. 古典概型
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="其它" class="dropdown-title"><span class="title">其它</span> <span class="arrow down"></span></button> <button type="button" aria-label="其它" class="mobile-dropdown-title"><span class="title">其它</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/Other/2019.1.2.html" class="nav-link">
+  Vuepress搭建静态博客
+</a></li><li class="dropdown-item"><!----> <a href="/Other/markdown.html" class="nav-link">
+  Markdown基本语法
+</a></li></ul></div></div><div class="nav-item"><a href="/Readme/index.html" class="nav-link">
+  关于我
+</a></div> <!----></nav></div></header> <div class="sidebar-mask"></div> <aside class="sidebar"><nav class="nav-links"><div class="nav-item"><a href="/" class="nav-link">
+  主页
+</a></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="Java" class="dropdown-title"><span class="title">Java</span> <span class="arrow down"></span></button> <button type="button" aria-label="Java" class="mobile-dropdown-title"><span class="title">Java</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/Java/java_1.html" class="nav-link">
+  jobHandler调度管理
+</a></li><li class="dropdown-item"><!----> <a href="/Java/java_2.html" class="nav-link">
+  jProtobuf尝鲜
+</a></li><li class="dropdown-item"><!----> <a href="/SpringBoot/springboot_1.html" class="nav-link">
+  使用Docker部署Spring Boot
+</a></li><li class="dropdown-item"><!----> <a href="/SpringCloud/springcloud_1.html" class="nav-link">
+  springcloud(一)：初识Spring Cloud
+</a></li><li class="dropdown-item"><!----> <a href="/SpringCloud/springcloud_2.html" class="nav-link">
+  springcloud(二)：注册中心Eureka
+</a></li><li class="dropdown-item"><!----> <a href="/Java/java_3.html" class="nav-link">
+  java8 toMap问题(key重复如何解决)
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="机器学习" class="dropdown-title"><span class="title">机器学习</span> <span class="arrow down"></span></button> <button type="button" aria-label="机器学习" class="mobile-dropdown-title"><span class="title">机器学习</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/Ai/ai_1.html" class="nav-link">
+  机器学习笔记
+</a></li><li class="dropdown-item"><!----> <a href="/Ai/ai_2.html" class="nav-link">
+  程序员数学笔记
+</a></li><li class="dropdown-item"><!----> <a href="/Ai/ai_3.html" class="nav-link">
+  计算图和求导的链式法则
+</a></li><li class="dropdown-item"><!----> <a href="/Ai/ai_4.html" class="nav-link">
+  卷积神经网络
+</a></li><li class="dropdown-item"><!----> <a href="/Ai/ai_5.html" class="nav-link">
+  PyTorch学习
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="大数据" class="dropdown-title"><span class="title">大数据</span> <span class="arrow down"></span></button> <button type="button" aria-label="大数据" class="mobile-dropdown-title"><span class="title">大数据</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/BigData/bigdata_1.html" class="nav-link">
+  使用Docker搭建Hadoop集群(伪分布式与完全分布式)
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="区块链" class="dropdown-title"><span class="title">区块链</span> <span class="arrow down"></span></button> <button type="button" aria-label="区块链" class="mobile-dropdown-title"><span class="title">区块链</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/BlockChain/block_1.html" class="nav-link">
+  1、Java实现简单区块链
+</a></li><li class="dropdown-item"><!----> <a href="/BlockChain/block_2.html" class="nav-link">
+  2、Java实现可交易钱包
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="Go" class="dropdown-title"><span class="title">Go</span> <span class="arrow down"></span></button> <button type="button" aria-label="Go" class="mobile-dropdown-title"><span class="title">Go</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/Go/go_1.html" class="nav-link">
+  go的基本命令详解
+</a></li><li class="dropdown-item"><!----> <a href="/Go/go_2.html" class="nav-link">
+  gin框架使用案例
+</a></li><li class="dropdown-item"><!----> <a href="/Go/go_3.html" class="nav-link">
+  gorm基本使用
+</a></li><li class="dropdown-item"><!----> <a href="/Go/go_4.html" class="nav-link">
+  Golang操作Redis
+</a></li><li class="dropdown-item"><!----> <a href="/Go/go_5.html" class="nav-link">
+  golang实现tcp通信
+</a></li><li class="dropdown-item"><!----> <a href="/Go/go_6.html" class="nav-link">
+  Golang使用Protobuf 
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="Vue3" class="dropdown-title"><span class="title">Vue3</span> <span class="arrow down"></span></button> <button type="button" aria-label="Vue3" class="mobile-dropdown-title"><span class="title">Vue3</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/Vue3/vue_1.html" class="nav-link">
+  Vue3 安装
+</a></li><li class="dropdown-item"><!----> <a href="/Vue3/vue_2.html" class="nav-link">
+  Vue3 项目打包
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="Linux" class="dropdown-title"><span class="title">Linux</span> <span class="arrow down"></span></button> <button type="button" aria-label="Linux" class="mobile-dropdown-title"><span class="title">Linux</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/Linux/linux_1.html" class="nav-link">
+  虚拟机3种网络模式
+</a></li><li class="dropdown-item"><!----> <a href="/Linux/linux_2.html" aria-current="page" class="nav-link router-link-exact-active router-link-active">
+  linux常用命令总结
+</a></li><li class="dropdown-item"><!----> <a href="/Linux/linux_3.html" class="nav-link">
+  centos7部署FastDFS
+</a></li><li class="dropdown-item"><!----> <a href="/Linux/linux_4.html" class="nav-link">
+  centos7中根据文件大小排序
+</a></li><li class="dropdown-item"><!----> <a href="/Linux/linux_5.html" class="nav-link">
+  makefile项目管理demo
+</a></li><li class="dropdown-item"><!----> <a href="/Linux/linux_6.html" class="nav-link">
+  nvm常用命令
+</a></li><li class="dropdown-item"><!----> <a href="/Linux/linux_7.html" class="nav-link">
+  anaconda常用命令
+</a></li><li class="dropdown-item"><!----> <a href="/Jenkins/jenkins_1.html" class="nav-link">
+  快速安装Jenkins完美教程
+</a></li><li class="dropdown-item"><!----> <a href="/Jenkins/jenkins_2.html" class="nav-link">
+  Docker jenkins配置NPM
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="Docker" class="dropdown-title"><span class="title">Docker</span> <span class="arrow down"></span></button> <button type="button" aria-label="Docker" class="mobile-dropdown-title"><span class="title">Docker</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/Docker/docker_1.html" class="nav-link">
+  Docker(一)：Docker入门教程
+</a></li><li class="dropdown-item"><!----> <a href="/Docker/docker_2.html" class="nav-link">
+  Docker(二)：Dockerfile使用介绍
+</a></li><li class="dropdown-item"><!----> <a href="/Docker/docker_3.html" class="nav-link">
+  Docker(三)：Dockerfile命令详解
+</a></li><li class="dropdown-item"><!----> <a href="/Docker/docker_4.html" class="nav-link">
+  Docker(四)：Docker三剑客之Docker Compose
+</a></li><li class="dropdown-item"><!----> <a href="/Docker/docker_5.html" class="nav-link">
+  Docker(五)：Docker三剑客之Docker Machine
+</a></li><li class="dropdown-item"><!----> <a href="/Docker/docker_6.html" class="nav-link">
+  Docker(六)：Docker三剑客之Docker Swarm
+</a></li><li class="dropdown-item"><!----> <a href="/Docker/docker_7.html" class="nav-link">
+  Docker安装MariaDB
+</a></li><li class="dropdown-item"><!----> <a href="/Docker/docker_9.html" class="nav-link">
+  Docker安装Mysql8
+</a></li><li class="dropdown-item"><!----> <a href="/Docker/docker_8.html" class="nav-link">
+  Docker安装Redis
+</a></li><li class="dropdown-item"><!----> <a href="/Docker/docker_10.html" class="nav-link">
+  Docker安装Nacos
+</a></li><li class="dropdown-item"><!----> <a href="/Docker/docker_11.html" class="nav-link">
+  Docker安装maven私有仓库
+</a></li><li class="dropdown-item"><!----> <a href="/Docker/docker_12.html" class="nav-link">
+  Docker安装mongodb
+</a></li><li class="dropdown-item"><!----> <a href="/Docker/docker_13.html" class="nav-link">
+  docker-compose.yml开发环境基础中间件配置
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="K8s" class="dropdown-title"><span class="title">K8s</span> <span class="arrow down"></span></button> <button type="button" aria-label="K8s" class="mobile-dropdown-title"><span class="title">K8s</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/K8s/k8s_1.html" class="nav-link">
+  VirtualBox + centos7部署k8s
+</a></li><li class="dropdown-item"><!----> <a href="/K8s/k8s_2.html" class="nav-link">
+  kubectl常用命令
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="Nginx" class="dropdown-title"><span class="title">Nginx</span> <span class="arrow down"></span></button> <button type="button" aria-label="Nginx" class="mobile-dropdown-title"><span class="title">Nginx</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/OpenResty/nginx.html" class="nav-link">
+  Nginx 配置详解
+</a></li><li class="dropdown-item"><!----> <a href="/OpenResty/nginx_2.html" class="nav-link">
+  Nginx 常用命令
+</a></li><li class="dropdown-item"><!----> <a href="/OpenResty/openresty_1.html" class="nav-link">
+  OpenResty 使用介绍
+</a></li><li class="dropdown-item"><!----> <a href="/OpenResty/openresty_2.html" class="nav-link">
+  OpenResty(Nginx+Lua)测试用例
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="单变量微积分" class="dropdown-title"><span class="title">单变量微积分</span> <span class="arrow down"></span></button> <button type="button" aria-label="单变量微积分" class="mobile-dropdown-title"><span class="title">单变量微积分</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/SingleCalculus/SingleCalculus_5.html" class="nav-link">
+  5. 指数函数和对数函数的导数
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="多变量微积分" class="dropdown-title"><span class="title">多变量微积分</span> <span class="arrow down"></span></button> <button type="button" aria-label="多变量微积分" class="mobile-dropdown-title"><span class="title">多变量微积分</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/MultivariableCalculus/MultivariableCalculus_1.html" class="nav-link">
+  1. 偏导数
+</a></li><li class="dropdown-item"><!----> <a href="/MultivariableCalculus/MultivariableCalculus_5.html" class="nav-link">
+  5. 梯度与方向导数
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="线性代数" class="dropdown-title"><span class="title">线性代数</span> <span class="arrow down"></span></button> <button type="button" aria-label="线性代数" class="mobile-dropdown-title"><span class="title">线性代数</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/linear/linear_1.html" class="nav-link">
+  1. 矩阵的基本运算
+</a></li><li class="dropdown-item"><!----> <a href="/linear/linear_2.html" class="nav-link">
+  2. 向量（简介）
+</a></li><li class="dropdown-item"><!----> <a href="/linear/linear_3.html" class="nav-link">
+  3. 向量2（点积）
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="概率论" class="dropdown-title"><span class="title">概率论</span> <span class="arrow down"></span></button> <button type="button" aria-label="概率论" class="mobile-dropdown-title"><span class="title">概率论</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/Probability/probability_1.html" class="nav-link">
+  1. 独立事件下的简单概率
+</a></li><li class="dropdown-item"><!----> <a href="/Probability/probability_2.html" class="nav-link">
+  2. 古典概型
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="其它" class="dropdown-title"><span class="title">其它</span> <span class="arrow down"></span></button> <button type="button" aria-label="其它" class="mobile-dropdown-title"><span class="title">其它</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/Other/2019.1.2.html" class="nav-link">
+  Vuepress搭建静态博客
+</a></li><li class="dropdown-item"><!----> <a href="/Other/markdown.html" class="nav-link">
+  Markdown基本语法
+</a></li></ul></div></div><div class="nav-item"><a href="/Readme/index.html" class="nav-link">
+  关于我
+</a></div> <!----></nav>  <!----> </aside> <main class="page"> <div class="theme-default-content content__default"><h1 id="linux常用命令总结"><a href="#linux常用命令总结" class="header-anchor">#</a> linux常用命令总结</h1> <h2 id="前言"><a href="#前言" class="header-anchor">#</a> 前言</h2> <p>工作中常用的服务器是centos7系统，所以以centos7命令为准。</p> <h2 id="_1、linux下从一台服务器复制文件或文件夹到本地"><a href="#_1、linux下从一台服务器复制文件或文件夹到本地" class="header-anchor">#</a> 1、linux下从一台服务器复制文件或文件夹到本地</h2> <h3 id="_1-1-从服务器复制文件到本地"><a href="#_1-1-从服务器复制文件到本地" class="header-anchor">#</a> 1.1 从服务器复制文件到本地：</h3> <div class="language- extra-class"><pre class="language-text"><code>scp root@×××.×××.×××.×××:/data/test.txt /home/myfile/
+</code></pre></div><p>root@×××.×××.×××.××× root是目标服务器（有你需要拷贝文件的服务器）的用户名，×××.×××.×××.×××是IP地址，如192.168.1.100，后面紧跟的：不要忘记，/data/test.txt是目标服务器中你要拷贝文件的地址，接一个空格，后面的/home/myfile/是本地接收文件的地址。</p> <h3 id="_1-2-从服务器复制文件夹到本地"><a href="#_1-2-从服务器复制文件夹到本地" class="header-anchor">#</a> 1.2 从服务器复制文件夹到本地：</h3> <div class="language- extra-class"><pre class="language-text"><code>scp -r root@×××.×××.×××.×××:/data/ /home/myfile/
+</code></pre></div><p>只需在前面加-r即可，就可以拷贝整个文件夹。</p> <h3 id="_1-3从本地复制文件到服务器"><a href="#_1-3从本地复制文件到服务器" class="header-anchor">#</a> 1.3从本地复制文件到服务器：</h3> <div class="language- extra-class"><pre class="language-text"><code>scp /home/myfile/test.txt root@192.168.1.100:/data/
+</code></pre></div><h3 id="_1-4从本地复制文件夹到服务器"><a href="#_1-4从本地复制文件夹到服务器" class="header-anchor">#</a> 1.4从本地复制文件夹到服务器：</h3> <div class="language- extra-class"><pre class="language-text"><code>scp -r /home/myfile/ root@192.168.1.100:/data/
+</code></pre></div><h2 id="_2、查看历史命令"><a href="#_2、查看历史命令" class="header-anchor">#</a> 2、查看历史命令</h2> <div class="language- extra-class"><pre class="language-text"><code>history
+</code></pre></div><h2 id="_3、查看某个端口被哪个进程占用及kill"><a href="#_3、查看某个端口被哪个进程占用及kill" class="header-anchor">#</a> 3、查看某个端口被哪个进程占用及kill</h2> <div class="language- extra-class"><pre class="language-text"><code># 安装net-tools工具
+yum install net-tools
+
+# 检查端口被哪个进程占用
+netstat -lnp | grep 8080
+</code></pre></div><p>操作如下：</p> <div class="language- extra-class"><pre class="language-text"><code>[root@VM-0-10-centos ~]# netstat -lnp | grep 8080
+tcp6       0      0 :::8080                 :::*                    LISTEN      4238/docker-proxy 
+
+# 找到进程号：4238
+
+# 查看进程的详细信息
+ps 4238
+
+# 杀掉进程
+kill -9 4238
+</code></pre></div><h2 id="_4、不挂断地运行命令nohup"><a href="#_4、不挂断地运行命令nohup" class="header-anchor">#</a> 4、不挂断地运行命令nohup</h2> <p>语法：<code>nohup Command [ Arg ... ] [　&amp; ]</code></p> <p>描述：nohup 命令运行由 Command 参数和任何相关的 Arg 参数指定的命令，忽略所有挂断（SIGHUP）信号。在注销后使用 nohup 命令运行后台中的程序。要运行后台中的 nohup 命令，添加 &amp; （ 表示“and”的符号）到命令的尾部。</p> <p>操作系统中有三个常用的流：</p> <ul><li>0：标准输入流 stdin</li> <li>1：标准输出流 stdout</li> <li>2：标准错误流 stderr</li></ul> <p>一般当我们用 &gt; console.txt，实际是 1&gt;console.txt的省略用法；&lt; console.txt ，实际是 0 &lt; console.txt的省略用法。</p> <p>举例：</p> <div class="language- extra-class"><pre class="language-text"><code>&gt;nohup ./start-dishi.sh &gt;output 2&gt;&amp;1 &amp;
+</code></pre></div><p>解释：</p> <ol><li>带&amp;的命令行，即使terminal（终端）关闭，或者电脑死机程序依然运行（前提是你把程序递交到服务器上)；</li> <li><code>2&gt;&amp;1</code>的意思：</li></ol> <p>这个意思是把标准错误（2）重定向到标准输出中（1），而标准输出又导入文件output里面，所以结果是标准错误和标准输出都导入文件output里面了。 至于为什么需要将标准错误重定向到标准输出的原因，那就归结为标准错误没有缓冲区，而stdout有。这就会导致 <code>&gt;output 2&gt;output</code> 文件output被两次打开，而stdout和stderr将会竞争覆盖，这肯定不是我门想要的.
+　　这就是为什么有人会写成： <code>nohup ./command.sh &gt;output 2&gt;output</code>出错的原因了</p> <p>最后谈一下<code>/dev/null</code>文件的作用，这是一个无底洞，任何东西都可以定向到这里，但是却无法打开。 所以一般很大的stdou和stderr当你不关心的时候可以利用stdout和stderr定向到这里<code>&gt;./command.sh &gt;/dev/null 2&gt;&amp;1</code></p> <h2 id="_5、打包tar命令的用法"><a href="#_5、打包tar命令的用法" class="header-anchor">#</a> 5、打包tar命令的用法</h2> <h3 id="常见解压-压缩命令"><a href="#常见解压-压缩命令" class="header-anchor">#</a> 常见解压/压缩命令</h3> <div class="language- extra-class"><pre class="language-text"><code>tar 
+解包：tar xvf FileName.tar
+打包：tar cvf FileName.tar DirName
+
+（注：tar是打包，不是压缩！）
+
+.gz
+解压1：gunzip FileName.gz
+解压2：gzip -d FileName.gz
+压缩：gzip FileName
+
+.tar.gz 和 .tgz
+解压：tar zxvf FileName.tar.gz
+压缩：tar zcvf FileName.tar.gz DirName
+.bz2
+解压1：bzip2 -d FileName.bz2
+解压2：bunzip2 FileName.bz2
+压缩： bzip2 -z FileName
+
+.tar.bz2
+解压：tar jxvf FileName.tar.bz2
+压缩：tar jcvf FileName.tar.bz2 DirName
+.bz
+解压1：bzip2 -d FileName.bz
+解压2：bunzip2 FileName.bz
+压缩：未知
+
+.tar.bz
+解压：tar jxvf FileName.tar.bz
+压缩：未知
+.Z
+解压：uncompress FileName.Z
+压缩：compress FileName
+
+.tar.Z
+解压：tar Zxvf FileName.tar.Z
+压缩：tar Zcvf FileName.tar.Z DirName
+
+.zip
+解压：unzip FileName.zip
+压缩：zip FileName.zip DirName
+.rar
+解压：rar x FileName.rar
+压缩：rar a FileName.rar DirName 
+</code></pre></div><h3 id="命令参数"><a href="#命令参数" class="header-anchor">#</a> 命令参数：</h3> <h4 id="必要参数有如下"><a href="#必要参数有如下" class="header-anchor">#</a> 必要参数有如下：</h4> <p>-A 新增压缩文件到已存在的压缩</p> <p>-B 设置区块大小</p> <p>-c 建立新的压缩文件</p> <p>-d 记录文件的差别</p> <p>-r 添加文件到已经压缩的文件</p> <p>-u 添加改变了和现有的文件到已经存在的压缩文件</p> <p>-x 从压缩的文件中提取文件</p> <p>-t 显示压缩文件的内容</p> <p>-z 支持gzip解压文件</p> <p>-j 支持bzip2解压文件</p> <p>-Z 支持compress解压文件</p> <p>-v 显示操作过程</p> <p>-l 文件系统边界设置</p> <p>-k 保留原有文件不覆盖</p> <p>-m 保留文件不被覆盖</p> <p>-W 确认压缩文件的正确性</p> <h4 id="可选参数如下"><a href="#可选参数如下" class="header-anchor">#</a> 可选参数如下：</h4> <p>-b 设置区块数目</p> <p>-C 切换到指定目录</p> <p>-f 指定压缩文件</p> <p>--help 显示帮助信息</p> <p>--version 显示版本信息</p> <h3 id="使用实例"><a href="#使用实例" class="header-anchor">#</a> 使用实例</h3> <h4 id="实例1-将文件全部打包成tar包"><a href="#实例1-将文件全部打包成tar包" class="header-anchor">#</a> 实例1：将文件全部打包成tar包</h4> <div class="language- extra-class"><pre class="language-text"><code>tar -cvf log.tar log2012.log    仅打包，不压缩！ 
+tar -zcvf log.tar.gz log2012.log   打包后，以 gzip 压缩 
+tar -zcvf log.tar.bz2 log2012.log  打包后，以 bzip2 压缩 
+</code></pre></div><p>在参数 f 之后的文件档名是自己取的，我们习惯上都用 .tar 来作为辨识。 如果加 z 参数，则以 .tar.gz 或 .tgz 来代表 gzip 压缩过的 tar包； 如果加 j 参数，则以 .tar.bz2 来作为tar包名。</p> <h4 id="实例2-查阅上述-tar包内有哪些文件"><a href="#实例2-查阅上述-tar包内有哪些文件" class="header-anchor">#</a> 实例2：查阅上述 tar包内有哪些文件</h4> <div class="language- extra-class"><pre class="language-text"><code>tar -ztvf log.tar.gz
+</code></pre></div><p>由于我们使用 gzip 压缩的log.tar.gz，所以要查阅log.tar.gz包内的文件时，就得要加上 z 这个参数了。</p> <h4 id="实例3-将tar-包解压缩"><a href="#实例3-将tar-包解压缩" class="header-anchor">#</a> 实例3：将tar 包解压缩</h4> <div class="language- extra-class"><pre class="language-text"><code>tar -zxvf /opt/soft/test/log.tar.gz
+</code></pre></div><p>在预设的情况下，我们可以将压缩档在任何地方解开的</p> <h4 id="实例4-只将-tar-内的-部分文件解压出来"><a href="#实例4-只将-tar-内的-部分文件解压出来" class="header-anchor">#</a> 实例4：只将 /tar 内的 部分文件解压出来</h4> <div class="language- extra-class"><pre class="language-text"><code>tar -zxvf /opt/soft/test/log3.tar.gz log1020.log
+</code></pre></div><p>我可以透过 tar -ztvf 来查阅 tar 包内的文件名称，如果单只要一个文件，就可以透过这个方式来解压部分文件！</p> <h3 id="实例5-文件备份下来-并且保存其权限"><a href="#实例5-文件备份下来-并且保存其权限" class="header-anchor">#</a> 实例5：文件备份下来，并且保存其权限</h3> <div class="language- extra-class"><pre class="language-text"><code>tar -zcvpf log31.tar.gz log2014.log log2015.log log2016.log
+</code></pre></div><p>这个 -p 的属性是很重要的，尤其是当您要保留原本文件的属性时</p> <h3 id="实例6-在-文件夹当中-比某个日期新的文件才备份"><a href="#实例6-在-文件夹当中-比某个日期新的文件才备份" class="header-anchor">#</a> 实例6：在 文件夹当中，比某个日期新的文件才备份</h3> <div class="language- extra-class"><pre class="language-text"><code>tar -N &quot;2012/11/13&quot; -zcvf log17.tar.gz test
+</code></pre></div><h3 id="实例7-备份文件夹内容是排除部分文件"><a href="#实例7-备份文件夹内容是排除部分文件" class="header-anchor">#</a> 实例7：备份文件夹内容是排除部分文件</h3> <div class="language- extra-class"><pre class="language-text"><code>tar --exclude scf/service -zcvf scf.tar.gz scf/*
+</code></pre></div><h3 id="实例8-将文件解压到指定目录下"><a href="#实例8-将文件解压到指定目录下" class="header-anchor">#</a> 实例8：将文件解压到指定目录下</h3> <div class="language- extra-class"><pre class="language-text"><code>命令：tar zxvf test.tgz -C 指定目录
+
+如：tar zxvf /usr/local/jdk-8u161-linux-x64.tar.gz -C /usr/local/jdk1.8  
+
+     将压缩文件jdk-8u161-linux-x64.tar.gz解压到/usr/local/jdk1.8目录下
+</code></pre></div></div> <footer class="page-edit"><!----> <div class="last-updated"><span class="prefix">Last Updated:</span> <span class="time">11/5/2022, 9:32:44 PM</span></div></footer> <!----> </main></div><div class="global-ui"></div></div>
+    <script src="/assets/js/app.466dd957.js" defer></script><script src="/assets/js/2.733019b2.js" defer></script><script src="/assets/js/42.c1d002b4.js" defer></script>
+  </body>
+</html>

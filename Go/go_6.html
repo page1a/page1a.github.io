@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Golang使用Protobuf | 程序员练功房</title>
+    <meta name="generator" content="VuePress 1.9.9">
+    <link rel="icon" href="/logo.ico">
+    <meta name="description" content="纵然出走时未曾想要流浪半生，归来时早已发现少年不再">
+    
+    <link rel="preload" href="/assets/css/0.styles.e8e4f3a3.css" as="style"><link rel="preload" href="/assets/js/app.466dd957.js" as="script"><link rel="preload" href="/assets/js/2.733019b2.js" as="script"><link rel="preload" href="/assets/js/33.173b2025.js" as="script"><link rel="prefetch" href="/assets/js/10.fc32896f.js"><link rel="prefetch" href="/assets/js/11.3a98615b.js"><link rel="prefetch" href="/assets/js/12.0fd6f044.js"><link rel="prefetch" href="/assets/js/13.736846a1.js"><link rel="prefetch" href="/assets/js/14.9c4dc8e5.js"><link rel="prefetch" href="/assets/js/15.120590aa.js"><link rel="prefetch" href="/assets/js/16.f46ba600.js"><link rel="prefetch" href="/assets/js/17.f96e2b9e.js"><link rel="prefetch" href="/assets/js/18.5dae5acc.js"><link rel="prefetch" href="/assets/js/19.957d727a.js"><link rel="prefetch" href="/assets/js/20.c957c720.js"><link rel="prefetch" href="/assets/js/21.db4d26e7.js"><link rel="prefetch" href="/assets/js/22.9d19bebe.js"><link rel="prefetch" href="/assets/js/23.b5390312.js"><link rel="prefetch" href="/assets/js/24.289c8fcd.js"><link rel="prefetch" href="/assets/js/25.f7baec4a.js"><link rel="prefetch" href="/assets/js/26.2704ae01.js"><link rel="prefetch" href="/assets/js/27.5189ccb9.js"><link rel="prefetch" href="/assets/js/28.ed5cb93d.js"><link rel="prefetch" href="/assets/js/29.96717473.js"><link rel="prefetch" href="/assets/js/3.0c69ac0f.js"><link rel="prefetch" href="/assets/js/30.7331b634.js"><link rel="prefetch" href="/assets/js/31.d26d187f.js"><link rel="prefetch" href="/assets/js/32.7f286b45.js"><link rel="prefetch" href="/assets/js/34.f31f4bb8.js"><link rel="prefetch" href="/assets/js/35.218fc470.js"><link rel="prefetch" href="/assets/js/36.ebcd9c43.js"><link rel="prefetch" href="/assets/js/37.09d876bc.js"><link rel="prefetch" href="/assets/js/38.3f7ba3d2.js"><link rel="prefetch" href="/assets/js/39.2ac20870.js"><link rel="prefetch" href="/assets/js/4.d12742be.js"><link rel="prefetch" href="/assets/js/40.c1d8f1bc.js"><link rel="prefetch" href="/assets/js/41.ebed8fef.js"><link rel="prefetch" href="/assets/js/42.c1d002b4.js"><link rel="prefetch" href="/assets/js/43.ef429b49.js"><link rel="prefetch" href="/assets/js/44.8adc98bb.js"><link rel="prefetch" href="/assets/js/45.cea62ac9.js"><link rel="prefetch" href="/assets/js/46.d4ffd3f4.js"><link rel="prefetch" href="/assets/js/47.07d237c5.js"><link rel="prefetch" href="/assets/js/48.0ae3a334.js"><link rel="prefetch" href="/assets/js/49.f0515684.js"><link rel="prefetch" href="/assets/js/5.216cae74.js"><link rel="prefetch" href="/assets/js/50.b6ada23c.js"><link rel="prefetch" href="/assets/js/51.6e351bfe.js"><link rel="prefetch" href="/assets/js/52.418a145d.js"><link rel="prefetch" href="/assets/js/53.298699f9.js"><link rel="prefetch" href="/assets/js/54.b3598a19.js"><link rel="prefetch" href="/assets/js/55.ce965562.js"><link rel="prefetch" href="/assets/js/56.bd957b43.js"><link rel="prefetch" href="/assets/js/57.d48da2b8.js"><link rel="prefetch" href="/assets/js/58.999b5a89.js"><link rel="prefetch" href="/assets/js/59.02363b1c.js"><link rel="prefetch" href="/assets/js/6.2d0a63f8.js"><link rel="prefetch" href="/assets/js/60.83e84781.js"><link rel="prefetch" href="/assets/js/61.4449c91d.js"><link rel="prefetch" href="/assets/js/62.56df5e89.js"><link rel="prefetch" href="/assets/js/63.f775d12d.js"><link rel="prefetch" href="/assets/js/64.8add4c27.js"><link rel="prefetch" href="/assets/js/65.346067ba.js"><link rel="prefetch" href="/assets/js/66.dee69efa.js"><link rel="prefetch" href="/assets/js/67.22ab30d5.js"><link rel="prefetch" href="/assets/js/68.0877349f.js"><link rel="prefetch" href="/assets/js/69.0ba59988.js"><link rel="prefetch" href="/assets/js/7.d02ea004.js"><link rel="prefetch" href="/assets/js/70.a02699db.js"><link rel="prefetch" href="/assets/js/8.55b047fc.js"><link rel="prefetch" href="/assets/js/9.22802293.js">
+    <link rel="stylesheet" href="/assets/css/0.styles.e8e4f3a3.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container no-sidebar"><header class="navbar"><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/" class="home-link router-link-active"><!----> <span class="site-name">程序员练功房</span></a> <div class="links"><div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <nav class="nav-links can-hide"><div class="nav-item"><a href="/" class="nav-link">
+  主页
+</a></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="Java" class="dropdown-title"><span class="title">Java</span> <span class="arrow down"></span></button> <button type="button" aria-label="Java" class="mobile-dropdown-title"><span class="title">Java</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/Java/java_1.html" class="nav-link">
+  jobHandler调度管理
+</a></li><li class="dropdown-item"><!----> <a href="/Java/java_2.html" class="nav-link">
+  jProtobuf尝鲜
+</a></li><li class="dropdown-item"><!----> <a href="/SpringBoot/springboot_1.html" class="nav-link">
+  使用Docker部署Spring Boot
+</a></li><li class="dropdown-item"><!----> <a href="/SpringCloud/springcloud_1.html" class="nav-link">
+  springcloud(一)：初识Spring Cloud
+</a></li><li class="dropdown-item"><!----> <a href="/SpringCloud/springcloud_2.html" class="nav-link">
+  springcloud(二)：注册中心Eureka
+</a></li><li class="dropdown-item"><!----> <a href="/Java/java_3.html" class="nav-link">
+  java8 toMap问题(key重复如何解决)
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="机器学习" class="dropdown-title"><span class="title">机器学习</span> <span class="arrow down"></span></button> <button type="button" aria-label="机器学习" class="mobile-dropdown-title"><span class="title">机器学习</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/Ai/ai_1.html" class="nav-link">
+  机器学习笔记
+</a></li><li class="dropdown-item"><!----> <a href="/Ai/ai_2.html" class="nav-link">
+  程序员数学笔记
+</a></li><li class="dropdown-item"><!----> <a href="/Ai/ai_3.html" class="nav-link">
+  计算图和求导的链式法则
+</a></li><li class="dropdown-item"><!----> <a href="/Ai/ai_4.html" class="nav-link">
+  卷积神经网络
+</a></li><li class="dropdown-item"><!----> <a href="/Ai/ai_5.html" class="nav-link">
+  PyTorch学习
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="大数据" class="dropdown-title"><span class="title">大数据</span> <span class="arrow down"></span></button> <button type="button" aria-label="大数据" class="mobile-dropdown-title"><span class="title">大数据</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/BigData/bigdata_1.html" class="nav-link">
+  使用Docker搭建Hadoop集群(伪分布式与完全分布式)
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="区块链" class="dropdown-title"><span class="title">区块链</span> <span class="arrow down"></span></button> <button type="button" aria-label="区块链" class="mobile-dropdown-title"><span class="title">区块链</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/BlockChain/block_1.html" class="nav-link">
+  1、Java实现简单区块链
+</a></li><li class="dropdown-item"><!----> <a href="/BlockChain/block_2.html" class="nav-link">
+  2、Java实现可交易钱包
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="Go" class="dropdown-title"><span class="title">Go</span> <span class="arrow down"></span></button> <button type="button" aria-label="Go" class="mobile-dropdown-title"><span class="title">Go</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/Go/go_1.html" class="nav-link">
+  go的基本命令详解
+</a></li><li class="dropdown-item"><!----> <a href="/Go/go_2.html" class="nav-link">
+  gin框架使用案例
+</a></li><li class="dropdown-item"><!----> <a href="/Go/go_3.html" class="nav-link">
+  gorm基本使用
+</a></li><li class="dropdown-item"><!----> <a href="/Go/go_4.html" class="nav-link">
+  Golang操作Redis
+</a></li><li class="dropdown-item"><!----> <a href="/Go/go_5.html" class="nav-link">
+  golang实现tcp通信
+</a></li><li class="dropdown-item"><!----> <a href="/Go/go_6.html" aria-current="page" class="nav-link router-link-exact-active router-link-active">
+  Golang使用Protobuf 
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="Vue3" class="dropdown-title"><span class="title">Vue3</span> <span class="arrow down"></span></button> <button type="button" aria-label="Vue3" class="mobile-dropdown-title"><span class="title">Vue3</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/Vue3/vue_1.html" class="nav-link">
+  Vue3 安装
+</a></li><li class="dropdown-item"><!----> <a href="/Vue3/vue_2.html" class="nav-link">
+  Vue3 项目打包
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="Linux" class="dropdown-title"><span class="title">Linux</span> <span class="arrow down"></span></button> <button type="button" aria-label="Linux" class="mobile-dropdown-title"><span class="title">Linux</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/Linux/linux_1.html" class="nav-link">
+  虚拟机3种网络模式
+</a></li><li class="dropdown-item"><!----> <a href="/Linux/linux_2.html" class="nav-link">
+  linux常用命令总结
+</a></li><li class="dropdown-item"><!----> <a href="/Linux/linux_3.html" class="nav-link">
+  centos7部署FastDFS
+</a></li><li class="dropdown-item"><!----> <a href="/Linux/linux_4.html" class="nav-link">
+  centos7中根据文件大小排序
+</a></li><li class="dropdown-item"><!----> <a href="/Linux/linux_5.html" class="nav-link">
+  makefile项目管理demo
+</a></li><li class="dropdown-item"><!----> <a href="/Linux/linux_6.html" class="nav-link">
+  nvm常用命令
+</a></li><li class="dropdown-item"><!----> <a href="/Linux/linux_7.html" class="nav-link">
+  anaconda常用命令
+</a></li><li class="dropdown-item"><!----> <a href="/Jenkins/jenkins_1.html" class="nav-link">
+  快速安装Jenkins完美教程
+</a></li><li class="dropdown-item"><!----> <a href="/Jenkins/jenkins_2.html" class="nav-link">
+  Docker jenkins配置NPM
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="Docker" class="dropdown-title"><span class="title">Docker</span> <span class="arrow down"></span></button> <button type="button" aria-label="Docker" class="mobile-dropdown-title"><span class="title">Docker</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/Docker/docker_1.html" class="nav-link">
+  Docker(一)：Docker入门教程
+</a></li><li class="dropdown-item"><!----> <a href="/Docker/docker_2.html" class="nav-link">
+  Docker(二)：Dockerfile使用介绍
+</a></li><li class="dropdown-item"><!----> <a href="/Docker/docker_3.html" class="nav-link">
+  Docker(三)：Dockerfile命令详解
+</a></li><li class="dropdown-item"><!----> <a href="/Docker/docker_4.html" class="nav-link">
+  Docker(四)：Docker三剑客之Docker Compose
+</a></li><li class="dropdown-item"><!----> <a href="/Docker/docker_5.html" class="nav-link">
+  Docker(五)：Docker三剑客之Docker Machine
+</a></li><li class="dropdown-item"><!----> <a href="/Docker/docker_6.html" class="nav-link">
+  Docker(六)：Docker三剑客之Docker Swarm
+</a></li><li class="dropdown-item"><!----> <a href="/Docker/docker_7.html" class="nav-link">
+  Docker安装MariaDB
+</a></li><li class="dropdown-item"><!----> <a href="/Docker/docker_9.html" class="nav-link">
+  Docker安装Mysql8
+</a></li><li class="dropdown-item"><!----> <a href="/Docker/docker_8.html" class="nav-link">
+  Docker安装Redis
+</a></li><li class="dropdown-item"><!----> <a href="/Docker/docker_10.html" class="nav-link">
+  Docker安装Nacos
+</a></li><li class="dropdown-item"><!----> <a href="/Docker/docker_11.html" class="nav-link">
+  Docker安装maven私有仓库
+</a></li><li class="dropdown-item"><!----> <a href="/Docker/docker_12.html" class="nav-link">
+  Docker安装mongodb
+</a></li><li class="dropdown-item"><!----> <a href="/Docker/docker_13.html" class="nav-link">
+  docker-compose.yml开发环境基础中间件配置
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="K8s" class="dropdown-title"><span class="title">K8s</span> <span class="arrow down"></span></button> <button type="button" aria-label="K8s" class="mobile-dropdown-title"><span class="title">K8s</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/K8s/k8s_1.html" class="nav-link">
+  VirtualBox + centos7部署k8s
+</a></li><li class="dropdown-item"><!----> <a href="/K8s/k8s_2.html" class="nav-link">
+  kubectl常用命令
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="Nginx" class="dropdown-title"><span class="title">Nginx</span> <span class="arrow down"></span></button> <button type="button" aria-label="Nginx" class="mobile-dropdown-title"><span class="title">Nginx</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/OpenResty/nginx.html" class="nav-link">
+  Nginx 配置详解
+</a></li><li class="dropdown-item"><!----> <a href="/OpenResty/nginx_2.html" class="nav-link">
+  Nginx 常用命令
+</a></li><li class="dropdown-item"><!----> <a href="/OpenResty/openresty_1.html" class="nav-link">
+  OpenResty 使用介绍
+</a></li><li class="dropdown-item"><!----> <a href="/OpenResty/openresty_2.html" class="nav-link">
+  OpenResty(Nginx+Lua)测试用例
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="单变量微积分" class="dropdown-title"><span class="title">单变量微积分</span> <span class="arrow down"></span></button> <button type="button" aria-label="单变量微积分" class="mobile-dropdown-title"><span class="title">单变量微积分</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/SingleCalculus/SingleCalculus_5.html" class="nav-link">
+  5. 指数函数和对数函数的导数
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="多变量微积分" class="dropdown-title"><span class="title">多变量微积分</span> <span class="arrow down"></span></button> <button type="button" aria-label="多变量微积分" class="mobile-dropdown-title"><span class="title">多变量微积分</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/MultivariableCalculus/MultivariableCalculus_1.html" class="nav-link">
+  1. 偏导数
+</a></li><li class="dropdown-item"><!----> <a href="/MultivariableCalculus/MultivariableCalculus_5.html" class="nav-link">
+  5. 梯度与方向导数
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="线性代数" class="dropdown-title"><span class="title">线性代数</span> <span class="arrow down"></span></button> <button type="button" aria-label="线性代数" class="mobile-dropdown-title"><span class="title">线性代数</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/linear/linear_1.html" class="nav-link">
+  1. 矩阵的基本运算
+</a></li><li class="dropdown-item"><!----> <a href="/linear/linear_2.html" class="nav-link">
+  2. 向量（简介）
+</a></li><li class="dropdown-item"><!----> <a href="/linear/linear_3.html" class="nav-link">
+  3. 向量2（点积）
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="概率论" class="dropdown-title"><span class="title">概率论</span> <span class="arrow down"></span></button> <button type="button" aria-label="概率论" class="mobile-dropdown-title"><span class="title">概率论</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/Probability/probability_1.html" class="nav-link">
+  1. 独立事件下的简单概率
+</a></li><li class="dropdown-item"><!----> <a href="/Probability/probability_2.html" class="nav-link">
+  2. 古典概型
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="其它" class="dropdown-title"><span class="title">其它</span> <span class="arrow down"></span></button> <button type="button" aria-label="其它" class="mobile-dropdown-title"><span class="title">其它</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/Other/2019.1.2.html" class="nav-link">
+  Vuepress搭建静态博客
+</a></li><li class="dropdown-item"><!----> <a href="/Other/markdown.html" class="nav-link">
+  Markdown基本语法
+</a></li></ul></div></div><div class="nav-item"><a href="/Readme/index.html" class="nav-link">
+  关于我
+</a></div> <!----></nav></div></header> <div class="sidebar-mask"></div> <aside class="sidebar"><nav class="nav-links"><div class="nav-item"><a href="/" class="nav-link">
+  主页
+</a></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="Java" class="dropdown-title"><span class="title">Java</span> <span class="arrow down"></span></button> <button type="button" aria-label="Java" class="mobile-dropdown-title"><span class="title">Java</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/Java/java_1.html" class="nav-link">
+  jobHandler调度管理
+</a></li><li class="dropdown-item"><!----> <a href="/Java/java_2.html" class="nav-link">
+  jProtobuf尝鲜
+</a></li><li class="dropdown-item"><!----> <a href="/SpringBoot/springboot_1.html" class="nav-link">
+  使用Docker部署Spring Boot
+</a></li><li class="dropdown-item"><!----> <a href="/SpringCloud/springcloud_1.html" class="nav-link">
+  springcloud(一)：初识Spring Cloud
+</a></li><li class="dropdown-item"><!----> <a href="/SpringCloud/springcloud_2.html" class="nav-link">
+  springcloud(二)：注册中心Eureka
+</a></li><li class="dropdown-item"><!----> <a href="/Java/java_3.html" class="nav-link">
+  java8 toMap问题(key重复如何解决)
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="机器学习" class="dropdown-title"><span class="title">机器学习</span> <span class="arrow down"></span></button> <button type="button" aria-label="机器学习" class="mobile-dropdown-title"><span class="title">机器学习</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/Ai/ai_1.html" class="nav-link">
+  机器学习笔记
+</a></li><li class="dropdown-item"><!----> <a href="/Ai/ai_2.html" class="nav-link">
+  程序员数学笔记
+</a></li><li class="dropdown-item"><!----> <a href="/Ai/ai_3.html" class="nav-link">
+  计算图和求导的链式法则
+</a></li><li class="dropdown-item"><!----> <a href="/Ai/ai_4.html" class="nav-link">
+  卷积神经网络
+</a></li><li class="dropdown-item"><!----> <a href="/Ai/ai_5.html" class="nav-link">
+  PyTorch学习
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="大数据" class="dropdown-title"><span class="title">大数据</span> <span class="arrow down"></span></button> <button type="button" aria-label="大数据" class="mobile-dropdown-title"><span class="title">大数据</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/BigData/bigdata_1.html" class="nav-link">
+  使用Docker搭建Hadoop集群(伪分布式与完全分布式)
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="区块链" class="dropdown-title"><span class="title">区块链</span> <span class="arrow down"></span></button> <button type="button" aria-label="区块链" class="mobile-dropdown-title"><span class="title">区块链</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/BlockChain/block_1.html" class="nav-link">
+  1、Java实现简单区块链
+</a></li><li class="dropdown-item"><!----> <a href="/BlockChain/block_2.html" class="nav-link">
+  2、Java实现可交易钱包
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="Go" class="dropdown-title"><span class="title">Go</span> <span class="arrow down"></span></button> <button type="button" aria-label="Go" class="mobile-dropdown-title"><span class="title">Go</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/Go/go_1.html" class="nav-link">
+  go的基本命令详解
+</a></li><li class="dropdown-item"><!----> <a href="/Go/go_2.html" class="nav-link">
+  gin框架使用案例
+</a></li><li class="dropdown-item"><!----> <a href="/Go/go_3.html" class="nav-link">
+  gorm基本使用
+</a></li><li class="dropdown-item"><!----> <a href="/Go/go_4.html" class="nav-link">
+  Golang操作Redis
+</a></li><li class="dropdown-item"><!----> <a href="/Go/go_5.html" class="nav-link">
+  golang实现tcp通信
+</a></li><li class="dropdown-item"><!----> <a href="/Go/go_6.html" aria-current="page" class="nav-link router-link-exact-active router-link-active">
+  Golang使用Protobuf 
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="Vue3" class="dropdown-title"><span class="title">Vue3</span> <span class="arrow down"></span></button> <button type="button" aria-label="Vue3" class="mobile-dropdown-title"><span class="title">Vue3</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/Vue3/vue_1.html" class="nav-link">
+  Vue3 安装
+</a></li><li class="dropdown-item"><!----> <a href="/Vue3/vue_2.html" class="nav-link">
+  Vue3 项目打包
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="Linux" class="dropdown-title"><span class="title">Linux</span> <span class="arrow down"></span></button> <button type="button" aria-label="Linux" class="mobile-dropdown-title"><span class="title">Linux</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/Linux/linux_1.html" class="nav-link">
+  虚拟机3种网络模式
+</a></li><li class="dropdown-item"><!----> <a href="/Linux/linux_2.html" class="nav-link">
+  linux常用命令总结
+</a></li><li class="dropdown-item"><!----> <a href="/Linux/linux_3.html" class="nav-link">
+  centos7部署FastDFS
+</a></li><li class="dropdown-item"><!----> <a href="/Linux/linux_4.html" class="nav-link">
+  centos7中根据文件大小排序
+</a></li><li class="dropdown-item"><!----> <a href="/Linux/linux_5.html" class="nav-link">
+  makefile项目管理demo
+</a></li><li class="dropdown-item"><!----> <a href="/Linux/linux_6.html" class="nav-link">
+  nvm常用命令
+</a></li><li class="dropdown-item"><!----> <a href="/Linux/linux_7.html" class="nav-link">
+  anaconda常用命令
+</a></li><li class="dropdown-item"><!----> <a href="/Jenkins/jenkins_1.html" class="nav-link">
+  快速安装Jenkins完美教程
+</a></li><li class="dropdown-item"><!----> <a href="/Jenkins/jenkins_2.html" class="nav-link">
+  Docker jenkins配置NPM
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="Docker" class="dropdown-title"><span class="title">Docker</span> <span class="arrow down"></span></button> <button type="button" aria-label="Docker" class="mobile-dropdown-title"><span class="title">Docker</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/Docker/docker_1.html" class="nav-link">
+  Docker(一)：Docker入门教程
+</a></li><li class="dropdown-item"><!----> <a href="/Docker/docker_2.html" class="nav-link">
+  Docker(二)：Dockerfile使用介绍
+</a></li><li class="dropdown-item"><!----> <a href="/Docker/docker_3.html" class="nav-link">
+  Docker(三)：Dockerfile命令详解
+</a></li><li class="dropdown-item"><!----> <a href="/Docker/docker_4.html" class="nav-link">
+  Docker(四)：Docker三剑客之Docker Compose
+</a></li><li class="dropdown-item"><!----> <a href="/Docker/docker_5.html" class="nav-link">
+  Docker(五)：Docker三剑客之Docker Machine
+</a></li><li class="dropdown-item"><!----> <a href="/Docker/docker_6.html" class="nav-link">
+  Docker(六)：Docker三剑客之Docker Swarm
+</a></li><li class="dropdown-item"><!----> <a href="/Docker/docker_7.html" class="nav-link">
+  Docker安装MariaDB
+</a></li><li class="dropdown-item"><!----> <a href="/Docker/docker_9.html" class="nav-link">
+  Docker安装Mysql8
+</a></li><li class="dropdown-item"><!----> <a href="/Docker/docker_8.html" class="nav-link">
+  Docker安装Redis
+</a></li><li class="dropdown-item"><!----> <a href="/Docker/docker_10.html" class="nav-link">
+  Docker安装Nacos
+</a></li><li class="dropdown-item"><!----> <a href="/Docker/docker_11.html" class="nav-link">
+  Docker安装maven私有仓库
+</a></li><li class="dropdown-item"><!----> <a href="/Docker/docker_12.html" class="nav-link">
+  Docker安装mongodb
+</a></li><li class="dropdown-item"><!----> <a href="/Docker/docker_13.html" class="nav-link">
+  docker-compose.yml开发环境基础中间件配置
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="K8s" class="dropdown-title"><span class="title">K8s</span> <span class="arrow down"></span></button> <button type="button" aria-label="K8s" class="mobile-dropdown-title"><span class="title">K8s</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/K8s/k8s_1.html" class="nav-link">
+  VirtualBox + centos7部署k8s
+</a></li><li class="dropdown-item"><!----> <a href="/K8s/k8s_2.html" class="nav-link">
+  kubectl常用命令
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="Nginx" class="dropdown-title"><span class="title">Nginx</span> <span class="arrow down"></span></button> <button type="button" aria-label="Nginx" class="mobile-dropdown-title"><span class="title">Nginx</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/OpenResty/nginx.html" class="nav-link">
+  Nginx 配置详解
+</a></li><li class="dropdown-item"><!----> <a href="/OpenResty/nginx_2.html" class="nav-link">
+  Nginx 常用命令
+</a></li><li class="dropdown-item"><!----> <a href="/OpenResty/openresty_1.html" class="nav-link">
+  OpenResty 使用介绍
+</a></li><li class="dropdown-item"><!----> <a href="/OpenResty/openresty_2.html" class="nav-link">
+  OpenResty(Nginx+Lua)测试用例
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="单变量微积分" class="dropdown-title"><span class="title">单变量微积分</span> <span class="arrow down"></span></button> <button type="button" aria-label="单变量微积分" class="mobile-dropdown-title"><span class="title">单变量微积分</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/SingleCalculus/SingleCalculus_5.html" class="nav-link">
+  5. 指数函数和对数函数的导数
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="多变量微积分" class="dropdown-title"><span class="title">多变量微积分</span> <span class="arrow down"></span></button> <button type="button" aria-label="多变量微积分" class="mobile-dropdown-title"><span class="title">多变量微积分</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/MultivariableCalculus/MultivariableCalculus_1.html" class="nav-link">
+  1. 偏导数
+</a></li><li class="dropdown-item"><!----> <a href="/MultivariableCalculus/MultivariableCalculus_5.html" class="nav-link">
+  5. 梯度与方向导数
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="线性代数" class="dropdown-title"><span class="title">线性代数</span> <span class="arrow down"></span></button> <button type="button" aria-label="线性代数" class="mobile-dropdown-title"><span class="title">线性代数</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/linear/linear_1.html" class="nav-link">
+  1. 矩阵的基本运算
+</a></li><li class="dropdown-item"><!----> <a href="/linear/linear_2.html" class="nav-link">
+  2. 向量（简介）
+</a></li><li class="dropdown-item"><!----> <a href="/linear/linear_3.html" class="nav-link">
+  3. 向量2（点积）
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="概率论" class="dropdown-title"><span class="title">概率论</span> <span class="arrow down"></span></button> <button type="button" aria-label="概率论" class="mobile-dropdown-title"><span class="title">概率论</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/Probability/probability_1.html" class="nav-link">
+  1. 独立事件下的简单概率
+</a></li><li class="dropdown-item"><!----> <a href="/Probability/probability_2.html" class="nav-link">
+  2. 古典概型
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="其它" class="dropdown-title"><span class="title">其它</span> <span class="arrow down"></span></button> <button type="button" aria-label="其它" class="mobile-dropdown-title"><span class="title">其它</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/Other/2019.1.2.html" class="nav-link">
+  Vuepress搭建静态博客
+</a></li><li class="dropdown-item"><!----> <a href="/Other/markdown.html" class="nav-link">
+  Markdown基本语法
+</a></li></ul></div></div><div class="nav-item"><a href="/Readme/index.html" class="nav-link">
+  关于我
+</a></div> <!----></nav>  <!----> </aside> <main class="page"> <div class="theme-default-content content__default"><h1 id="golang使用protobuf"><a href="#golang使用protobuf" class="header-anchor">#</a> Golang使用Protobuf</h1> <h2 id="_1、-概述"><a href="#_1、-概述" class="header-anchor">#</a> 1、 概述</h2> <p>Protocol buffers 是语言中立、平台中立、可扩展的结构化数据序列化机制，就像 XML，但是它更小、更快、更简单。你只需定义一次数据的结构化方式，然后就可以使用特殊生成的源代码轻松地将结构化数据写入和读取各种数据流，支持各种语言。因为profobuf是二进制数据格式，需要编码和解码。数据本身不具有可读性。因此只能反序列化之后得到真正可读的数据。</p> <h2 id="_2、如何使用protobuf呢"><a href="#_2、如何使用protobuf呢" class="header-anchor">#</a> 2、如何使用protobuf呢？</h2> <ul><li><p>定义了一种源文件，扩展名为 .proto，使用这种源文件，可以定义存储类的内容(消息类型)</p></li> <li><p>protobuf有自己的编译器 protoc，可以将 .proto 编译成对应语言的文件，就可以进行使用了，对于Go，编译器为文件中每种消息类型生成一个.pb.go文件。</p></li></ul> <h2 id="_3、protobuf-hello-world-示例"><a href="#_3、protobuf-hello-world-示例" class="header-anchor">#</a> 3、protobuf &quot;hello world&quot; 示例</h2> <p>假设，我们现在需要传输用户信息，其中有username和age两个字段，创建文件user.proto，文件内容如下：</p> <div class="language- extra-class"><pre class="language-text"><code>// 指定的当前proto语法的版本，有2和3
+syntax = &quot;proto3&quot;;
+// option go_package = &quot;path;name&quot;; path 表示生成的go文件的存放地址，会自动生成目录
+// name 表示生成的go文件所属的包名
+option go_package=&quot;../service&quot;;
+// 指定生成出来的文件的package
+package service;
+ 
+message User {
+  string username = 1;
+  int32 age = 2;
+}
+</code></pre></div><p>运行protoc命令编译成go中间文件</p> <div class="language- extra-class"><pre class="language-text"><code># 编译user.proto之后输出到service文件夹
+protoc --go_out=../service user.proto
+</code></pre></div><p>项目结构：
+</p><p><img src="/go/go_6/go_6-1.png" alt=""><br></p><p></p> <p>测试：</p> <div class="language- extra-class"><pre class="language-text"><code>package main
+ 
+import (
+    &quot;Grpc-Protobuf/service&quot;
+    &quot;fmt&quot;
+    &quot;google.golang.org/protobuf/proto&quot;
+)
+ 
+func main() {
+    user := &amp;service.User{
+        Username: &quot;zhangsan&quot;,
+        Age:      20,
+    }
+    //转换为protobuf
+    marshal, err := proto.Marshal(user)
+    if err != nil {
+        panic(err)
+    }
+    newUser := &amp;service.User{}
+    err = proto.Unmarshal(marshal, newUser)
+    if err != nil {
+        panic(err)
+    }
+    fmt.Println(newUser.String())
+}
+</code></pre></div><p>输出：</p> <div class="language- extra-class"><pre class="language-text"><code>username:&quot;zhangsan&quot; age:20
+</code></pre></div><h2 id="_4、proto文件语法详解"><a href="#_4、proto文件语法详解" class="header-anchor">#</a> 4、proto文件语法详解</h2> <h3 id="_4-1-版本"><a href="#_4-1-版本" class="header-anchor">#</a> 4.1 版本</h3> <p>Protocol Buffers文档的第一个非注释行，为版本声明，不填写的话默认为版本2。</p> <div class="language- extra-class"><pre class="language-text"><code>syntax = &quot;proto3&quot;;
+或者
+syntax = &quot;proto2&quot;;
+</code></pre></div><p>官方建议新项目采用proto3，proto3简化了proto2的开发，提高了开发的效能，但是也带来了版本不兼容的问题。老项目因为兼容性的问题继续使用proto2,并且会长时间的支持proto2。</p> <h3 id="_4-2-包-package"><a href="#_4-2-包-package" class="header-anchor">#</a> 4.2 包（package）</h3> <p>可以向.proto文件中添加可选的package，以防止协议消息类型之间的名称冲突，同名的Message可以通过package进行区分。</p> <p>在没有为特定语言定义option xxx_package的时候，它还可以用来生成特定语言的包名，比如go package、Java package。</p> <div class="language- extra-class"><pre class="language-text"><code>package foo.bar;
+message Open { ... }
+</code></pre></div><p>包说明符对生成代码的影响取决于您选择的语言，在Go中，包用作Go包名称， 除非在.proto文件中显式提供option go_package，由.proto编译生成go文件时，option go_package = &quot;path;name&quot;配置中name设置的包名会覆盖packag设置的包名。</p> <h3 id="_4-3-选项-option"><a href="#_4-3-选项-option" class="header-anchor">#</a> 4.3 选项（option）</h3> <p>go_package（文件选项）：用于生成的Go包。如果在.proto文件中没有给出显式的go_package选项，那么默认情况下将使用proto包（使用.proto文件中的“package”关键字指定）。如果不生成Go代码，则此选项无效。格式如下：</p> <div class="language- extra-class"><pre class="language-text"><code>option go_package = &quot;path;name&quot;; path
+</code></pre></div><p>path表示生成的go文件的存放地址，会自动生成目录，name 表示生成的go文件所属的包名。如果.proto文件设置了package建议忽略name的配置，如果name也需要配置的话建议设置值和package值一致。</p> <h3 id="_4-4-消息类型-message"><a href="#_4-4-消息类型-message" class="header-anchor">#</a> 4.4 消息类型（message）</h3> <p>protobuf中定义一个消息类型是通过关键字message字段指定的，消息就是需要传输的数据格式的定义。message可以包含多种类型字段（field），每个字段声明以分号结尾。message经过protoc编译后会生成对应的class类，field则会生成对应的方法。</p> <p>message关键字类似于C++中的class，Java中的class，go中的struct</p> <p>例如：</p> <div class="language- extra-class"><pre class="language-text"><code>message User {
+  string username = 1;
+  int32 age = 2;
+}
+</code></pre></div><p>在消息中承载的数据分别对应于每一个字段。</p> <p>其中每个字段都有一个名字和一种类型 。</p> <h4 id="_4-4-1-字段规则"><a href="#_4-4-1-字段规则" class="header-anchor">#</a> 4.4.1 字段规则</h4> <ul><li><p>required:消息体中必填字段，不设置会导致编解码异常，此关键字可以忽略，例如message user中的username和age字段都是忽略required的必填字段。</p></li> <li><p>optional: 消息体中可选字段。</p></li> <li><p>repeated: 消息体中可重复字段，重复的值的顺序会被保留，在go中重复字段会被定义为切片。</p></li></ul> <div class="language- extra-class"><pre class="language-text"><code>message User {
+  string username = 1;
+  int32 age = 2;
+  optional string password = 3;  // 生成的是指针
+  repeated string address = 4;   // 生产的是切片
+}
+</code></pre></div><h4 id="_4-4-2-字段映射"><a href="#_4-4-2-字段映射" class="header-anchor">#</a> 4.4.2 字段映射</h4> <table><thead><tr><th>.proto Type</th> <th>Notes</th> <th>C++ Type</th> <th>Python Type</th> <th>Go Type</th></tr></thead> <tbody><tr><td>double</td> <td></td> <td>double</td> <td>float</td> <td>float64</td></tr> <tr><td>float</td> <td></td> <td>float</td> <td>float</td> <td>float32</td></tr> <tr><td>int32</td> <td>使用变长编码，对于负值的效率很低，如果你的域有 可能有负值，请使用sint64替代</td> <td>int32</td> <td>int</td> <td>int32</td></tr> <tr><td>uint32</td> <td>使用变长编码</td> <td>uint32</td> <td>int/long</td> <td>uint32</td></tr> <tr><td>uint64</td> <td>使用变长编码</td> <td>uint64</td> <td>int/long</td> <td>uint64</td></tr> <tr><td>sint32</td> <td>使用变长编码，这些编码在负值时比int32高效的多</td> <td>int32</td> <td>int</td> <td>int32</td></tr> <tr><td>sint64</td> <td>使用变长编码，有符号的整型值。编码时比通常的 int64高效。</td> <td>int64</td> <td>int/long</td> <td>int64</td></tr> <tr><td>fixed32</td> <td>总是4个字节，如果数值总是比总是比228大的话，这 个类型会比uint32高效。</td> <td>uint32</td> <td>int</td> <td>uint32</td></tr> <tr><td>fixed64</td> <td>总是8个字节，如果数值总是比总是比256大的话，这 个类型会比uint64高效。</td> <td>uint64</td> <td>int/long</td> <td>uint64</td></tr> <tr><td>sfixed32</td> <td>总是4个字节</td> <td>int32</td> <td>int	int32</td> <td></td></tr> <tr><td>sfixed32</td> <td>总是4个字节</td> <td>int32</td> <td>int</td> <td>int32</td></tr> <tr><td>sfixed64</td> <td>总是8个字节</td> <td>int64</td> <td>int/long</td> <td>int64</td></tr> <tr><td>bool</td> <td>bool</td> <td>bool</td> <td>bool</td> <td></td></tr> <tr><td>string</td> <td>一个字符串必须是UTF-8编码或者7-bit ASCII编码的文 本。</td> <td>string</td> <td>str/unicode</td> <td>string</td></tr> <tr><td>bytes</td> <td>可能包含任意顺序的字节数据。</td> <td>string</td> <td>str</td> <td>[]byte</td></tr></tbody></table> <h4 id="_4-4-3-字段默认值"><a href="#_4-4-3-字段默认值" class="header-anchor">#</a> 4.4.3 字段默认值</h4> <p>protobuf3 删除了 protobuf2 中用来设置默认值的 default 关键字，取而代之的是protobuf3为各类型定义的默认值，也就是约定的默认值，如下表所示：</p> <table><thead><tr><th>类型</th> <th>默认值</th></tr></thead> <tbody><tr><td>bool</td> <td>false</td></tr> <tr><td>整型</td> <td>0</td></tr> <tr><td>string</td> <td>空字符串&quot;&quot;</td></tr> <tr><td>枚举enum</td> <td>第一个枚举元素的值，因为Protobuf3强制要求第一个枚举元素的值必须是0，所以枚举的默认值就是0；</td></tr> <tr><td>message</td> <td>不是null，而是DEFAULT_INSTANCE</td></tr></tbody></table> <h4 id="_4-4-5-标识符"><a href="#_4-4-5-标识符" class="header-anchor">#</a> 4.4.5 标识符</h4> <p>在消息体的定义中，每个字段都必须要有一个唯一的标识号，标识号是[0,2^29-1]范围内的一个整数。</p> <div class="language- extra-class"><pre class="language-text"><code>message Person {
+ 
+  string name = 1;  // (位置1)
+  int32 id = 2; 
+  optional string email = 3; 
+  repeated string phones = 4; // (位置4)
+}
+</code></pre></div><p>以Person为例，name=1，id=2, email=3, phones=4 中的1-4就是标识号。</p> <p>[1-15]内的标识号在编码时只占用一个字节，包含标识符和字段类型，[16-2047]之间的标识符占用2个字节。建议为频繁出现的字段使用[1-15]间的标识符。</p> <h4 id="_4-4-6-定义多个消息类型"><a href="#_4-4-6-定义多个消息类型" class="header-anchor">#</a> 4.4.6 定义多个消息类型</h4> <p>一个proto文件中可以定义多个消息类型</p> <div class="language- extra-class"><pre class="language-text"><code>message UserRequest {
+  string username = 1;
+  int32 age = 2;
+  optional string password = 3;
+  repeated string address = 4;
+}
+ 
+message UserResponse {
+  string username = 1;
+  int32 age = 2;
+  optional string password = 3;
+  repeated string address = 4;
+}
+</code></pre></div><h4 id="_4-4-7-嵌套消息"><a href="#_4-4-7-嵌套消息" class="header-anchor">#</a> 4.4.7 嵌套消息</h4> <p>可以在其他消息类型中定义、使用消息类型，在下面的例子中，Person消息就定义在PersonInfo消息内，如 ：</p> <div class="language- extra-class"><pre class="language-text"><code>message PersonInfo {
+    message Person {
+        string name = 1;
+        int32 height = 2;
+        repeated int32 weight = 3;
+    }
+    repeated Person info = 1;
+}
+</code></pre></div><p>如果你想在它的父消息类型的外部重用这个消息类型，你需要以PersonInfo.Person的形式使用它，如：</p> <div class="language- extra-class"><pre class="language-text"><code>message PersonMessage {
+    PersonInfo.Person info = 1;
+}
+</code></pre></div><p>当然，你也可以将消息嵌套任意多层，如 :</p> <div class="language- extra-class"><pre class="language-text"><code>message Grandpa { // Level 0
+    message Father { // Level 1
+        message son { // Level 2
+            string name = 1;
+            int32 age = 2;
+        }
+    }
+    message Uncle { // Level 1
+        message Son { // Level 2
+            string name = 1;
+            int32 age = 2;
+        }
+    }
+}
+</code></pre></div><h4 id="_4-4-8-注释"><a href="#_4-4-8-注释" class="header-anchor">#</a> 4.4.8 注释</h4> <p>.proto文件的注释和golang语法一样，//用作单行注释，/<em>...</em>/用作多行注释。</p> <h3 id="_4-5-定义服务-service"><a href="#_4-5-定义服务-service" class="header-anchor">#</a> 4.5 定义服务(Service)</h3> <p>如果要在RPC（Remote Procedure Call，远程过程调用）系统中使用消息类型，可以在.proto文件中定义RPC服务接口，协议缓冲区编译器将根据所选语言生成服务接口代码和存根。因此，例如，如果您想用一个方法定义一个RPC服务，该方法接受您的SearchRequest并返回一个SearchResponse，您可以在.proto文件中这样定义它：</p> <div class="language- extra-class"><pre class="language-text"><code>service SearchService {
+    //rpc 服务的函数名 （传入参数）返回（返回参数）
+    rpc Search (SearchRequest) returns (SearchResponse);
+}
+</code></pre></div><p>上述代表表示，定义了一个RPC服务，该方法接收SearchRequest返回SearchResponse。</p> <p>与协议缓冲区一起使用的最直接的RPC系统是gRPC：Google开发的一个与语言和平台无关的开源RPC系统。gRPC与协议缓冲区配合得特别好，允许您使用特殊的协议缓冲区编译器插件直接从.proto文件生成相关的RPC代码。</p> <h3 id="_4-6-使用其他消息类型-import"><a href="#_4-6-使用其他消息类型-import" class="header-anchor">#</a> 4.6 使用其他消息类型（import）</h3> <p>可以将其他消息类型用作字段类型。例如，假设您希望在每个SearchResponse消息中包含Result消息——为此，您可以在同一.proto中定义Result消息类型，然后在SearchResponse中指定类型为Result的字段：</p> <div class="language- extra-class"><pre class="language-text"><code>message SearchResponse {
+  repeated Result results = 1;
+}
+ 
+message Result {
+  string url = 1;
+  string title = 2;
+  repeated string snippets = 3;
+}
+</code></pre></div><p>在上面的示例中，Result消息类型与SearchResponse在同一个文件中定义——如果要用作字段类型的消息类型已经在另一个.proto文件中定义了呢？
+通过导入其他.proto文件，可以使用这些文件中的定义。要导入另一个.proto的定义，请在文件顶部添加一个import语句：</p> <div class="language- extra-class"><pre class="language-text"><code>import &quot;myproject/other_protos.proto&quot;;
+</code></pre></div><p>默认情况下，只能使用直接导入的.proto文件中的定义。但是，有时可能需要将.proto文件移动到新位置。不用直接移动.proto文件并在一次更改中更新所有import调用，现在可以在旧位置放置一个伪.proto文件，使用import public概念将所有导入转发到新位置。任何导入包含import public语句的proto的文件都可以传递依赖关系。例如：</p> <div class="language- extra-class"><pre class="language-text"><code>// new.proto
+// All definitions are moved here　　
+// old.proto
+// This is the proto that all clients are importing.
+import public &quot;new.proto&quot;;
+import &quot;other.proto&quot;;
+
+// client.proto
+import &quot;old.proto&quot;;
+// You use definitions from old.proto and new.proto, but not other.proto
+</code></pre></div><p>重要：协议编译器使用-I/--proto_path路径标志在协议编译器命令行上指定的一组目录中搜索导入的文件。如果没有给定标志，它将在调用编译器的目录中查找。通常，您应该将--proto_path标志设置为项目的根目录，并对所有导入使用完全限定名。</p> <h3 id="_4-7-生成类-proto-pb-go"><a href="#_4-7-生成类-proto-pb-go" class="header-anchor">#</a> 4.7 生成类（.proto-&gt;.pb.go）</h3> <p>要生成Go代码，需要使用.proto文件中定义的消息类型和服务，还需要在.proto上运行协议缓冲区编译器protoc。编译器和protobuf的golang插件安装请参见：Mac下安装配置Protocol Buffers</p> <p>协议编译器的调用方式如下：</p> <div class="language- extra-class"><pre class="language-text"><code>protoc --proto_path=IMPORT_PATH  --go_out=DST_DIR path/to/file.proto
+</code></pre></div><ul><li><p>IMPORT_PATH：指定解析import指令时要在其中查找.proto文件的目录。如果省略，则使用当前目录。通过多次传递-proto_path选项可以指定多个导入目录；它们将按顺序进行搜索。-I=_IMPORT_PATH_可以用作* --proto_path的缩写形式。</p></li> <li><p>--go_out表示在DST_DIR中生成Go代码。</p></li> <li><p>必须提供一个或多个.proto文件作为输入。可以一次指定多个.proto文件。尽管这些文件是相对于当前目录命名的，但每个文件都必须驻留在IMPORT_PATH导入的其中一个路径中，以便编译器可以确定其规范名称。</p></li></ul> <p>示例：</p> <p>编译simple.proto，生成simple.pb.go</p> <div class="language- extra-class"><pre class="language-text"><code>syntax = &quot;proto3&quot;;
+message SearchRequest {
+  string query = 1;
+  int32 page_number = 2;
+  int32 result_per_page = 3;
+}
+</code></pre></div><p>在当前的目录下执行protoc -I=. -I/usr/local/include -I=$(GOPATH)/pkg --go_out=. simple.proto, 可以将这个proto编译成Go的代码，因为这里我们使用了go_out输出格式。</p> <p>-I指定protoc的搜索import的proto的文件夹。在MacOS操作系统中protobuf把一些扩展的proto放在了/usr/local/include对应的文件夹中（路径根据本地电脑实际存放目录配置，例如/usr/local/protobuf/include），一些第三方的Go库放在了gopath对应的包下，所以这里都把它们加上了。对于这个简单的例子，实际是不需要的。</p></div> <footer class="page-edit"><!----> <div class="last-updated"><span class="prefix">Last Updated:</span> <span class="time">11/19/2022, 9:01:23 PM</span></div></footer> <!----> </main></div><div class="global-ui"></div></div>
+    <script src="/assets/js/app.466dd957.js" defer></script><script src="/assets/js/2.733019b2.js" defer></script><script src="/assets/js/33.173b2025.js" defer></script>
+  </body>
+</html>
